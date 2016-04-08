@@ -1,0 +1,97 @@
+[
+    {
+        "host-short-name" {
+            "source-value" [
+                "bcc"
+            ]
+        }
+        "vacancy-short-name" {
+          "source-value" "tetrahedral"
+        }
+
+        "host-a" {
+            "source-unit" "angstrom"
+            "source-value" 3.14747730407
+        }
+        "host-b" {
+            "source-unit" "angstrom"
+            "source-value" 3.14747730407
+        }
+        "host-c" {
+            "source-unit" "angstrom"
+            "source-value" 3.14747730407
+        }
+        "host-alpha" {
+            "source-unit" "angstrom"
+            "source-value" 3.14747730407
+        }
+        "host-beta" {
+            "source-unit" "angstrom"
+            "source-value" 3.14747730407
+        }
+        "host-gamma" {
+            "source-unit" "angstrom"
+            "source-value" 3.14747730407
+        }
+        "host-temperature" {
+            "si-unit" "K"
+            "source-unit" "K"
+            "si-value" 0.0
+            "source-value" 0
+        }
+        "property-id" "tag:staff@noreply.openkim.org,2015-07-28:property/monovacancy-neutral-formation-free-energy-crystal-npt"
+        "vacancy-formation-free-energy" {
+          "source-value" 0.5
+          "source-unit" "eV"
+        }
+        "host-missing-atom-species" {
+          "source-value" [
+            "Al"
+          ]
+        }
+        "host-space-group" {
+            "source-value" "Im-3m"
+        }
+        "host-basis-atom-coordinates" {
+            "source-value" [
+                [
+                    0.0
+                    0.0
+                    0.0
+                ]
+                [
+                    0.5
+                    0.5
+                    0.5
+                ]
+            ]
+        }
+        "host-cauchy-stress" {
+            "si-unit" "kg / m s^2"
+            "source-unit" "GPa"
+            "si-value" [
+                0.0
+                0.0
+                0.0
+                0.0
+                0.0
+                0.0
+            ]
+            "source-value" [
+                0
+                0
+                0
+                0
+                0
+                0
+            ]
+        }
+        "host-species" {
+            "source-value" [
+                "Al"
+                "Al"
+            ]
+        }
+        "instance-id" 1
+    }
+]

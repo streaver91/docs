@@ -1,0 +1,43 @@
+\documentclass{letter}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+
+\begin{document}
+If we assume there is a point defect centered approximately at the origin, and $\bm{F}^{v}$ be the body force exerted by the defect on atom $v$ situated at $\bm{l}^v$.
+Then the displacement field can be written as
+$$ u_i(\bm{x}) = \sum_{v=1}^{N} g_{ij}(\bm{x}-\bm{l}^v) F_j^v $$
+$g_{ij}$ is the Green's function of a unit point force.
+For isotropic materials,
+$$ g_{ij}(\bm{x}) = \frac{1}{8\pi\mu(\lambda+2\mu)}\left[(\lambda+3\mu)\frac{\delta_{ij}}{r}+(\lambda+\mu)\frac{x_ix_j}{r^3}\right] $$
+
+Expanding $u_i$ around an arbitrary point near the origin, $\bm{x'}$, gives
+$$ u_i(\bm{x}) 
+= g_{ij}(\bm{x}-\bm{x'}) P_j^{(0)} 
+ + \frac{\partial g_{ij}(\bm{x}-\bm{x'})}{\partial x_k'} P_{kj}^{(1)}
+ + \frac{\partial^2 g_{ij}(\bm{x}-\bm{x'})}{\partial x_k' \partial x_l'} P_{klj}^{(2)}
+ + \cdots
+$$
+Here $\bm{P}^{(k)}$ are the multipoles corresponds to $\bm{x'}$, 
+$$ P_j^{(0)} = \sum_{v=1}^N F_j^v = 0 $$
+$$ P_{kj}^{(1)} = \sum_{v=1}^N (l_k^v-x'_k) F_j^v = \sum_{v=1}^N l_k^v F_j^v $$
+$$ P_{klj}^{(2)} 
+ = \sum_{v=1}^N (l_k^v-x'_k) (l_l^v-x'_l) F_j^v 
+ = \sum_{v=1}^N l_k^vl_l^v F_j^v - x'_k P_{lj}^{(1)} - x'_l P_{kj}^{(1)} $$
+
+$\bm{P}^{(1)}$ shall be the elastic dipole tensor.
+It is independent of the $\bm{x'}$ we choose.
+Also, it is symmetric, because the torque on the system
+$$ \tau_i = \sum_{v=1}^N l_j^v F_k^v - l_k^v F_j^v = P_{jk}^{(1)} - P_{kj}^{(1)} = 0 $$
+
+$\bm{P}^{(2)}$ depends on the choice of $\bm{x'}$.
+Although we can perform multipole expansion with respect to any $\bm{x'}$, we hope our choice of $\bm{x'}$ can give a direct impression of where the defect is situated.
+Therefore, I think we can use the following criteria:
+choose $\bm{x'}$ such that, in the basis where $\bm{P}^{(1)}$ is a diagonal matrix,
+$$ P_{iii}^{(2)} = \sum_{v=1}^N (l_i^v-x'_i)^2 F_i^v = 0 $$
+This gives an unambiguous definition for $\bm{x'}$ and also makes $\bm{x'}$ the center of the forces.
+And for simple monovacancies like a missing atom on a lattice site, this definition can give us the desired location, the location of the vacant site.
+
+\end{document}

@@ -1,0 +1,1489 @@
+Case #1: Calling recur(1)
+1
+Case #2: Calling recur(19)
+Calling recur(9)
+ret += 9
+num = 19, ret = 19
+19
+Case #3: Calling recur(23)
+Calling recur(9)
+lrev = 2
+ret += 3
+num = 23, ret = 15
+15
+Case #4: Calling recur(1101)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 11
+ret += 1
+num = 1101, ret = 150
+150
+Case #5: Calling recur(998999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 899
+ret += 999
+num = 998999, ret = 3334
+3334
+Case #6: Calling recur(990000)
+Calling recur(989999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 989
+ret += 999
+num = 989999, ret = 3424
+3424
+Case #7: Calling recur(10110)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 110
+num = 10110, ret = 447
+447
+Case #8: Calling recur(11111)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 11
+ret += 111
+num = 11111, ret = 459
+459
+Case #9: Calling recur(999991)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 991
+num = 999991, ret = 3426
+3426
+Case #10: Calling recur(512)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 5
+ret += 12
+num = 512, ret = 46
+46
+Case #11: Calling recur(999899)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 899
+num = 999899, ret = 3334
+3334
+Case #12: Calling recur(1999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 91
+ret += 99
+num = 1999, ret = 328
+328
+Case #13: Calling recur(11101)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 11
+ret += 101
+num = 11101, ret = 449
+449
+Case #14: Calling recur(876543)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 678
+ret += 543
+num = 876543, ret = 2657
+2657
+Case #15: Calling recur(4)
+4
+Case #16: Calling recur(102)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+ret += 2
+num = 102, ret = 31
+31
+Case #17: Calling recur(11000)
+Calling recur(10999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 999
+num = 10999, ret = 1336
+1336
+Case #18: Calling recur(1998)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 91
+ret += 98
+num = 1998, ret = 327
+327
+Case #19: Calling recur(900000)
+Calling recur(899999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 998
+ret += 999
+num = 899999, ret = 3433
+3433
+Case #20: Calling recur(131072)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 131
+ret += 72
+num = 131072, ret = 1639
+1639
+Case #21: Calling recur(524288)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 425
+ret += 288
+num = 524288, ret = 2149
+2149
+Case #22: Calling recur(20)
+Calling recur(19)
+Calling recur(9)
+ret += 9
+num = 19, ret = 19
+19
+Case #23: Calling recur(789012)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 987
+ret += 12
+num = 789012, ret = 2435
+2435
+Case #24: Calling recur(200)
+Calling recur(199)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+ret += 99
+num = 199, ret = 128
+128
+Case #25: Calling recur(109876)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 901
+ret += 876
+num = 109876, ret = 3213
+3213
+Case #26: Calling recur(11100)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 11
+ret += 100
+num = 11100, ret = 448
+448
+Case #27: Calling recur(262144)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 262
+ret += 144
+num = 262144, ret = 1842
+1842
+Case #28: Calling recur(11)
+Calling recur(9)
+ret += 1
+num = 11, ret = 11
+11
+Case #29: Calling recur(1001)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+ret += 1
+num = 1001, ret = 139
+139
+Case #30: Calling recur(987654)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 789
+ret += 654
+num = 987654, ret = 2879
+2879
+Case #31: Calling recur(999989)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 989
+num = 999989, ret = 3424
+3424
+Case #32: Calling recur(11011)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 11
+ret += 11
+num = 11011, ret = 359
+359
+Case #33: Calling recur(4096)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 4
+ret += 96
+num = 4096, ret = 238
+238
+Case #34: Calling recur(900001)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 9
+ret += 1
+num = 900001, ret = 1446
+1446
+Case #35: Calling recur(201)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 2
+ret += 1
+num = 201, ret = 32
+32
+Case #36: Calling recur(99001)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 1
+num = 99001, ret = 437
+437
+Case #37: Calling recur(999999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 999
+num = 999999, ret = 3434
+3434
+Case #38: Calling recur(999900)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 900
+num = 999900, ret = 3335
+3335
+Case #39: Calling recur(901)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 1
+num = 901, ret = 39
+39
+Case #40: Calling recur(2201)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 22
+ret += 1
+num = 2201, ret = 161
+161
+Case #41: Calling recur(90)
+Calling recur(89)
+Calling recur(9)
+lrev = 8
+ret += 9
+num = 89, ret = 27
+27
+Case #42: Calling recur(101)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+ret += 1
+num = 101, ret = 30
+30
+Case #43: Calling recur(10111)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 111
+num = 10111, ret = 448
+448
+Case #44: Calling recur(31)
+Calling recur(9)
+lrev = 3
+ret += 1
+num = 31, ret = 14
+14
+Case #45: Calling recur(10)
+Calling recur(9)
+9
+Case #46: Calling recur(10100)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 100
+num = 10100, ret = 437
+437
+Case #47: Calling recur(999998)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 998
+num = 999998, ret = 3433
+3433
+Case #48: Calling recur(999000)
+Calling recur(998999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 899
+ret += 999
+num = 998999, ret = 3334
+3334
+Case #49: Calling recur(990001)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 99
+ret += 1
+num = 990001, ret = 1536
+1536
+Case #50: Calling recur(30)
+Calling recur(29)
+Calling recur(9)
+lrev = 2
+ret += 9
+num = 29, ret = 21
+21
+Case #51: Calling recur(900)
+Calling recur(899)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 8
+ret += 99
+num = 899, ret = 136
+136
+Case #52: Calling recur(101001)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 101
+ret += 1
+num = 101001, ret = 1538
+1538
+Case #53: Calling recur(999990)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 990
+num = 999990, ret = 3425
+3425
+Case #54: Calling recur(989999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 989
+ret += 999
+num = 989999, ret = 3424
+3424
+Case #55: Calling recur(21)
+Calling recur(9)
+lrev = 2
+ret += 1
+num = 21, ret = 13
+13
+Case #56: Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+336
+Case #57: Calling recur(100001)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+ret += 1
+num = 100001, ret = 1437
+1437
+Case #58: Calling recur(10999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 999
+num = 10999, ret = 1336
+1336
+Case #59: Calling recur(100)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+28
+Case #60: Calling recur(91)
+Calling recur(9)
+lrev = 9
+ret += 1
+num = 91, ret = 20
+20
+Case #61: Calling recur(11010)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 11
+ret += 10
+num = 11010, ret = 358
+358
+Case #62: Calling recur(29)
+Calling recur(9)
+lrev = 2
+ret += 9
+num = 29, ret = 21
+21
+Case #63: Calling recur(2001)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 2
+ret += 1
+num = 2001, ret = 141
+141
+Case #64: Calling recur(11110)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 11
+ret += 110
+num = 11110, ret = 458
+458
+Case #65: Calling recur(10001)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 1
+num = 10001, ret = 338
+338
+Case #66: Calling recur(9)
+9
+Case #67: Calling recur(101000)
+Calling recur(100999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+ret += 999
+num = 100999, ret = 2435
+2435
+Case #68: Calling recur(1000)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+137
+Case #69: Calling recur(19)
+Calling recur(9)
+ret += 9
+num = 19, ret = 19
+19
+Case #70: Calling recur(12000)
+Calling recur(11999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 11
+ret += 999
+num = 11999, ret = 1347
+1347
+Case #71: Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+137
+Case #72: Calling recur(22)
+Calling recur(9)
+lrev = 2
+ret += 2
+num = 22, ret = 14
+14
+Case #73: Calling recur(1111)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 11
+ret += 11
+num = 1111, ret = 160
+160
+Case #74: Calling recur(12001)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 21
+ret += 1
+num = 12001, ret = 359
+359
+Case #75: Calling recur(12)
+Calling recur(9)
+ret += 2
+num = 12, ret = 12
+12
+Case #76: Calling recur(99000)
+Calling recur(98999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 89
+ret += 999
+num = 98999, ret = 1425
+1425
+Case #77: Calling recur(999001)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 1
+num = 999001, ret = 2436
+2436
+Case #78: Calling recur(899999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 998
+ret += 999
+num = 899999, ret = 3433
+3433
+Case #79: Calling recur(10010)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 10
+num = 10010, ret = 347
+347
+Case #80: Calling recur(10000)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+336
+Case #81: Calling recur(10101)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 101
+num = 10101, ret = 438
+438
+Case #82: Calling recur(2000)
+Calling recur(1999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 91
+ret += 99
+num = 1999, ret = 328
+328
+Case #83: Calling recur(111)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+ret += 11
+num = 111, ret = 40
+40
+Case #84: Calling recur(999901)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 901
+num = 999901, ret = 3336
+3336
+Case #85: Calling recur(2101)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 12
+ret += 1
+num = 2101, ret = 151
+151
+Case #86: Calling recur(10011)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+ret += 11
+num = 10011, ret = 348
+348
+Case #87: Calling recur(2002)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 2
+ret += 2
+num = 2002, ret = 142
+142
+Case #88: Calling recur(32)
+Calling recur(9)
+lrev = 3
+ret += 2
+num = 32, ret = 15
+15
+Case #89: Calling recur(110)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+ret += 10
+num = 110, ret = 39
+39
+Case #90: Calling recur(2100)
+Calling recur(2099)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 2
+ret += 99
+num = 2099, ret = 239
+239
+Case #91: Calling recur(11001)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 11
+ret += 1
+num = 11001, ret = 349
+349
+Case #92: Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+28
+Case #93: Calling recur(1100)
+Calling recur(1099)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+ret += 99
+num = 1099, ret = 237
+237
+Case #94: Calling recur(1099)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+ret += 99
+num = 1099, ret = 237
+237
+Case #95: Calling recur(1000000)
+Calling recur(999999)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 999
+ret += 999
+num = 999999, ret = 3434
+3434
+Case #96: Calling recur(100000)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+1435
+Case #97: Calling recur(2200)
+Calling recur(2199)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 12
+ret += 99
+num = 2199, ret = 249
+249
+Case #98: Calling recur(1110)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 11
+ret += 10
+num = 1110, ret = 159
+159
+Case #99: Calling recur(432109)
+Calling recur(99999)
+Calling recur(9999)
+Calling recur(999)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+lrev = 9
+ret += 99
+num = 999, ret = 137
+lrev = 99
+ret += 99
+num = 9999, ret = 336
+lrev = 99
+ret += 999
+num = 99999, ret = 1435
+lrev = 234
+ret += 109
+num = 432109, ret = 1779
+1779
+Case #100: Calling recur(199)
+Calling recur(99)
+Calling recur(9)
+lrev = 9
+ret += 9
+num = 99, ret = 28
+ret += 99
+num = 199, ret = 128
+128

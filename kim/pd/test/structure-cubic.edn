@@ -1,0 +1,110 @@
+[
+    {
+        "short-name" {
+            "source-value" [
+                "bcc"
+            ]
+        }
+        "a" {
+            "si-unit" "m"
+            "source-unit" "angstrom"
+            "si-value" 3.1474773e-10
+            "source-value" 3.14747730407
+        }
+        "temperature" {
+            "si-unit" "K"
+            "source-unit" "K"
+            "si-value" 0.0
+            "source-value" 0
+        }
+        "property-id" "tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt"
+        "space-group" {
+            "source-value" "Im-3m"
+        }
+        "basis-atom-coordinates" {
+            "source-value" [
+                [
+                    0.0
+                    0.0
+                    0.0
+                ]
+                [
+                    0.5
+                    0.5
+                    0.5
+                ]
+            ]
+        }
+        "cauchy-stress" {
+            "si-unit" "kg / m s^2"
+            "source-unit" "GPa"
+            "si-value" [
+                0.0
+                0.0
+                0.0
+                0.0
+                0.0
+                0.0
+            ]
+            "source-value" [
+                0
+                0
+                0
+                0
+                0
+                0
+            ]
+        }
+        "species" {
+            "source-value" [
+                "Al"
+                "Al"
+            ]
+        }
+        "instance-id" 1
+    }
+    {
+        "short-name" {
+            "source-value" [
+                "bcc"
+            ]
+        }
+        "a" {
+            "si-unit" "m"
+            "source-unit" "angstrom"
+            "si-value" 3.1474773e-10
+            "source-value" 3.14747730407
+        }
+        "property-id" "tag:staff@noreply.openkim.org,2014-04-15:property/cohesive-potential-energy-cubic-crystal"
+        "space-group" {
+            "source-value" "Im-3m"
+        }
+        "cohesive-potential-energy" {
+            "si-unit" "kg m^2 / s^2"
+            "source-unit" "eV"
+            "si-value" 5.2984233e-19
+            "source-value" 3.30701587065
+        }
+        "basis-atom-coordinates" {
+            "source-value" [
+                [
+                    0.0
+                    0.0
+                    0.0
+                ]
+                [
+                    0.5
+                    0.5
+                    0.5
+                ]
+            ]
+        }
+        "species" {
+            "source-value" [
+                "Al"
+                "Al"
+            ]
+        }
+        "instance-id" 2
+    }
+]
