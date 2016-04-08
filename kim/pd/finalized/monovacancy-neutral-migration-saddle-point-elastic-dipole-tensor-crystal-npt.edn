@@ -1,16 +1,16 @@
 {
   "property-id" "tag:staff@noreply.openkim.org,2016-04-06:property/monovacancy-neutral-migration-saddle-point-elastic-dipole-tensor-crystal-npt"
 
-  "property-title" "The elastic dipole tensor at the top of the energy barrier of the vacancy migration at finite temperature and given stress state"
+  "property-title" "The elastic dipole tensor at the top of the energy barrier of vacancy migration at finite temperature and given stress state"
 
-  "property-description" "The elastic dipole tensor at the top of the energy barrier of the vacancy migration. Quantitatively, it is the negative of the derivative of the free energy with respect to the bulk strain (Gillan, 1983) when the cohesive energy reaches minimum. (at finite temperature and a given stress state) from the initial configuration, a relaxed infinite crystal lattice with a neutral monovacancy at the position described by 'vacancy-position-start', to the final relaxed configuration, where the monovacancy has moved to a new position described by 'vacancy-migration-direction' and 'vacancy-position-end'."
+  "property-description" "This quantity describes the long-range elastic distortion caused by the migration of the vacancy. Quantitatively, it is the negative of the derivative of the free energy with respect to the bulk strain (Gillan, 1983) at the top of the energy barrier during the vacancy migration."
 
   "saddle-point-elastic-dipole-tensor" {
     "type"         "float"
     "has-unit"     true
     "extent"       [6]
     "required"     true
-    "description"  "The [xx,yy,zz,yz,xz,xy] (i.e. [11,22,33,23,13,12]) components of the elastic dipole tensor. The orthonormal basis (<e_1>,<e_2>,<e_3>) used to express the tensor should be such that e_1 is in the direction of <a>, e_2 is in the direction of (<c> x <a>), and e_3 is in the direction of (<e_1> x <e_2>). The expected form should be [a b c d e f]."
+    "description"  "The [xx,yy,zz,yz,xz,xy] (i.e. [11,22,33,23,13,12]) components of the elastic dipole tensor at the top of the energy barrier during the vacancy migration. The orthonormal basis (<e_1>,<e_2>,<e_3>) used to express the tensor should be such that e_1 is in the direction of <a>, e_2 is in the direction of (<c> x <a>), and e_3 is in the direction of (<e_1> x <e_2>). The expected form should be [a b c d e f]."
   }
   "vacancy-migration-direction" {
     "type"         "float"
@@ -33,12 +33,19 @@
     "required"     false
     "description"  "This quantity describes the center of the elastic distortion caused by the vacancy before migration. In cases where symmetry is preserved, this is the position of the removed atom. In general, if we characterize the effect of the vacancy as a series of force multipoles at some point, this is the position of the point where the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole. The position shall be expressed in fractional coordinates relative to the conventional unit cell. If there are several equivalent positions, the smallest non-negative fractional x, y and z coordinates are taken."
   }
+  "vacancy-position-saddle-point" {
+    "type"         "float"
+    "has-unit"     false
+    "extent"       [3]
+    "required"     false
+    "description"  "This quantity describes the center of the elastic distortion caused by the vacancy at the top of energy barrier during the migration. In cases where symmetry is preserved, this is the position of the removed atom. In general, if we characterize the effect of the vacancy as a series of force multipoles at some point, this is the position of the point where the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole. The position shall be expressed in fractional coordinates relative to the conventional unit cell and corresponds to 'vacancy-position-start', 'vacancy-migration-direction' and 'vacancy-position-end'."
+  }
   "vacancy-position-end" {
     "type"         "float"
     "has-unit"     false
     "extent"       [3]
     "required"     false
-    "description"  "This quantity describes the center of the elastic distortion caused by the vacancy after migration. In cases where symmetry is preserved, this is the position of the removed atom. In general, if we characterize the effect of the vacancy as a series of force multipoles at some point, this is the position of the point where the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole. The position shall be expressed in fractional coordinates relative to the conventional unit cell and corresponds to 'vacancy-position-start' and 'vacancy-migration-direction'."
+    "description"  "This quantity describes the center of the elastic distortion caused by the vacancy after migration. In cases where symmetry is preserved, this is the position of the removed atom. In general, if we characterize the effect of the vacancy as a series of force multipoles at some point, this is the position of the point where the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole. The position shall be expressed in fractional coordinates relative to the conventional unit cell and corresponds to 'vacancy-position-start' and 'vacancy-migration-direction'. If this quantity is not provided, it defaults to the first stable equilibrium position encountered along the vacancy migration direction."
   }
   "vacancy-short-name-start" {
     "type"         "string"
@@ -67,6 +74,20 @@
     "extent"       []
     "required"     false
     "description" "The index of the Wyckoff site corresponding to the missing atom before migration (if known).  This value refers to the ordering in 'wyckoff-multiplicity-and-letter' and ranges from one to the number of unique Wyckoff sites in the crystal."
+  }
+  "vacancy-unrelaxed-structure-saddle-point" {
+    "type"         "file"
+    "has-unit"     false
+    "extent"       []
+    "required"     false
+    "description"  "A file containing the atomic configuration including information such as the species, x,y,z coordinates of each particle before relaxation, and super-cell periodicity data for the computed unrelaxed vacancy."
+  }
+  "vacancy-relaxed-structure-saddle-point" {
+    "type"         "file"
+    "has-unit"     false
+    "extent"       []
+    "required"     false
+    "description"  "A file containing the atomic configuration including information such as the species, x,y,z coordinates of each particle after relaxation, and super-cell periodicity data for the computed relaxed vacancy."
   }
   "vacancy-short-name-end" {
     "type"         "string"
