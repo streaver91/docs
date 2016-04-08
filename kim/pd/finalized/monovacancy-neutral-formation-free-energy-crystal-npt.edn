@@ -61,20 +61,6 @@
     "required"     false
     "description"  "This quantity describes the center of the elastic distortion caused by the vacancy. In cases where symmetry is preserved, this is the position of the removed atom. In general, if we characterize the effect of the vacancy as a series of force multipoles at some point, this is the position of the point where the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole. The position shall be expressed in fractional coordinates relative to the host conventional unit cell. If there are several equivalent positions, the smallest non-negative fractional x, y and z coordinates are taken."
   }
-  "reservoir-basis-atom-coordinates" {
-    "type"         "float"
-    "has-unit"     false
-    "extent"       [":",3]
-    "required"     false
-    "description"  "Fractional coordinates of the basis atoms in the conventional unit cell.  If the unit cell vectors are denoted by <a>, <b>, and <c>, and the fractional coordinates of atom 'i' are [afrac_i, bfrac_i, cfrac_i], the value of ‘reservoir-basis-atom-coordinates' will be of the form [[afrac_1 bfrac_1 cfrac_1] [afrac_2 bfrac_2 cfrac_2] ... ].  All components of each basis atom should be between zero and one, inclusive of zero."
-  }
-  "reservoir-species" {
-    "type"         "string"
-    "has-unit"     false
-    "extent"       [":"]
-    "required"     false
-    "description"  "The element symbols of the basis atoms.  The order in which the species are specified must correspond to the order of the atoms listed in ‘reservoir-basis-atom-coordinates'."
-  }
   "host-basis-atom-coordinates" {
     "type"         "float"
     "has-unit"     false
@@ -179,6 +165,20 @@
     "extent"       [6]
     "required"     true
     "description"  "The [xx,yy,zz,yz,xz,xy] (i.e. [11,22,33,23,13,12]) components of the Cauchy stress acting on the periodic cell of the host crystal.  The orthonormal basis (<e_1>,<e_2>,<e_3>) used to express the stress should be such that e_1 is in the direction of <a>, e_2 is in the direction of (<c> x <a>), and e_3 is in the direction of (<e_1> x <e_2>)."
+  }
+  "reservoir-basis-atom-coordinates" {
+    "type"         "float"
+    "has-unit"     false
+    "extent"       [":",3]
+    "required"     false
+    "description"  "Fractional coordinates of the basis atoms in the conventional unit cell.  If the unit cell vectors are denoted by <a>, <b>, and <c>, and the fractional coordinates of atom 'i' are [afrac_i, bfrac_i, cfrac_i], the value of ‘reservoir-basis-atom-coordinates' will be of the form [[afrac_1 bfrac_1 cfrac_1] [afrac_2 bfrac_2 cfrac_2] ... ].  All components of each basis atom should be between zero and one, inclusive of zero."
+  }
+  "reservoir-species" {
+    "type"         "string"
+    "has-unit"     false
+    "extent"       [":"]
+    "required"     false
+    "description"  "The element symbols of the basis atoms.  The order in which the species are specified must correspond to the order of the atoms listed in ‘reservoir-basis-atom-coordinates'."
   }
   "reservoir-short-name" {
     "type"         "string"

@@ -3,7 +3,7 @@
 
   "property-title" "The elastic dipole tensor at the top of the energy barrier of the vacancy migration at finite temperature and given stress state"
 
-  "property-description" "This quantity describes the elastic dipole tensor at the top of the energy barrier, which must be overcome to transition (at finite temperature and a given stress state) from the initial configuration, a relaxed infinite crystal lattice with a neutral monovacancy at the position described by 'vacancy-position-start', to the final relaxed configuration, where the monovacancy has moved to a new position described by 'vacancy-migration-direction' and 'vacancy-position-end')."
+  "property-description" "The elastic dipole tensor at the top of the energy barrier of the vacancy migration. Quantitatively, it is the negative of the derivative of the free energy with respect to the bulk strain (Gillan, 1983) when the cohesive energy reaches minimum. (at finite temperature and a given stress state) from the initial configuration, a relaxed infinite crystal lattice with a neutral monovacancy at the position described by 'vacancy-position-start', to the final relaxed configuration, where the monovacancy has moved to a new position described by 'vacancy-migration-direction' and 'vacancy-position-end'."
 
   "saddle-point-elastic-dipole-tensor" {
     "type"         "float"
