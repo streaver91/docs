@@ -1,6 +1,7 @@
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
+import itertools
 
 data = {}
 with open('sizeResults.csv', 'r') as f:
@@ -18,12 +19,19 @@ with open('sizeResults.csv', 'r') as f:
 oneOverAtoms = 1 / data['nAtoms']
 print type(oneOverAtoms)
 
+marker = itertools.cycle((',', '+', '.', 'x', '*', '^', 'v'))
 for key in data:
     if key == 'nAtoms':
         continue
     ydata = data[key] / data[key][0]
-    plt.plot(oneOverAtoms, ydata, 'o--', label = key)
-    plt.text(oneOverAtoms[-1], ydata[-1], key)
+    plt.plot(oneOverAtoms, ydata, 'o:', label = key)
+    # plt.plot(oneOverAtoms, ydata, 'black', marker = marker.next(), markersize = 6, label = key)
+    if key in ['VRV', 'EDT11', 'DST11']:
+        if key == 'VRV':
+            plt.text(oneOverAtoms[-2] + 0.00002, ydata[-2] + 0.001, 'VRV, EDT11, DST11')
+    else:
+        print key
+        plt.text(oneOverAtoms[-2] + 0.00002, ydata[-2] + 0.001, key)
     print (data[key] / data[key][0])
 
 plt.legend()
