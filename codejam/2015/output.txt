@@ -147,11 +147,8 @@ lrev = 9
 ret += 9
 num = 99, ret = 28
 lrev = 9
-ret += 99
-num = 999, ret = 137
-lrev = 99
-ret += 99
-num = 9999, ret = 336
+retVim: Double signal, exiting
+[41;1H[0m[?1l>[?1049l[41;1Ht = 336
 lrev = 99
 ret += 999
 num = 99999, ret = 1435

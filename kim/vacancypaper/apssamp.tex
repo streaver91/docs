@@ -72,20 +72,29 @@
 \preprint{APS/123-QED}
 
 \title{
- Monovacancy Properties of FCC and HCP Structures\\
- From Automated Atomistic Simulation Based on OpenKIM
+  Monovacancy Properties From Atomistic Simulations Based on OpenKIM
 }% Force line breaks with \\
 %\thanks{A footnote to the article title}%
 
 \author{Junhao Li}
- \email{jl2922@cornell.edu}
-\author{James P. Sethna}
- \email{sethna@lassp.cornell.edu}
+  \email{jl2922@cornell.edu}
+\author{Matt Bierbaum}
 \affiliation{
- Department of Physics and Laboratory of Atomic and Solid State Physics\\
- Cornell University, Ithaca, New York 14853, USA
+  Department of Physics and Laboratory of Atomic and Solid State Physics\\
+  Cornell University, Ithaca, NY 14853, USA
 }
-
+\author{Ryan Elliott}
+\author{Ellad Tadmor}
+\affiliation{
+  Department of Aerospace Engineering and Mechanics\\
+  University of Minnesota, Minneapolis, MN 55455, USA
+}
+\author{James P. Sethna}
+  \email{sethna@lassp.cornell.edu}
+\affiliation{
+  Department of Physics and Laboratory of Atomic and Solid State Physics\\
+  Cornell University, Ithaca, NY 14853, USA
+}
 %\author{Ann Author}
 % \altaffiliation[Also at ]{Physics Department, XYZ University.}%Lines break automatically or can be forced with \\
 %\author{Second Author}%
@@ -118,10 +127,12 @@
              %  but any date may be explicitly specified
 
 \begin{abstract}
-The quality of interatomic models is crucial to atomistic simulations.
-In this study, we assess the interatomic models in terms of their ability to describe vacancy-related interactions.
-Based on the OpenKIM framework, we perform automated atomistic calculations of monovacancy properties, including the formation energy, the migration energy, and the relaxation volume, for all the interatomic models currently available in the OpenKIM repository, and compare the calculation results with reference data from density functional (DFT) calculations and experiments to identify the most promising interatomic models for defect-related simulations.
-We also explore how the monovacancy properties relate to each other, and to other elemental properties.
+In this paper, we describe how we obtain the monovacancy properties for all the elements and all the simple crystal structures with interatomic potential models available on OpenKIM.
+The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
+The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
+These results can provide use information when selecting interatomic models and can also be used with a continuous model to obtain an initial guess for further atomistic simulations.
+We also exam how these results depends on each other and on other elemental properties.
+
 %An article usually includes an abstract, a concise summary of the work
 %covered at length in the main body of the article.
 %\begin{description}
@@ -157,17 +168,23 @@ The OpenKIM project \cite{bierbaum2014openkim, openkim2016} solves this problem 
 It also hosts a repository of reference data from other sources, such as DFT and experiments, to assess the quality of these models.
 % sample elements from the whole periodic table and various structures and find out or discover suitable materials and structures in an automated way, which in the past could only be done with DFT \cite{ceder2010opportunities, zhou2010iron,norskov2009towards} and thus was only applicable for small structures.
 
-In this study, we focus on the simulation of vacancies.
+In this study, we focus on vacancies.
 Finding interatomic models that can accurately describe vacancy effects is extremely beneficial for furthering our understanding and application of materials.
 Vacancies are the simplest and the most common defects.
 They affect dislocation climbing and creeping \cite{weertman1955theory}, mediate the diffusion of substitutional defects \cite{fahey1989point}, and are the dominant flow mechanism under external fields, such as gravity \cite{sethna2014flow}.
 Also, some scientists are proposing using \ce{^{28}Si} for a new kilogram definition \cite{andreas2011counting}, and how to obtain the vacancy concentration accurately will be a crucial part of this work.
 
-Here we use OpenKIM to calculate, automatically, the most important vacancy-related properties, including the vacancy formation energy (VFE) and the vacancy migration energy (VME), and compare the results with the reference data from DFT calculations and experiments.
-In doing so, we can help researchers who care about vacancy effects in their atomistic simulation choose models that are more suitable for them.
+In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the monovacancy properties for all the elements and all the simple crystal structures with interatomic potential models available on OpenKIM.
+The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
+Appendix~\ref{app:definition} provides a brief description to these quantities.
+The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
+These results can be compared with data from other sources, such as DFT and experiments, and provide use information for selecting interatomic models when performing vacancy-related simulations.
+They can also be used with a continuous model to obtain an initial guess for further atomistic simulations \cite{bozhevolnyi2001multiple}.
 
-The vacancy relaxation volume (VRV) is also an important property, determining vacancies' response to internal and external stresses.
-Therefore, we calculate and report it in this study as well, although we do not have the reference data available for it at this time.
+Here we use OpenKIM to calculate, automatically, the most important monovacancy-related properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the defect strain tensor (DST), and the elastic dipole tensor (EDT).
+We then compare the results with the reference data from DFT calculations and experiments.
+In doing so, we can provide useful information for researchers in choosing suitable atomistic models for vacancy-related simulations.
+In addition, when dealing with larger systems, the properties obtained in this study can also be used with a continuous model to obtain an initial guess as the starting point for further atomistic simulation with the corresponding model \cite{bozhevolnyi2001multiple}.
 
 In addition, we also explore how these properties relate to each other, and to other elemental properties, such as the cohesive energy and the bulk modulus.
 
