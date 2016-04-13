@@ -206,106 +206,49 @@ f = f_0 + n_dE_d + \frac{1}{2}n_d^2E_{dd} + \frac{1}{2}C_{ijkl}\epsilon_{ij}\eps
 \end{equation}
 where $n_d$ is the defect concentration, $\epsilon_{ij}$ is the bulk strain, $E_d$ is the vacancy formation energy, $E_dd$ describes the energy from defect interaction, $C_{ijkl}$ is the elastic stiffness tensor, and $G_{ij}$ is the elastic dipole tensor \cite{freedman2009elastic}.
 $f_0$ is the chemical potential.
-Suppose $n$ is the number of atoms per unit volume and $E_0$ is the energy per atom corresponding to a perfect crystal (the reservoir), then $f_0 = (n - n_d) E_0$.
+Suppose $n$ is the number of atoms per unit volume and $E_0$ is the energy per atom corresponding to a perfect crystal (the reservoir), then $f_0 = (n - n_d) E_{0}$.
 
-Under zero bulk strain, the negative direvative of $f$ with respect to $n_d$ gives VFE
+The negative direvative of $f$ with respect to $n_d$ under zero strain gives vacancy formation energy, VFE
 \begin{equation}
-  VFE = E_d = \frac{\partial f}{\partial n_d}\right|_{\epsilon = 0} - E_0 - n_d E_dd
+  \label{eq:VFE0}
+  \mathit{VFE} = E_d = \left.\frac{\partial f}{\partial n_d}\right|_{\epsilon = 0} + E_{0} - n_d E_{dd}
 \end{equation}
-
-We first obtain the lattice constants through energy minimization, and then use this value to build several periodically repeated supercells of different sizes.
-For each supercell, we use the following algorithm to obtain the desired properties:
-
-\begin{enumerate}
- \item Obtain the potential energy and volume of this supercell, $E_0$ and $V_0$.
- \item Remove an atom, relax the positions of the other atoms (keep the size of the supercell fixed) and obtain the new potential energy, $E_1$.
- \item Calculate the vacancy formation energy by:
- \begin{equation}
- \label{eq:vfecalc}
- \mathit{VFE} = E_1 - E_0 \times \frac{n - 1}{n}
- \end{equation}
- where $n$ is the number of atoms in the original supercell.
- \item Move one atom to the vacant site from the nearest neighbors and use the nudged elastic band (NEB) method to obtain the saddle point energy, $E_2$.
- \item Calculate the vacancy migration energy by:
- \begin{equation}
- \label{eq:vmecalc}
- \mathit{VME} = E_2 - E_1
- \end{equation}
- \item Relax the size of the supercell and obtain the relaxation volume.
-\end{enumerate}
-
-Finally, we extrapolate these results to get the dilute limit.
-The extrapolation is based on the elastic theory \cite{landau2013course}, according to which all the quantities that we are interested in scale approximately as
+For a supercell of volume $V_0$ with a monovacancy, Eq.~\ref{eq:VFE0} is equivalent to
 \begin{equation}
-\label{eq:extrapolation}
-A_0 + \frac{A_3}{n}
+  (E_{V_0, d} - E_{V_0}) + E_{0} = \mathit{VFE} + \frac{E_{dd}}{V_0}
 \end{equation}
-where $n$ is the number of atoms in a supercell \cite{freysoldt2014first}, and $A_0$ and $A_3$ are the constants to be determined.
-$A_0$ is the dilute limit we want.
+Here $E_{V_0, d}$ and $E_{V_0}$ are the free energy of the supercell with and withouth the defect, respectively.
+Since $E_{dd}$ is unknown, we obtained VFE through extrapolation.
+The uncertainty of this value is the combination of the uncertainty from extrapolation and the uncertainty from atomistic relaxation.
 
-We can prove this scaling relationship as follows:
-first of all, $n\propto R^3$, where $R$ is the size of the supercell, so Eq.~(\ref{eq:extrapolation}) is equivalent to $A_0+A_3/R^3$.
-For simplicity, we ignore anisotropy and nonlinearity, and consider the supercell with a vacancy as a hollow sphere.
-According to the elastic theory, the displacement vector of a hollow sphere of external and internal radii $R_1$ and $R_2$ with a pressure $p_1$ inside and $p_2$ outside is $\vec{u} = \left(ar + b / r^2\right)\hat{r}$, where
-\begin{align}
-a &= \frac{p_1R_1^3-p_2R_2^3}{R_2^3-R_1^3}\cdot\frac{1-2\sigma}{E}\\
-b &= \frac{R_1^3R_2^3(p_1-p_2)}{R_2^3-R_1^3}\cdot\frac{1+\sigma}{2E}
-\end{align}
-Here $\sigma$ is the Poisson's ratio, $E$ is the Young's modulus, $p_2=0$, and, for VRV, $r=R_2$. Hence, we can get the $r$ component of $\vec{u}$
+The negative derivative of $f$ with respect to strain gives the stress
 \begin{equation}
-\label{eq:ur}
-u_r = \frac{p_1R_1^3}{R_2^2}\cdot\frac{3\left(1-\sigma\right)}{2E}\left(1+\frac{R_1^3}{R_2^3}+O\left(\frac{1}{R_2^6}\right)\right)
+  \label{eq:stress}
+  \sigma_{ij} = -\frac{\partial f}{\partial \epsilon_{ij}}
+  = -C_{ijkl}\epsilon_{kl} + n_dG_{ij} - \frac{1}{2}n_d^2\frac{\partial E_{dd}}{\partial \epsilon_{ij}}
 \end{equation}
-Therefore, the vacancy relaxation volume
+And the derivative of $\sigma_{ij}$ with respect to $n_d$ with fixed strain $\epsilon_0$ gives elastic dipole tensor, EDT ($G_{ij}$)
 \begin{equation}
-\label{eq:VRVProof}
-\begin{split}
-\mathit{VRV} & = \frac{4}{3}\pi\left(R_2^3-(R_2-u_r)^3\right)\\
- & = 4\pi C_0\left(1 + \frac{R_1^3-C_0}{R_2^3} + O\left(\frac{1}{R_2^6}\right)\right)
-\end{split}
+  \label{eq:EDT}
+  G_{ij} = \left.\frac{\partial \sigma_{ij}}{\partial n_d}\right|_{\epsilon = \epsilon_0}
+  + n_d \left.\frac{\partial E_{dd}}{\partial \epsilon_{ij}}\right|_{\epsilon = \epsilon_0}
 \end{equation}
-Here $C_0 = 3p_1R_1^3(1-\sigma)/2E$ is a constant.
-Eq.~(\ref{eq:VRVProof}) indicates that VRV satisfies Eq.~(\ref{eq:extrapolation}).
+We obtained the value and the uncertainty of EDT through extrapolating the results of supercells as what we did for VFE.
 
-The strain and the stress of the hollow sphere are
-\begin{align}
-u_{rr} &= a - 2b/r^3\\
-u_{\theta\theta} = u_{\phi\phi} &= a + b/r^3\\
-\sigma_{rr} &= \frac{pR_1^3}{R_2^3-R_1^3}\cdot \left(1-\frac{R_2^3}{r^3}\right)\\
-\sigma_{\theta\theta}=\sigma_{\phi\phi} &= \frac{p_1R_1^3}{R_2^3-R_1^3}\cdot\left(1+\frac{R_2^3}{r^3}\right)
-\end{align}
-From these we can obtain the vacancy formation energy
+The defect strain tensor, DST ($\Lambda_{ij}$) is obtained by
 \begin{equation}
-\label{eq:VFEProof}
-\begin{split}
-\mathit{VFE} & = \iiint_V \frac{1}{2} \left(u_{rr}\sigma_{rr} + u_{\theta\theta}\sigma_{\theta\theta} + u_{\phi\phi}\sigma_{\phi\phi}\right) dV\\
- & = 4C_1(1+\sigma)
- + 2C_1 C_2 \cdot\frac{R_1^3}{R_2^3}
- + O\left(\frac{1}{R_2^6}\right)
-\end{split}
+  \label{eq:DST}
+  \Lambda_{ij} = S_{ijkl} G_{kl}
 \end{equation}
-where $C_1=p_1^2\pi R_1^3/(3E)$ and $C_2 = 5-4\sigma+(6\sigma-3) \log\left(R_1/R_2\right)$.
-This proves that VFE scales approximately as Eq.~(\ref{eq:extrapolation}).
+where $S_{ijkl}$ is the elastic compliance tensor, which is the inverse of the elastic stiffness tensor.
 
-Note that, for efficiency, our calculation of VFE is performed with a fixed-size supercell, not a stress-free one.
-This will not affect the results, because the difference between the results from the two different boundary conditions is
-\begin{equation}
-\Delta E=\int pdV=\int B \frac{V-V_0}{V_0}dV\propto\frac{(V-V_0)^2}{V_0}
-\end{equation}
-where the numerator is $\mathit{VRV}^2=16\pi C_0^2+O(R_2^{-3})$, and the denominator is proportional to $R_2^3$.
-This means $\Delta E$ also scales as $1/R_2^3$.
+The relaxation volume, VRV, is the trace of the defect strain tensor.
 
-VME is the energy difference between two configurations:
-a crystal with a monovacancy, and a crystal with two monovacancies adjacent to each other and an extra atom somewhere between the two vacant sites.
-The energy of the first configuration has just been proved to scale as Eq.~(\ref{eq:extrapolation}).
-The second configuration can be considered as a superposition of three states:
-two states correspond to the initial and final states of the migration, and the third one corresponds to the saddle point but with the two vacant sites filled up.
-The proof of VFE can be applied directly to each of these states and give similar $R_2$ dependencies.
-Therefore, VME also satisfies Eq.~(\ref{eq:extrapolation}).
+For vacancy migration, we used nudged elastic band method to obtain the migration path.
+The vacancy migration energy, VME, is calculated as the energy different between the energy saddle point configuration along the migration path and the initial configuration.
+We obtain the elastic dipole tensor and the defect strain tensor similarly with the saddle point configuration.
+Since the configuration of the saddle point is still a monovacancy, the quantities scale in the same way as in the static case with respect to the number of atoms.
 
-Fig.~\ref{fig:VFEFitting} is a plot of VFE versus $1/n$, calculated with the EAM model of aluminum from Mishin and Farkas \cite{mishin1999interatomic}.
-In this case, $A_0 = \unit{0.67515(1)}{\electronvolt}$ and $A_3 = \unit{-0.3644(27)}{\electronvolt}$, which implies that the monovacancy formation energy is \unit{0.67515(1)}{\electronvolt}.
-The linear relationship shown in this figure and the adjusted R-square of 0.99978 in the fitting validate our extrapolation.
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{AlMishinVFEFitting}% Here is how to import EPS art
 \caption{\label{fig:VFEFitting}
@@ -317,6 +260,113 @@ The linear relationship shown in this figure and the adjusted R-square of 0.9997
 \end{figure}
 
 The code that implements the whole algorithm is available in the OpenKIM repository \cite{openkim2016}, id: 554849987965.
+%
+%
+% We first obtain the lattice constants through energy minimization, and then use this value to build several periodically repeated supercells of different sizes.
+% For each supercell, we use the following algorithm to obtain the desired properties:
+%
+% \begin{enumerate}
+%  \item Obtain the potential energy and volume of this supercell, $E_0$ and $V_0$.
+%  \item Remove an atom, relax the positions of the other atoms (keep the size of the supercell fixed) and obtain the new potential energy, $E_1$.
+%  \item Calculate the vacancy formation energy by:
+%  \begin{equation}
+%  \label{eq:vfecalc}
+%  \mathit{VFE} = E_1 - E_0 \times \frac{n - 1}{n}
+%  \end{equation}
+%  where $n$ is the number of atoms in the original supercell.
+%  \item Move one atom to the vacant site from the nearest neighbors and use the nudged elastic band (NEB) method to obtain the saddle point energy, $E_2$.
+%  \item Calculate the vacancy migration energy by:
+%  \begin{equation}
+%  \label{eq:vmecalc}
+%  \mathit{VME} = E_2 - E_1
+%  \end{equation}
+%  \item Relax the size of the supercell and obtain the relaxation volume.
+% \end{enumerate}
+%
+% Finally, we extrapolate these results to get the dilute limit.
+% The extrapolation is based on the elastic theory \cite{landau2013course}, according to which all the quantities that we are interested in scale approximately as
+% \begin{equation}
+% \label{eq:extrapolation}
+% A_0 + \frac{A_3}{n}
+% \end{equation}
+% where $n$ is the number of atoms in a supercell \cite{freysoldt2014first}, and $A_0$ and $A_3$ are the constants to be determined.
+% $A_0$ is the dilute limit we want.
+%
+% We can prove this scaling relationship as follows:
+% first of all, $n\propto R^3$, where $R$ is the size of the supercell, so Eq.~(\ref{eq:extrapolation}) is equivalent to $A_0+A_3/R^3$.
+% For simplicity, we ignore anisotropy and nonlinearity, and consider the supercell with a vacancy as a hollow sphere.
+% According to the elastic theory, the displacement vector of a hollow sphere of external and internal radii $R_1$ and $R_2$ with a pressure $p_1$ inside and $p_2$ outside is $\vec{u} = \left(ar + b / r^2\right)\hat{r}$, where
+% \begin{align}
+% a &= \frac{p_1R_1^3-p_2R_2^3}{R_2^3-R_1^3}\cdot\frac{1-2\sigma}{E}\\
+% b &= \frac{R_1^3R_2^3(p_1-p_2)}{R_2^3-R_1^3}\cdot\frac{1+\sigma}{2E}
+% \end{align}
+% Here $\sigma$ is the Poisson's ratio, $E$ is the Young's modulus, $p_2=0$, and, for VRV, $r=R_2$. Hence, we can get the $r$ component of $\vec{u}$
+% \begin{equation}
+% \label{eq:ur}
+% u_r = \frac{p_1R_1^3}{R_2^2}\cdot\frac{3\left(1-\sigma\right)}{2E}\left(1+\frac{R_1^3}{R_2^3}+O\left(\frac{1}{R_2^6}\right)\right)
+% \end{equation}
+% Therefore, the vacancy relaxation volume
+% \begin{equation}
+% \label{eq:VRVProof}
+% \begin{split}
+% \mathit{VRV} & = \frac{4}{3}\pi\left(R_2^3-(R_2-u_r)^3\right)\\
+%  & = 4\pi C_0\left(1 + \frac{R_1^3-C_0}{R_2^3} + O\left(\frac{1}{R_2^6}\right)\right)
+% \end{split}
+% \end{equation}
+% Here $C_0 = 3p_1R_1^3(1-\sigma)/2E$ is a constant.
+% Eq.~(\ref{eq:VRVProof}) indicates that VRV satisfies Eq.~(\ref{eq:extrapolation}).
+%
+% The strain and the stress of the hollow sphere are
+% \begin{align}
+% u_{rr} &= a - 2b/r^3\\
+% u_{\theta\theta} = u_{\phi\phi} &= a + b/r^3\\
+% \sigma_{rr} &= \frac{pR_1^3}{R_2^3-R_1^3}\cdot \left(1-\frac{R_2^3}{r^3}\right)\\
+% \sigma_{\theta\theta}=\sigma_{\phi\phi} &= \frac{p_1R_1^3}{R_2^3-R_1^3}\cdot\left(1+\frac{R_2^3}{r^3}\right)
+% \end{align}
+% From these we can obtain the vacancy formation energy
+% \begin{equation}
+% \label{eq:VFEProof}
+% \begin{split}
+% \mathit{VFE} & = \iiint_V \frac{1}{2} \left(u_{rr}\sigma_{rr} + u_{\theta\theta}\sigma_{\theta\theta} + u_{\phi\phi}\sigma_{\phi\phi}\right) dV\\
+%  & = 4C_1(1+\sigma)
+%  + 2C_1 C_2 \cdot\frac{R_1^3}{R_2^3}
+%  + O\left(\frac{1}{R_2^6}\right)
+% \end{split}
+% \end{equation}
+% where $C_1=p_1^2\pi R_1^3/(3E)$ and $C_2 = 5-4\sigma+(6\sigma-3) \log\left(R_1/R_2\right)$.
+% This proves that VFE scales approximately as Eq.~(\ref{eq:extrapolation}).
+%
+% Note that, for efficiency, our calculation of VFE is performed with a fixed-size supercell, not a stress-free one.
+% This will not affect the results, because the difference between the results from the two different boundary conditions is
+% \begin{equation}
+% \Delta E=\int pdV=\int B \frac{V-V_0}{V_0}dV\propto\frac{(V-V_0)^2}{V_0}
+% \end{equation}
+% where the numerator is $\mathit{VRV}^2=16\pi C_0^2+O(R_2^{-3})$, and the denominator is proportional to $R_2^3$.
+% This means $\Delta E$ also scales as $1/R_2^3$.
+%
+% VME is the energy difference between two configurations:
+% a crystal with a monovacancy, and a crystal with two monovacancies adjacent to each other and an extra atom somewhere between the two vacant sites.
+% The energy of the first configuration has just been proved to scale as Eq.~(\ref{eq:extrapolation}).
+% The second configuration can be considered as a superposition of three states:
+% two states correspond to the initial and final states of the migration, and the third one corresponds to the saddle point but with the two vacant sites filled up.
+% The proof of VFE can be applied directly to each of these states and give similar $R_2$ dependencies.
+% Therefore, VME also satisfies Eq.~(\ref{eq:extrapolation}).
+%
+% Fig.~\ref{fig:VFEFitting} is a plot of VFE versus $1/n$, calculated with the EAM model of aluminum from Mishin and Farkas \cite{mishin1999interatomic}.
+% In this case, $A_0 = \unit{0.67515(1)}{\electronvolt}$ and $A_3 = \unit{-0.3644(27)}{\electronvolt}$, which implies that the monovacancy formation energy is \unit{0.67515(1)}{\electronvolt}.
+% The linear relationship shown in this figure and the adjusted R-square of 0.99978 in the fitting validate our extrapolation.
+
+% \begin{figure}
+% \includegraphics[width=0.5\textwidth]{AlMishinVFEFitting}% Here is how to import EPS art
+% \caption{\label{fig:VFEFitting}
+%   Monovacancy formation energy (VFE) versus the inverse of the number of atoms ($n$) in a supercell, calculated with the embedded atom model (EAM) of aluminum from Mishin and Farkas \cite{mishin1999interatomic}.
+%   As we can see from this plot, there is a strong linear correlation between VFE and $1/n$.
+%   The adjusted R-square of the linear fitting is 0.99978.
+%   The intercept of the fitted line corresponds to VFE of the dilute limit $\unit{0.67515(1)}{\electronvolt}$.
+% }
+% \end{figure}
+%
+% The code that implements the whole algorithm is available in the OpenKIM repository \cite{openkim2016}, id: 554849987965.
 
 \section{\label{sec:results}Results and Discussion}
 
