@@ -195,7 +195,7 @@ And Appendix~\ref{app:results} list the scripts used for obtaining the data from
 
 \section{\label{sec:method}Methodology}
 
-In this section, we describe how we calculated the monovacancy properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
+In this section, we explain how we calculated the monovacancy properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
 For a brief description of these quantities, see Appendix~\ref{app:definition} and the OpenKIM website \url{https://openkim.org/properties}.
 
 The calculation is based on OpenKIM and the Atomic Simulation Environment (ASE) \cite{bahn2002object}.
@@ -204,9 +204,14 @@ The free energy per unit volume of a crystal can be described by the following e
 \begin{equation}\label{eq:f}
 f = f_0 + n_dE_d + \frac{1}{2}n_d^2E_{dd} + \frac{1}{2}C_{ijkl}\epsilon_{ij}\epsilon_{kl} - n_d\epsilon_{ij}G_{ij}
 \end{equation}
-where $f_0$ describes the chemical potential, the energy per atom in the corresponding perfect crystal, $n_d$ is the defect concentration, $\epsilon_{ij}$ is the bulk strain, $E_d$ is the vacancy formation energy, $E_dd$ describes the energy from defect interaction, $C_{ijkl}$ is the elastic stiffness tensor, and $G_{ij}$ is the elastic dipole tensor \cite{freedman2009elastic}.
+where $n_d$ is the defect concentration, $\epsilon_{ij}$ is the bulk strain, $E_d$ is the vacancy formation energy, $E_dd$ describes the energy from defect interaction, $C_{ijkl}$ is the elastic stiffness tensor, and $G_{ij}$ is the elastic dipole tensor \cite{freedman2009elastic}.
+$f_0$ is the chemical potential.
+Suppose $n$ is the number of atoms per unit volume and $E_0$ is the energy per atom corresponding to a perfect crystal (the reservoir), then $f_0 = (n - n_d) E_0$.
 
-
+Under zero bulk strain, the negative direvative of $f$ with respect to $n_d$ gives VFE
+\begin{equation}
+  VFE = E_d = \frac{\partial f}{\partial n_d}\right|_{\epsilon = 0} - E_0 - n_d E_dd
+\end{equation}
 
 We first obtain the lattice constants through energy minimization, and then use this value to build several periodically repeated supercells of different sizes.
 For each supercell, we use the following algorithm to obtain the desired properties:
