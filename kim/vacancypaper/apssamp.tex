@@ -177,16 +177,15 @@ Also, some scientists are proposing using \ce{^{28}Si} for a new kilogram defini
 In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the monovacancy properties for all the elements and all the simple crystal structures with interatomic potential models available on OpenKIM.
 The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
 Appendix~\ref{app:definition} provides a brief description to these quantities.
+Sec.~\ref{sec:method} describes how we calculate these quantities.
 The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
-These results can be compared with data from other sources, such as DFT and experiments, and provide use information for selecting interatomic models when performing vacancy-related simulations.
-They can also be used with a continuous model to obtain an initial guess for further atomistic simulations \cite{bozhevolnyi2001multiple}.
+These results can be compared with data from other sources, such as density function theory (DFT), quantum monte carlo (QMC), and experiments, and provide use information for selecting interatomic models when performing vacancy-related simulations.
+They can also be used with continuous models to obtain an initial guess for further atomistic simulations \cite{bozhevolnyi2001multiple}.
 
-Here we use OpenKIM to calculate, automatically, the most important monovacancy-related properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the defect strain tensor (DST), and the elastic dipole tensor (EDT).
-We then compare the results with the reference data from DFT calculations and experiments.
-In doing so, we can provide useful information for researchers in choosing suitable atomistic models for vacancy-related simulations.
-In addition, when dealing with larger systems, the properties obtained in this study can also be used with a continuous model to obtain an initial guess as the starting point for further atomistic simulation with the corresponding model \cite{bozhevolnyi2001multiple}.
+We compared our VFE and VME results to DFT calculations and experiments for fcc and hcp structures \cite{angsten2014elemental}.
+We found that EAM potential models, in general, provide results closer to these reference data then other models, especially for transition metals.
 
-In addition, we also explore how these properties relate to each other, and to other elemental properties, such as the cohesive energy and the bulk modulus.
+In addition, we explored how these properties relate to each other, and to other elemental properties, such as the cohesive energy and the bulk modulus.
 
 The paper is organized as follows.
 In Sec.~\ref{sec:method} we describe the algorithm used for calculating the monovacancy properties.
@@ -196,10 +195,19 @@ And Appendix~\ref{app:results} list the scripts used for obtaining the data from
 
 \section{\label{sec:method}Methodology}
 
-We calculate the three most important monovacancy-related properties in crystals: the formation energy (VFE), the migration energy (VME), and the relaxation volume (VRV).
-The definitions for these properties can be found at \url{https://openkim.org/properties}.
+In this section, we describe how we calculated the monovacancy properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
+For a brief description of these quantities, see Appendix~\ref{app:definition} and the OpenKIM website \url{https://openkim.org/properties}.
 
 The calculation is based on OpenKIM and the Atomic Simulation Environment (ASE) \cite{bahn2002object}.
+
+The free energy per unit volume of a crystal can be described by the following equation
+\begin{equation}\label{eq:f}
+f = f_0 + n_dE_d + \frac{1}{2}n_d^2E_{dd} + \frac{1}{2}C_{ijkl}\epsilon_{ij}\epsilon_{kl} - n_d\epsilon_{ij}G_{ij}
+\end{equation}
+where $f_0$ describes the chemical potential, the energy per atom in the corresponding perfect crystal, $n_d$ is the defect concentration, $\epsilon_{ij}$ is the bulk strain, $E_d$ is the vacancy formation energy, $E_dd$ describes the energy from defect interaction, $C_{ijkl}$ is the elastic stiffness tensor, and $G_{ij}$ is the elastic dipole tensor \cite{freedman2009elastic}.
+
+
+
 We first obtain the lattice constants through energy minimization, and then use this value to build several periodically repeated supercells of different sizes.
 For each supercell, we use the following algorithm to obtain the desired properties:
 
