@@ -181,29 +181,6 @@
   }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Physical Review
   B}\ }\textbf {\bibinfo {volume} {80}},\ \bibinfo {pages} {064108} (\bibinfo
   {year} {2009})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Landau}\ and\ \citenamefont
-  {Lifshitz}(2013)}]{landau2013course}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont
-  {Landau}}\ and\ \bibinfo {author} {\bibfnamefont {E.~M.}\ \bibnamefont
-  {Lifshitz}},\ }\href@noop {} {\emph {\bibinfo {title} {Course of theoretical
-  physics}}}\ (\bibinfo  {publisher} {Elsevier},\ \bibinfo {year}
-  {2013})\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Freysoldt}\ \emph {et~al.}(2014)\citenamefont
-  {Freysoldt}, \citenamefont {Grabowski}, \citenamefont {Hickel}, \citenamefont
-  {Neugebauer}, \citenamefont {Kresse}, \citenamefont {Janotti},\ and\
-  \citenamefont {Van~de Walle}}]{freysoldt2014first}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
-  {Freysoldt}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
-  {Grabowski}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Hickel}},
-  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Neugebauer}}, \bibinfo
-  {author} {\bibfnamefont {G.}~\bibnamefont {Kresse}}, \bibinfo {author}
-  {\bibfnamefont {A.}~\bibnamefont {Janotti}}, \ and\ \bibinfo {author}
-  {\bibfnamefont {C.~G.}\ \bibnamefont {Van~de Walle}},\ }\href@noop {}
-  {\bibfield  {journal} {\bibinfo  {journal} {Reviews of Modern Physics}\
-  }\textbf {\bibinfo {volume} {86}},\ \bibinfo {pages} {253} (\bibinfo {year}
-  {2014})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Mishin}\ \emph {et~al.}(1999)\citenamefont {Mishin},
   \citenamefont {Farkas}, \citenamefont {Mehl},\ and\ \citenamefont
   {Papaconstantopoulos}}]{mishin1999interatomic}%
@@ -271,6 +248,14 @@
   }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Physical review
   letters}\ }\textbf {\bibinfo {volume} {93}},\ \bibinfo {pages} {165501}
   (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Landau}\ and\ \citenamefont
+  {Lifshitz}(2013)}]{landau2013course}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont
+  {Landau}}\ and\ \bibinfo {author} {\bibfnamefont {E.~M.}\ \bibnamefont
+  {Lifshitz}},\ }\href@noop {} {\emph {\bibinfo {title} {Course of theoretical
+  physics}}}\ (\bibinfo  {publisher} {Elsevier},\ \bibinfo {year}
+  {2013})\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Baskes}\ \emph {et~al.}(1988)\citenamefont {Baskes},
   \citenamefont {Daw},\ and\ \citenamefont {Foiles}}]{baskes1988embedded}%
   \BibitemOpen
@@ -466,6 +451,21 @@
   {Nordlund}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
   {Physical Review B}\ }\textbf {\bibinfo {volume} {74}},\ \bibinfo {pages}
   {245420} (\bibinfo {year} {2006})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Freysoldt}\ \emph {et~al.}(2014)\citenamefont
+  {Freysoldt}, \citenamefont {Grabowski}, \citenamefont {Hickel}, \citenamefont
+  {Neugebauer}, \citenamefont {Kresse}, \citenamefont {Janotti},\ and\
+  \citenamefont {Van~de Walle}}]{freysoldt2014first}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Freysoldt}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Grabowski}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Hickel}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Neugebauer}}, \bibinfo
+  {author} {\bibfnamefont {G.}~\bibnamefont {Kresse}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Janotti}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {C.~G.}\ \bibnamefont {Van~de Walle}},\ }\href@noop {}
+  {\bibfield  {journal} {\bibinfo  {journal} {Reviews of Modern Physics}\
+  }\textbf {\bibinfo {volume} {86}},\ \bibinfo {pages} {253} (\bibinfo {year}
+  {2014})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Zhou}\ \emph {et~al.}(2010)\citenamefont {Zhou},
   \citenamefont {Upreti}, \citenamefont {Chernova}, \citenamefont {Hautier},
   \citenamefont {Ceder},\ and\ \citenamefont {Whittingham}}]{zhou2010iron}%
