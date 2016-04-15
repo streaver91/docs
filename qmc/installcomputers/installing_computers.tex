@@ -1,0 +1,464 @@
+\documentclass[12pt]{article}
+% \usepackage{graphics}              % standard graphics specifications
+\usepackage{graphicx}              % alternative graphics specifications
+% \usepackage{longtable}             % helps with long table options
+% \usepackage{bm}                    % special 'bold-math' package
+% \usepackage{indentfirst}           % indent first line after a new section
+% \usepackage{fullpage}              % set margins
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{verbatim}
+% \usepackage{fancyvrb}
+% \usepackage{color}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{upquote}
+\usepackage{url}
+\lstset{basicstyle=\footnotesize,xleftmargin=0.25in}
+% This is heading stuff%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \fancyhead[R]{{\small\scshape{F. R. Petruzielo}}}
+% \fancyhead[L]{\small\scshape{Installing Computers}}
+% \fancyhead[C]{}
+% \headheight=12.0pt
+% \headsep=0.3 in
+%
+% \textwidth 7.8in
+% \textheight 9.7in
+% \oddsidemargin -18mm
+% \evensidemargin -18mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \setlength\topmargin{-0.5in}
+% \parskip 2mm
+
+% \setlength{\parindent}{0pt}
+
+\title{Installing Computers}
+\author{F. R. Petruzielo, Junhao Li}
+\date{\today}
+
+\begin{document}
+\maketitle
+% \setcounter{secnumdepth}{0}     %Turn off section numbering
+% \thispagestyle{plain}           %No heading on first page
+% \begin{center}
+%   \bf\LARGE{Installing Computers}\rm\normalsize\\
+%   \parskip  = 0.1 in
+%   F. R. Petruzielo \\
+%   (Last Updated: \today)
+% \end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If you want to upgrade to a newer release you have the option to either do a clean install or upgrade from the current release.
+
+To upgrade from the current release, do
+% \code{sudo apt-get update\\test}
+\begin{Verbatim}
+  sudo apt-get update
+  sudo apt-get upgrade
+  sudo do-release-upgrade
+\end{Verbatim}
+
+The rest of this document is about doing a clean install.
+The Ubuntu version at this time is 14.04.4 LTS, commands and options may change in newer releases.
+
+\section{Before Installation}
+\begin{itemize}
+\item Download the 64-bit desktop version of Ubuntu, and either burn it to a CD or create a bootable flash drive.
+\item Record the network settings, including your IP address, mask, gateway and DNS.
+\end{itemize}
+
+\section{Operating System Installation}
+\begin{itemize}
+\item Insert CD or flash drive, start computer, and hit F12 repeatedly to access boot menu.
+Choose ``boot from CD'' or ``boot from [your flash drive]'' correspondingly.
+(One could also hit F2 to change the order of the devices it it chooses to boot from.)
+\item Follow the directions on the screen.
+When prompt for the installation type, choose ``Erase disk and install Ubuntu'' and ``Use LVM with the new Ubuntu installation''.
+When prompt for the computer name, you may want to use the same name as before, e.g., qmc8.
+\end{itemize}
+% \item It is helpful to first run Ubuntu from the live CD to set up the networking by clicking on the network icon and selecting ``Edit connections" from the drop down.  (See below for details of setting up networking). Then start the install from CD.
+% \item When partitioning, select "Something Else" which keeps Windows.
+% \item click on sda3
+% \item The desktops have 2TB of disk and the laptop has 750MB.  Reduce sda3 from 2TB to 400MB for desktop, 150MB for laptop.  If you are creating partitions from scratch, gparted does not have the option to choose ntfs, so choose fat32.  Then when Windows is installed, it will partition this partition into two partitions and format them as ntfs.
+% \item Create the following 3 additional partitions for Linux:
+% \begin{enumerate}
+% \item /boot logical ext2 of size 258
+% \item swap area (instead of ext2 etc) of size a bit larger than computer RAM, measured in MB, e.g., 9000 if computer has 8GB of RAM.
+% \item / put the rest in here and use ext4
+% \end{enumerate}
+% \item Select name of computer, e.g., qmc4.
+% %The desktop names are qmc4-8, and the laptop name are julie2.
+% %ip addresses presently in use are:
+% %\begin{enumerate}
+% %%\item Cyrus desk  qmc1.physics.cornell.edu    128.253.48.6    cju1    00:0D:56:F9:29:82 (mostly at home now)
+% %\item Cyrus desk  qmc2.physics.cornell.edu    128.253.48.7    cju1    00:21:9b:15:b4:a4
+% %%\item Frank       ubuntu.physics.cornell.edu  128.253.48.8    frp3    00:19:B9:85:E6:A6 (probably Frank's old laptop)
+% %\item Cyrus lap   julie.physics.cornell.edu   128.253.48.9    cju1    00:0F:1F:A3:CC:DF
+% %\item Frank       qmc3.physics.cornell.edu    128.253.115.68  frp3    84:2b:2b:a9:93:c1
+% %\item Mihir       jasmine.physics.cornell.edu 128.253.115.69  mrk97   00:18:8B:2D:97:A5
+% %\item New desktops have ip addresses 128.253.115.70 and 128.253.115.108 through 128.253.115.111 and laptop 128.253.48.11.  However, qmc4tmp will move to 307 Clark after setup
+% %and be renamed to qmc4 and will need to change its ip address to 128.253.48.10.
+% %\end{enumerate}
+% \item Make yourself the user/owner of computer.
+% \item Perform install.  When it finishes it will eject the CD and ask to reboot.
+% \item On some computers, when it reboots you get a blank purple screen.  In that case power-off and power-on
+% and go into recovery mode and you will get purple screen again.  Power-off and power-on once again and go into
+% regular mode.  This time it should work.\\
+% sudo vi /etc/default/grub and uncomment the line: grub\_TERMINAL=console.\\
+% Then type "update\_grub".\\
+% There is also some info at http://anonymouse-journey.blogspot.com/2011/05/ubuntu-1104-blank-purple-screen-after.html
+% \end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Networks}
+Add wired connection using the information recorded before. If you don't have the original information available, you may use the following settings:
+\begin{itemize}
+% \item At this point you can connect with wireless and so can access and cut and paste from this document.
+% \item From toolbar systems-preferences-network connections. Add wired connection:
+% \item Click on Add.  This puts up a new window.
+% \item Turn on "Available to all users" at bottom left.
+
+
+% \item click on IPv4 Settings
+% \item change "Method" from Automatic (DHCP) to Manual
+% \item Click on Add in Addresses and put in the following information
+\item Static IP Address: 128.253.115.70, 128.253.115.108 to 128.253.115.111
+Make sure there is no conflicts with other users.
+\item Subnet mask: 255.255.255.192 (in 616 Clark), 255.255.255.128 (in 307 Clark)
+\item Gateway Address: 128.253.115.65 (in 616 Clark), 128.253.48.1 (in 307 Clark)
+% \item DNS Servers 10.84.5.250 10.84.29.250 10.84.43.250 (On 21 Jul 2015 Barry switched qmc4 and julie from these to the foll:)
+\item DNS Servers: 128.253.180.2, 192.35.82.50, 132.236.56.250, 8.8.8.8
+\item Search Domains: physics.cornell.edu
+\end{itemize}
+
+For security reasons, we only allow connection from physics.cornell.edu.
+In order to achieve this, you can use the following commands:
+\begin{Verbatim}
+printf 'ALL: ALL\n' | sudo tee -a /etc/hosts.deny
+printf 'ALL: LOCAL\n' | sudo tee -a /etc/hosts.allow
+printf 'ALL: .physics.cornell.edu\n' | sudo tee -a /etc/hosts.allow
+\end{Verbatim}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Edit Files for connectivity and security}
+% \begin{itemize}
+% \item sudo vi /etc/hosts.deny: Add line ``ALL: ALL''.
+% Make sure there is a blank line at end of file.
+% \item sudo vi /etc/hosts.allow: Add lines ``ALL: LOCAL'' and ``ALL: .physics.cornell.edu''.
+% Make sure there is a blank line at end of file.
+% \item Now you can connect using ethernet, which is faster than using wireless.
+% \item (optional) To allow ssh to computers outside domain name without having to type full name or IP address:\\
+% sudo vi /etc/hosts: and put in lines that look like: ``128.253.115.68 qmc3''.
+% \end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Software Installation}
+\begin{itemize}
+\item Uncomment 2 canonical lines in /etc/apt/sources.list
+\item Update and upgrade
+\begin{Verbatim}
+sudo apt-get update
+sudo apt-get upgrade
+\end{Verbatim}
+\item Install common software packages
+\begin{Verbatim}
+# Basic packages
+sudo apt-get install apt-file tcsh openssh-server vim
+
+# Version Control
+sudo apt-get install subersion subversion-tools git curl
+
+# Latex
+sudo apt-get install texlive-full
+
+# Compiler
+sudo apt-get install build-essential checkinstall
+sudo apt-get install gfortran libatlas-base-dev
+# Java (Optional)
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+
+# Other tools
+sudo apt-get install gnuplot gnuplot-mode tmux
+
+# System Monitoring
+sudo apt-get install lm-sensors libsensors4 htop
+
+# Support other file systems
+sudo apt-get install ntfs-3g # NTFS (Windows)
+sudo apt-get install exfat-fuse exfat-utils # exFAT
+sudo apt-get install hfsprogs # HFS
+
+\end{Verbatim}
+
+To install Python, we recommend using Anaconda, which includes all the commonly used packages for scientific computing and data analysis.
+It can be downloaded at \url{https://www.continuum.io/downloads}.
+When prompt the location for installation, choose /opt/anaconda2.
+After the installation finishes, add the following line to /etc/bash.bashrc so that all the users will have that in their path
+\begin{Verbatim}
+export PATH="/opt/anaconda2/bin:$PATH"
+\end{Verbatim}
+
+\end{itemize}
+
+
+
+\section{Synchronization}
+Before migrating to your new machine:\\
+Stop cron jobs on your old machine: crontab -r \\
+stop svn server on your old machine: rm /etc/init.d/svnserve
+
+On new machine: \\
+Setup cron jobs and svnserve. \\
+For svnserve, put the following line into /etc/init.d/svnserve and make it executable\\
+svnserve -d -r /home/cyrus/svn\_repo \\
+sudo chmod 755 /etc/init.d/svnserve \\
+To start svnserve automatically each time the machine boots up, type \\
+sudo update-rc.d svnserve defaults \\
+You can start the svn server by hand: \\
+sudo /etc/init.d/svnserve \\
+If svnserve is not running as root, when you do an svn command, e.g., a checkout, it gives an error msg: \\
+svn: No access allowed to this repository\\
+Have backups on qmc4 go to qmc5. \\
+Make sure your backup script copies .bash* .vim* and your svn repos \\
+Fix exim4 for email to work from backup script and SVN. If my computer name was qmc4 then I would:\\
+sudo dpkg-reconfigure exim4-config \\
+The answer to the first question is internet something(the top choice) \\
+In all answers, qmc4 $\rightarrow$ qmc4.physics.cornell.edu\\
+Everything else was default.
+
+To access an SVN repo that used to be hosted on qmc2 and is now moved to qmc4, it is necessary to run the following in every directory affected by the change of computers,
+both on this machine and others:
+\vspace{-2mm}
+\begin{verbatim}
+svn switch --relocate svn://qmc2.physics.cornell.edu svn://qmc4.physics.cornell.edu
+\end{verbatim}
+% svn switch $--$relocate --username cyrus svn://qmc2.physics.cornell.edu/svn_repo svn://qmc4.physics.cornell.edu/svn_repo
+
+For the daily backup:\\
+copy /etc/cron.daily/backup from the old machine to the new machine.
+
+For the weekly backup:\\
+export EDITOR=emacs (if EDITOR has not already been set)\\
+crontab -e \\
+add the line: \\
+1 6 \* \* 7 /home/cyrus/bin/backup\_weekly \\
+to run the backup at 6:01 every Saturday.
+
+%  \rm
+% \item Install software:\\
+%   \small sudo apt-get install apt-file tcsh vim emacs23 emacs-goodies-el emacs-goodies-extra-el gnuplot gnuplot-mode $\backslash$ \\
+%   subersion subversion-tools openssh-server $\backslash$ \\
+%   spell texlive-extra-utils texlive-fonts-extra texlive-fonts-recommended texlive-font-utils texlive-latex-extra texlive-math-extra $\backslash$ \\
+%   texlive-publishers texlive-science auctex texlive-bibtex-extra bibtool texlive-extra-utils prosper ispell flpsed ttf-mscorefonts-installer $\backslash$ \\
+%   acroread sam2p libimage-exiftool-perl skype $\backslash$ \\
+%   g++ gfortran libatlas-base-dev $\backslash$ \\
+%   ipython python-scipy python-mode python-gnuplot python-tk python-matplotlib python-pygments libboost-all-dev $\backslash$ \\
+%   sun-java6-jre sun-java6-jdk sun-java6-plugin $\backslash$ \\
+%   gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad sound-juicer ubuntu-restricted-extras non-free-codecs $\backslash$ \\
+%   lm-sensors libsensors4 gnome-color-chooser
+%   \\
+%   or for 11.10:\\
+%   \small sudo apt-get install apt-file tcsh vim emacs23 emacs-goodies-el gnuplot gnuplot-mode xfig gimp $\backslash$ \\
+%   subversion subversion-tools openssh-server $\backslash$ \\
+%   spell texlive-extra-utils texlive-fonts-extra texlive-fonts-recommended texlive-font-utils texlive-latex-extra texlive-math-extra $\backslash$ \\
+%   texlive-publishers texlive-science auctex texlive-bibtex-extra texlive-extra-utils prosper ispell flpsed ttf-mscorefonts-installer $\backslash$ \\
+%   pdfgrep diffpdf $\backslash$ \\
+%   acroread sam2p libimage-exiftool-perl skype $\backslash$ \\
+%   g++ gfortran libatlas-base-dev $\backslash$ \\
+%   ipython python-scipy python-mode python-gnuplot python-tk python-matplotlib python-pygments $\backslash$ \\
+%   gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad sound-juicer ubuntu-restricted-extras non-free-codecs $\backslash$ \\
+%   lm-sensors libsensors4 gnome-color-chooser
+%   \rm
+
+  %
+  % sudo apt-get update (quick)
+  % \item sudo apt-get upgrade (takes a while)
+  % \item Allow access to canonical repos: \\
+  %   Uncomment 2 canonical lines in /etc/apt/sources.list
+  % \item Allow access to medibuntu repos: \\
+  %   \small sudo wget http://www.medibuntu.org/sources.list.d/natty.list --output-document=/etc/apt/sources.list.d/medibuntu.list \rm\\
+  %   \small sudo apt-get update \&\& sudo apt-get install medibuntu-keyring \&\& sudo apt-get update \rm
+  %\item Install software (sudo apt-get install [insert names of packages here]):\\
+  %  \small sudo apt-get install emacs23 gnuplot gnuplot-mode subversion texlive-extra-utils texlive-fonts-extra \\
+  %  texlive-fonts-recommended texlive-font-utils texlive-latex-extra texlive-math-extra  \\
+  %  texlive-publishers texlive-science g++ gfortran  \\
+  %  lm-sensors libsensors4  auctex apt-file gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad ipython python-scipy  \\
+  %  python-mode ttf-mscorefonts-installer emacs-goodies-el emacs-goodies-extra-el acroread sun-java6-jre sun-java6-jdk  \\
+  %  python-gnuplot python-tk python-matplotlib texlive-bibtex-extra flpsed prosper texlive-extra-utils sun-java6-plugin \\
+  %  ispell skype sam2p python-pygments sound-juicer ubuntu-restricted-extras non-free-codecs openssh-server  libatlas-base-dev
+% \item Make sure to answer straightforward questions along the way about licenses.  The sensors require a lot of "yes" answers and "yes" is the default for all except the last question, so you can just press the enter button for all except the last.
+% \item Rerun the exact same command to make sure everything installed. Make note of any packages not found.
+% \item To use gnome classic:\\
+%   \small sudo apt-get install gnome-session-fallback \\
+%   Log out and log back on, having selected ``gnome classic" before entering userid and password.
+% \end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Optional}
+%
+% \begin{itemize}
+% \item To get the Gnome Classic Desktop, use:\\
+% sudo apt-get update; sudo apt-get install gnome-session-fallback\\
+% \\
+% After installing this, at the login screen there will be the choice between "Gnome (Compiz)", "Gnome (Metacity)", and "Ubuntu".
+% The main difference I've noticed so far between the two Gnome options is that when you drag a window to the corner of the screen,
+% Compiz tries to rescale it to half-screen size, and Metacity doesn't.
+% \item In terminal, from toolbar select edit-profiles-default. turn off bell. change background and foreground colors
+% \item Monitor temperature (From Frank, probably works in 10.04)\\
+%   sudo apt-get install sensors-applet hddtemp\\
+%   make sure to run hddtemp as daemon\\
+%   sudo sensors-detect\\
+%   add the lines (automatically)\\
+%   sudo /etc/init.d/module-init-tools restart\\
+%   Add applet to tool bar\\
+%
+% (From Mihir, probably works in 11.04):
+% A few things you can add on your panel :\\
+% \\
+% for the temp sensor applet:\\
+% \\
+% sudo add-apt-repository ppa:nilarimogard/webupd8\\
+% sudo apt-get update\\
+% sudo apt-get install indicator-sensors\\
+% \\
+% system load indicator:\\
+% \\
+% sudo add-apt-repository ppa:indicator-multiload/stable-daily\\
+% sudo apt-get update\\
+% sudo apt-get install indicator-multiload\\
+% \\
+% CPUFreq:\\
+% \\
+% this indicator will help you change your computer's CPU, to cool it down and save battery power. install indicator-cpufreq with the
+% following commands:\\
+% \\
+% sudo add-apt-repository ppa:artfwo/ppa\\
+% sudo apt-get update\\
+% sudo apt-get install indicator-cpufreq
+%
+% \item vim settings for FORTRAN fixed-format:\\
+% By default vi or vim assumes that FORTRAN fixed-format files have a line-length of 72 characters.
+% I thought I could change it by doing the following:
+% \begin{verbatim}
+% mkdir -p ~/.vim/ftplugin/
+% cp /usr/share/vim/vimcurrent/ftplugin/fortran.vim ~/.vim/ftplugin/
+% \end{verbatim}
+% changing 72 to 132 in this file and putting\\
+% :filetype plugin on\\
+% in $\sim$/.vimrc\\
+% However, this did not work.  Making this same change in the original file, /usr/share/vim/vimcurrent/ftplugin/fortran.vim did not work either.
+%
+% \item Mendeley:\\
+%   add following 2 lines to /etc/apt/sources.list\\
+%   \#mendeley                                       \\
+%   deb http://www.mendeley.com/repositories/xUbuntu\_11.04 /                        \\
+%   Note that when you cut and paste from pdf, the underscore disappears.  Then do \\
+%   sudo apt-get update                  \\
+%   sudo apt-get install mendeleydesktop
+% \item Borrow from Frank's .bashrc and .emacs. Don't copy files but browse for functionality that you may want.
+% \end{itemize}
+%
+% From Ubuntu version 11.10 on, Mendeley is installed differently.  So, when you go to this version do
+% \begin{itemize}
+% \item Edit /etc/apt/sources.list to remove the Mendeley entry
+% \item sudo apt-get remove mendeleydesktop
+% \item Download Mendeley from http://www.mendeley.com/download-mendeley-desktop/debian/instructions/
+% \item sudo dpkg -i mendeleydesktop\_1.3.1\_amd64.deb
+% \end{itemize}
+
+\section{Mathematica}
+To be able to use Mathematica over X do the following:
+sudo mkdir -p /usr/local/Wolfram/Mathematica/6.0/SystemFiles/ \\
+sudo scp -r frp@qmc5:/usr/local/Wolfram/Mathematica/6.0/SystemFiles/Fonts /usr/local/Wolfram/Mathematica/6.0/SystemFiles/ \\
+Remember to ssh into the machine with -X and then run with "mathematica".
+
+
+\section{Installing Windows}
+\begin{itemize}
+\item Cornell faculty and staff can install Windows from the site:\\
+      http://www.cit.cornell.edu/services/software\_licensing/available/windows.cfm
+      One can download the .ISO from there and burn a DVD (does not fit on CD).\\
+      One can also get Symantec antivirus from the site:\\
+      http://www.it.cornell.edu/services/antivirus/howto/windows/install-windows.cfm
+\item Restart the computer, press F12 repeatedly to interrupt the boot, insert the CD and follow directions. If a simple restart does not work, shut down the computer.
+\item One must simply select a sufficiently big partition (I use 100-400GB) which does not have Linux on it. Windows will format the partition as ntfs and it splits the partition to create a small boot (100 MB or so) partition.
+\item The installation is straightforward. After the installation is complete, do the following to connect to the internet: (These can be slightly different for XP/Vista/7)\\
+      In Windows 7, open up Start Menu $\rightarrow$ Control Panel$\rightarrow$ Network and Internet $\rightarrow$ Network and Sharing Center \\
+      Once Here, click on "Local Area Connection".Click on Properties and select Ipv4. Click Properties and change IPv4 settings.  \\
+      %Set the IPv4 settings to the values such as IP 10.115.253.111, NetMask 255.255.255.192, Gateway 10.115.253.65, \\
+      Set the IPv4 settings to the values such as IP 128.253.115.70, NetMask 255.255.255.192, Gateway 128.253.115.65 (in 616 Clark Wired connection 1), \\
+      Set the IPv4 settings to the values such as IP 128.253.48.10, NetMask 255.255.255.128, Gateway 128.253.48.1 (in 307 Clark Wired connection 2), \\
+      %DNS 10.84.5.250, 10.84.29.250 (In Advanced Options you can add an additional DNS 10.84.43.250)
+      DNS Servers 128.253.180.2, 192.35.82.50, 132.236.56.250, 8.8.8.8
+\item Now, when you restart, the system will boot up in Windows and not give you the option to choose Linux (i.e. GRUB/boot loader is lost). \\
+      To fix that you have to do boot repair as follows:\\
+      To install Boot-Repair : sudo apt-get install boot-repair\\
+      To perform Boot-Repair : boot-repair \\
+      Another slightly different solution from the Ubuntu website is (this is the one we did) \\
+      sudo add-apt-repository ppa:yannubuntu/boot-repair \\
+      sudo apt-get update \&\& sudo apt-get install -y boot-repair \&\& boot-repair  \\
+      (The repair might ask you some yes/no questions and you agree to all of them)\\
+      For a more detailed discussion for "Recovering Ubuntu after Installing Windows" refer to the Ubuntu website,\\
+      https://help.ubuntu.com/community/RecoveringUbuntuAfterInstallingWindows
+\item You can also install the Windows Office suite from \\
+      http://www.it.cornell.edu/services/software\_licensing/available/ms\_office.cfm
+\item If it did not install the licence product key automatically via the Key Management Service,
+      you need to get it from the web site above.  When I did that the key was:\\
+      BGT3J-R4T2K-WYRH4-H8RRB-M4FBK
+\end{itemize}
+
+\section{Accessing Windows Partition in Linux}
+The information in this section was obtained on http://www.psychocats.net/ubuntu/mountwindowsfstab.
+To mount windows do the following
+\begin{enumerate}
+\item sudo mkdir /media/Windows\_internal \\this makes the mount point
+\item sudo fdisk -l \\ look for ntfs partition (on qmc2,3 it is /dev/sda2, on qmc4-8 it is /dev/sda3).
+\item Now you could mount the partition (in lines below replace /dev/sda3 with result from fdisk): \\
+  sudo mount -t ntfs -o nls=utf8,umask=0222 /dev/sda3 /media/Windows\_internal (not quite correct)\\
+  Instead the better option is to automount by putting in /etc/fstab add the following lines: \\
+  \#mount windows partition                                   \\
+  /dev/sda3 /media/Windows\_internal ntfs-3g defaults,locale=en\_US.UTF-8 0 0
+\item Restart computer. The mount should happen automatically.
+\end{enumerate}
+
+
+
+
+% \section{Tips for Ubuntu 11.04}
+% Ubuntu 11.04 is considerably different from 10.04.  One can get the 10.04 feel by choosing classic.
+% Shortcut tips for using 11.04 are at:
+% http://www.techdrivein.com/2011/04/31-useful-ubuntu-1104-unity.html
+
+% \section{Tips for Ubuntu 11.10}
+% Ubuntu 11.10 desktop version unfortunately did not have the Ubuntu Classic desktop (closely related to the GNOME classic desktop).\\
+% Run the following commands,\\
+% To install Gnome Shell: sudo apt-get install gnome-shell\\
+% To install Gnome Classic: sudo apt-get install gnome-session-fallback\\
+% For a short discussion see, \\
+% http://ubuntugenius.wordpress.com/2011/10/23/ubuntu-11-10-fix-how-to-add-the-classic-desktop-and-gnome-3-shell-as-login-options/ \\
+% The "System" Menu on the top left (present in Ubuntu Classic) is missing in GNOME classic.\\
+
+
+% \section{External hard drives}
+% Install gparted and partition the drive into an ntfs partition for Windows and a ext4 partition for Linux using gparted.\\
+% sudo apt-get install gparted \\
+% You need to umount the drive before using gparted, e.g.\\
+% sudo umount /media/My$\backslash$ Book/ \\
+% Run gparted \\
+% sudo mkdir /media/linux\_external3 /media/windows\_external3 \\
+% Get the UUID's:
+% sudo blkid -o full -s UUID \\
+% put those into /etc/fstab, by adding e.g. the following lines:\\
+% \hskip 4mm \#windows \\
+% \hskip 4mm UUID=A09A724A9A721CCA  /media/windows ntfs-3g defaults,locale=en\_US.UTF-8 0 0 \\
+% \hskip 4mm \#windows\_external3 \\
+% \hskip 4mm UUID=FA7AA76F7AA726FB  /media/windows\_external3 ntfs-3g defaults,noauto,locale=en\_US.UTF-8 0 0 \\
+% \hskip 4mm \#linux\_external3 \\
+% \hskip 4mm UUID=3c1692fa-a9ce-4bc5-99b3-b5b7af5c4446  /media/linux\_external3 ext4 defaults,noauto 0 0 \\
+% This then allows you to just say \\
+% mount windows\_external3 \\
+
+\end{document}
