@@ -24,6 +24,11 @@ var items = [
   'cohesive-energy',
   'c11',
   'c12',
+  'bulk',
+  'shear',
+  'volume',
+  'bulk*volume',
+  'shear*volume',
   'vacancy-formation-energy',
   'vacancy-migration-energy',
   'vacancy-relaxation-volume',
@@ -40,11 +45,22 @@ for(var i = 0; i < data.length; i++) {
   info = res['info'];
   row.push(info['elem']);
   row.push(info['model']);
-  row.push(res['a']['source-value']);
+  a = res['a']['source-value'];
+  row.push(a);
   row.push(res['free-energy-per-atom']['source-value']);
   var EST = res['partial-elastic-stiffness-tensor']['source-value'];
-  row.push(EST[0][0]);
-  row.push(EST[0][1]);
+  c11 = EST[0][0];
+  c12 = EST[0][1];
+  row.push(c11); // c11
+  row.push(c12); // c12
+  bulk = (c11 + c12 * 2) / 3;
+  shear = (c11 - c12) / 2;
+  row.push(bulk); // bulk
+  row.push(shear); // shear
+  vol = Math.pow(a, 3);
+  row.push(vol);
+  row.push(vol * bulk);
+  row.push(vol * shear);
   row.push(res['vacancy-formation-free-energy']['source-value']);
   row.push(res['vacancy-migration-energy']['source-value']);
   row.push(res['vacancy-relaxation-volume']['source-value']);
