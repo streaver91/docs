@@ -36,8 +36,8 @@
 
 % \setlength{\parindent}{0pt}
 
-\title{Installing Computers}
-\author{F. R. Petruzielo, Junhao Li}
+\title{Operating System Upgrade}
+\author{Frank R. Petruzielo, Junhao Li}
 \date{\today}
 
 \begin{document}
@@ -114,7 +114,9 @@ When prompt for the computer name, you may want to use the same name as before, 
 % \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Networks}
-Add wired connection using the information recorded before. If you don't have the original information available, you may use the following settings:
+Add wired connection using manual configuration and the information recorded before.
+If you don't have the original information available or it is a new computer, you may use the following settings:
+
 \begin{itemize}
 % \item At this point you can connect with wireless and so can access and cut and paste from this document.
 % \item From toolbar systems-preferences-network connections. Add wired connection:
@@ -155,7 +157,7 @@ printf 'ALL: .physics.cornell.edu\n' | sudo tee -a /etc/hosts.allow
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Software Installation}
 \begin{itemize}
-\item Uncomment 2 canonical lines in /etc/apt/sources.list
+\item Uncomment 2 canonical lines in \url{/etc/apt/sources.list}
 \item Update and upgrade
 \begin{Verbatim}
 sudo apt-get update
@@ -165,6 +167,7 @@ sudo apt-get upgrade
 \begin{Verbatim}
 # Basic packages
 sudo apt-get install apt-file tcsh openssh-server vim
+sudo apt-get install build-essential checkinstall
 
 # Version Control
 sudo apt-get install subersion subversion-tools git curl
@@ -173,7 +176,6 @@ sudo apt-get install subersion subversion-tools git curl
 sudo apt-get install texlive-full
 
 # Compiler
-sudo apt-get install build-essential checkinstall
 sudo apt-get install gfortran libatlas-base-dev
 # Java (Optional)
 sudo apt-get install python-software-properties
@@ -194,17 +196,52 @@ sudo apt-get install hfsprogs # HFS
 
 \end{Verbatim}
 
-To install Python, we recommend using Anaconda, which includes all the commonly used packages for scientific computing and data analysis.
+\item Install Python
+
+Anaconda Python includes all the commonly used packages for scientific computing and data analysis.
 It can be downloaded at \url{https://www.continuum.io/downloads}.
+Follow the instruction in the terminal during the installation.
 When prompt the location for installation, choose /opt/anaconda2.
-After the installation finishes, add the following line to /etc/bash.bashrc so that all the users will have that in their path
+After the installation finishes, add the following line to \url{/etc/bash.bashrc} so that all the users will have that in their path
 \begin{Verbatim}
 export PATH="/opt/anaconda2/bin:$PATH"
 \end{Verbatim}
 
+\item Install Office
+
+Kingsoft Office Corporation offers the best Linux office at this time.
+The installation file can be downloaded at \url{wps-community.org}.
+
 \end{itemize}
 
+\section{Backup Home Directory}
 
+Suppose you are setting up qmcX and want to back up at qmcY.
+
+First, generate an ssh key and add to the authorized list of qmcY
+\begin{Verbatim}
+ssh-keygen
+ssh-copy-id qmcY
+\end{Verbatim}
+
+Then, create the backup bash script, like \url{~/bin/backup/backup_daily.sh}, and put the following into this file, and change the mode of this file to executable
+\begin{verbatim}
+#!/bin/bash
+# The following rsync command shall be in one line.
+rsync -auvze ssh
+--exclude-from=/home/junhao/bin/backup/rsync-homedir-excludes.txt
+-f '- *.o' --delete-after /home/junhao/ qmcY:/home/junhao/
+\end{verbatim}
+Here \url{rsync-homedir-excludes.txt} is the file for indicating which files or folders to exclude from backup.
+See Appendix~\ref{app:exclude} for an example.
+
+Finally, setup the cron task to run it regularly by
+\begin{Verbatim}
+crontab -e
+# You will see a file with instructions for configuration
+# The following example back up the home directory at 6:01 daily
+# 1 6 * * * /home/junhao/bin/backup/backup_daily.sh
+\end{Verbatim}
 
 \section{Synchronization}
 Before migrating to your new machine:\\
@@ -460,5 +497,237 @@ To mount windows do the following
 % \hskip 4mm UUID=3c1692fa-a9ce-4bc5-99b3-b5b7af5c4446  /media/linux\_external3 ext4 defaults,noauto 0 0 \\
 % This then allows you to just say \\
 % mount windows\_external3 \\
+
+\appendix
+
+\section{Example rsync-homedir-excludes.txt}
+\label{app:exclude}
+\begin{Verbatim}
+
+  # rsync-homedir-excludes
+  #
+  # A list of files to exclude when backing up *nix home directories using rsync.
+  #
+  # Author: Ruben Barkow <https://github.com/rubo77/rsync-homedir-excludes>
+  # Version: 2015-08-30
+
+  ###############################################
+  # directories, probably not worth a backup    #
+  # (uncomment the files you don't need)        #
+  ###############################################
+
+  #.android
+  #.AndroidStudioBeta
+  #.gradle
+  #.gvm
+  #.grails/
+  #.grails_history
+  #.kde/share/apps/nepomuk
+  #.local/share/notbit
+  #.vagrant
+  #.vagrant.d
+  #.wine
+  #.twister
+  #twister
+  #Applications/eclipse*
+  #Downloads
+  #games
+  #*Popcorntime*
+  #Scribus
+  #VirtualBox*
+  #
+  ## Add Game Folders here:
+  #
+  #.local/share/Steam
+  #.minecraft
+  #.PlayOnLinux
+
+  ################################################
+  # These directories may definitely be excluded #
+  ################################################
+
+  # Contains mounted file systems:
+
+  .gvfs
+  .local/share/gvfs-metadata
+  # contains the actual encrypted home directory
+  .Private
+
+  # Session-specific:
+  .dbus
+  .cache
+  .Trash
+  .local/share/Trash
+
+  # Cached info about audio CDs:
+  .cddb
+
+  # Cached packages lists:
+  .aptitude
+
+  #Flash-specific:
+
+  # Cache for flash, maybe others?
+  .adobe
+  # except for Flash persistence, there is no reason to keep this
+  .macromedia
+
+  #Files:
+
+  # Contains errors from the current graphical session
+  .xsession-errors
+
+  # Recently used files
+  .recently-used
+  .recently-used.xbel
+  .thumbnails
+  .thumb
+
+  # Session-specific
+  .Xauthority
+  .ICEauthority
+  .gksu.lock
+  .pulse  # directory
+  .pulse-cookie
+  .esd_auth
+
+  #KDE specific:
+
+  # Recent documents on KDE
+  .kde/share/apps/RecentDocuments
+  # Contains a history of the Klipper clipboard (KDE)
+  .kde/share/apps/klipper
+  # You will loose saved scrolling positions of PDFs
+  .kde/share/apps/okular/docdata
+  .kde/share/apps/gwenview/recentfolders
+  # Cached other users' profile pics
+  .kde/share/apps/kmess/displaypics
+  # Cached emoticons of others
+  .kde/share/apps/kmess/customemoticons
+
+  #Firefox-specific (see also Profile folder):
+
+  .mozilla/firefox/*/Cache
+  # in case Fx crashes dumps will be stored in this
+  .mozilla/firefox/*/minidumps
+  # session-specific
+  .mozilla/firefox/*/.parentlock
+  # phishing database, recreated
+  .mozilla/firefox/*/urlclassifier3.sqlite
+  # blacklisted extensions
+  .mozilla/firefox/*/blocklist.xml
+  # extension database, recreated on startup
+  .mozilla/firefox/*/extensions.sqlite
+  .mozilla/firefox/*/extensions.sqlite-journal
+  .mozilla/firefox/*/extensions.rdf
+  .mozilla/firefox/*/extensions.ini
+  .mozilla/firefox/*/extensions.cache
+  # cached UI data, recreated
+  .mozilla/firefox/*/XUL.mfasl
+  .mozilla/firefox/*/XPC.mfasl
+  .mozilla/firefox/*/xpti.dat
+  .mozilla/firefox/*/compreg.dat
+
+  #Opera-specific (related question on Superuser.com: Is documentation available on files and directories in the Opera profile folder?):
+
+  .opera/temporary_downloads
+  .opera/cache
+  .opera/thumbnails
+  .opera/opcache
+  .opera/icons
+  .opera/application_cache
+  .opera/widgets/*/cache
+  .opera/lock
+
+  #Komodo Edit:
+
+  .komodoedit/*/codeintel/db
+  .komodoedit/*/host-*/*/codeintel
+  .komodoedit/*/XRE/Cache
+  .komodoedit/*/XRE/.activatestate/komodo edit/Crash Reports
+  .komodoedit/*/XRE/.activatestate/komodo edit/*/Cache
+  .komodoedit/*/XRE/.activatestate/komodo edit/*/minidump
+  .komodoedit/*/XRE/.parentlock
+  .komodoedit/*/XRE/extensions.rdf
+  .komodoedit/*/XRE/extensions.ini
+  .komodoedit/*/XRE/extensions.cache
+  .komodoedit/*/XRE/XPC.mfasl
+  .komodoedit/*/XRE/XUL.mfasl
+  .komodoedit/*/XRE/xpti.dat
+  .komodoedit/*/XRE/pluginreg.dat
+  .komodoedit/*/XRE/compreg.dat
+  .komodoedit/*/XRE/*.sqlite-journal
+  .komodoedit/*/pystdout.log
+  .komodoedit/*/pystderr.log
+  .komodoedit/*/history.sqlite.bak
+  .komodoedit/*/running.lock
+  .komodoedit/*/mutex.lock
+  .komodoedit/*/*.xmlc
+  .komodoedit/*/startup-env.tmp
+  .komoeoedit/*/commandments.fifo
+  .komoeoedit/*/history.sqlite
+
+  #GnuPG:
+
+  .gnupg/rnd
+  .gnupg/random_seed
+  .gnupg/.#*
+  .gnupg/*.lock
+  .gnupg/gpg-agent-info-*
+
+  #Google Chrome:
+
+  .config/google-chrome/Default/Local Storage
+  .config/google-chrome/Default/Session Storage
+  .config/google-chrome/Default/Application Cache
+  .config/google-chrome/Default/History Index *
+
+  #Chromium:
+
+  .config/chromium/Default/Local Storage
+  .config/chromium/Default/Session Storage
+  .config/chromium/Default/Application Cache
+  .config/chromium/Default/History Index *
+
+  #Local repositories (added by errantlinguist on 2015-04-13):
+  .gradle/caches
+  .m2/repository
+
+  #indexer
+  .local/share/baloo
+  .local/share/zeitgeist
+  .local/share/akonadi
+
+  #Other apps:
+
+  # Pidgin
+  .pulse/icons
+  # Cached applets
+  .guayadeque/cache.db
+  .java/deployment/cache
+  .icedteaplugin
+  .icedtea
+  .gnome2/epiphany/favicon_cache
+
+  # My ignores
+  .atom
+  .cache
+  .compiz
+  .config
+  .continuum
+  .gconf
+  .gnome
+  .kingsoft
+  .local
+  .mozilla
+  .oracle_jre_usage
+  .pki
+  .vim_runtime
+  .ssh
+  .viminfo
+  .vim_mru_files
+  Downloads
+  VirtualBox VMs
+\end{Verbatim}
 
 \end{document}
