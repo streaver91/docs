@@ -58,6 +58,7 @@
 basicstyle=\small\ttfamily,
 columns=flexible,
 breaklines=true
+breakindent=0pt
 }
 % Support for subfigure w/ reference
 
@@ -183,7 +184,7 @@ Also, some scientists are proposing using \ce{^{28}Si} for a new kilogram defini
 
 In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the monovacancy properties for all the elements and all the simple crystal structures with interatomic potential models available on OpenKIM.
 The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
-The OpenKIM website \url{https://openkim.org/properties} provides a brief description to some of these quantities.
+The OpenKIM website properties page \url{https://openkim.org/properties} provides a brief description to some of these quantities.
 Sec.~\ref{sec:method} describes how we calculate these quantities.
 The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
 These results can be compared with data from other sources, such as density function theory (DFT), quantum monte carlo (QMC), and experiments, and provide use information for selecting interatomic models when performing vacancy-related simulations.
@@ -203,7 +204,7 @@ And Appendix~\ref{app:data} list the scripts used for obtaining the data from Op
 \section{\label{sec:method}Methodology}
 
 In this section, we explain how we calculated the monovacancy properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
-For descriptions of these quantities, check the OpenKIM website \url{https://openkim.org/properties}.
+For descriptions of these quantities, check the OpenKIM website properties page \url{https://openkim.org/properties}.
 
 The calculation is based on OpenKIM and the Atomic Simulation Environment (ASE) \cite{bahn2002object}.
 
@@ -647,12 +648,12 @@ choose $\bm{x'}$ such that, in the basis where $\bm{P}^{(1)}$ is a diagonal matr
 This gives an unambiguous definition for $\bm{x'}$ and also makes $\bm{x'}$ the center of the forces.
 And it is consistent with the cases where symmetry are preserved.
 
-\section{Property Description}
-\label{app:definition}
-In this section, we provide a brief description to some of the quantities in our results.
-For formal property definitions, please check the OpenKIM website \url{https://openkim.org/properties}.
-
-The formation of a vacancy
+% \section{Property Description}
+% \label{app:definition}
+% In this section, we provide a brief description to some of the quantities in our results.
+% For formal property definitions, please check the OpenKIM website \url{https://openkim.org/properties}.
+%
+% The formation of a vacancy
 
 
 \section{Obtaining Results From OpenKIM}
@@ -660,16 +661,37 @@ The formation of a vacancy
 All of the results and our codes are in the OpenKIM repository.
 
 The results can be accessed through OpenKIM Query \url{query.openkim.org}.
-We can obtain the results either through the web interface or through any programming language that supports HTTP GET.
+We can obtain the results either through the web interface or through any programming language that supports HTTP requests.
 The backend of this query API is a MongoDB database, and in order to obtain the results we want, we need to construct our query with the correct MongoDB syntax.
 The website of MongoDB, \url{mongodb.org}, provides a detailed documentation of this.
-Here is an example of obtaining all the fcc Al lattice constants (TODO: replace by vacancy formation energy) calculated with various interatomic potentials using python:
-\begin{lstlisting}
-  import requests
-  result = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"a.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"},"species.source-value":"Al"}'}).json()
-\end{lstlisting}
-To obtain a graph of
 
+Here is an example of using Python to obtain all the fcc Al lattice constants (TODO: replace by vacancy formation energy) calculated with various interatomic potentials:
+\begin{lstlisting}
+import requests
+result = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"a.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"},"species.source-value":"Al"}'}).json()
+\end{lstlisting}
+
+To obtain a plot of lattice constant versus bulk modulus for all the models and all the elements, we can do
+\begin{lstlisting}
+import requests
+import matplotlib.pyplot as plt
+result_lat = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"a.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"}}'}).json()
+dict_lat = {r[u'meta.subject.kimcode']: r[u'a.source-value'] for r in result_lat}
+result_bulk = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"isothermal-bulk-modulus.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/bulk-modulus-isothermal-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^ElasticConstantsCubic_fcc"}}'}).json()
+xdata = []
+ydata = []
+for r in result_bulk:
+    model = r[u'meta.subject.kimcode']
+    if not model in dict_lat:
+        continue
+    ydata.append(r[u'isothermal-bulk-modulus.source-value'])
+    xdata.append(dict_lat[model])
+plt.scatter(xdata, ydata)
+plt.xlabel('a')
+plt.ylabel('bulk modulus')
+plt.show()
+\end{lstlisting}
+The code above has been tested in the Python 2.7 version of Anaconda 4.0.0.
 
 
 
