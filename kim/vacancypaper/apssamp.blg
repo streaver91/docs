@@ -24,45 +24,47 @@ Control: page (0) single
 Control: year (1) truncated
 Control: production of eprint (0) enabled
 Warning--empty year in openkim2016
-You've used 45 entries,
+Warning--missing journal in seifmultipolar
+Warning--empty year in seifmultipolar
+You've used 47 entries,
             5847 wiz_defined-function locations,
-            1871 strings with 22819 characters,
-and the built_in function-call counts, 45052 in all, are:
-= -- 2751
-> -- 1280
-< -- 324
-+ -- 415
-- -- 327
-* -- 7072
-:= -- 4332
-add.period$ -- 45
-call.type$ -- 45
-change.case$ -- 180
-chr.to.int$ -- 53
-cite$ -- 48
-duplicate$ -- 4260
-empty$ -- 3304
-format.name$ -- 742
-if$ -- 8957
+            1882 strings with 23141 characters,
+and the built_in function-call counts, 46650 in all, are:
+= -- 2854
+> -- 1316
+< -- 335
++ -- 429
+- -- 335
+* -- 7299
+:= -- 4498
+add.period$ -- 47
+call.type$ -- 47
+change.case$ -- 188
+chr.to.int$ -- 55
+cite$ -- 52
+duplicate$ -- 4415
+empty$ -- 3427
+format.name$ -- 768
+if$ -- 9266
 int.to.chr$ -- 1
-int.to.str$ -- 52
-missing$ -- 561
-newline$ -- 182
-num.names$ -- 126
-pop$ -- 1790
+int.to.str$ -- 54
+missing$ -- 581
+newline$ -- 188
+num.names$ -- 132
+pop$ -- 1874
 preamble$ -- 2
-purify$ -- 214
+purify$ -- 223
 quote$ -- 0
-skip$ -- 1595
+skip$ -- 1652
 stack$ -- 0
-substring$ -- 1031
-swap$ -- 4031
-text.length$ -- 155
+substring$ -- 1068
+swap$ -- 4162
+text.length$ -- 159
 text.prefix$ -- 0
 top$ -- 10
-type$ -- 638
-warning$ -- 2
-while$ -- 132
+type$ -- 664
+warning$ -- 4
+while$ -- 137
 width$ -- 0
-write$ -- 395
-(There were 2 warnings)
+write$ -- 408
+(There were 4 warnings)
