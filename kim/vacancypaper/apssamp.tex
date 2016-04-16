@@ -49,9 +49,17 @@
 \usepackage{longtable}
 \usepackage{afterpage}
 \usepackage{tabularx}
+\usepackage{upquote}
+\usepackage{listings}
 \usepackage[version=3]{mhchem}
 \usepackage[]{SIunits}
 
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+breakindent=0pt
+}
 % Support for subfigure w/ reference
 
 
@@ -127,8 +135,8 @@
              %  but any date may be explicitly specified
 
 \begin{abstract}
-In this paper, we describe how we obtain the monovacancy properties for all the elements and all the simple crystal structures with interatomic potential models available on OpenKIM.
-The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
+In this paper, we describe how we obtain the monovacancy properties for all the elements and all the simple crystal structures for the interatomic potential models available on OpenKIM.
+The properties we calculated includes the vacancy formation energy, the vacancy migration energy, the vacancy relaxation volume, the elastic dipole tensor, the defect strain tensor, the saddle point elastic dipole tensor, and the saddle point defect strain tensor.
 The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
 These results can provide use information when selecting interatomic models and can also be used with a continuous model to obtain an initial guess for further atomistic simulations.
 We also exam how these results depends on each other and on other elemental properties.
@@ -176,7 +184,7 @@ Also, some scientists are proposing using \ce{^{28}Si} for a new kilogram defini
 
 In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the monovacancy properties for all the elements and all the simple crystal structures with interatomic potential models available on OpenKIM.
 The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
-Appendix~\ref{app:definition} provides a brief description to some of these quantities.
+The OpenKIM website properties page \url{https://openkim.org/properties} provides a brief description to some of these quantities.
 Sec.~\ref{sec:method} describes how we calculate these quantities.
 The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
 These results can be compared with data from other sources, such as density function theory (DFT), quantum monte carlo (QMC), and experiments, and provide use information for selecting interatomic models when performing vacancy-related simulations.
@@ -196,7 +204,7 @@ And Appendix~\ref{app:data} list the scripts used for obtaining the data from Op
 \section{\label{sec:method}Methodology}
 
 In this section, we explain how we calculated the monovacancy properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), the saddle point elastic dipole tensor (SPEDT), and the saddle point defect strain tensor (SPDST).
-For descriptions of these quantities, see Appendix~\ref{app:definition} and the OpenKIM website \url{https://openkim.org/properties}.
+For descriptions of these quantities, check the OpenKIM website properties page \url{https://openkim.org/properties}.
 
 The calculation is based on OpenKIM and the Atomic Simulation Environment (ASE) \cite{bahn2002object}.
 
@@ -245,27 +253,34 @@ where $S_{ijkl}$ is the elastic compliance tensor, which is the inverse of the e
 The relaxation volume, VRV, is the trace of the defect strain tensor.
 
 For vacancy migration, we used nudged elastic band method to obtain the migration path and cubic spline interpolation to obtain the saddle point energy and configuration.
-We used similar extrapolation method to obtain the vacancy migration energy, VME, and the elastic dipole tensor and the defect strain tensor of the saddle point configuration.
-Since the configuration of the saddle point is still a monovacancy, the quantities scale in the same way as in the static case with respect to the number of atoms.
-
-Both the code and results are available in the OpenKIM repository \cite{openkim2016}.
+We used similar extrapolation method to obtain the vacancy migration energy (VME) and the saddle point elastic dipole tensor and defect strain tensor.
+Since the configuration of the saddle point is still a monovacancy, the quantities scale in the same way with respect to the number of atoms.
 
 \begin{figure}
-\includegraphics[width=0.5\textwidth]{extrapolation}% Here is how to import EPS art
+\centering
+\includegraphics[width=0.5\textwidth, clip, trim = 10mm 10mm 10mm 10mm]{extrapolation2}% Here is how to import EPS art
 \caption{\label{fig:extrapolation}
 Property values normalized by the extrapolated values versus the inverse of the number of atoms in a supercell.
 These values are calculated for fcc Al with the embedded atom model (EAM) from Mishin and Farkas \cite{mishin1999interatomic}.
-The migration is along (1, 0, 0) in the conventional unit cell.
+The migration is from (0.0, 0.0, 0.0) to (0.5, 0.5, 0.0) in a conventional fcc unit cell.
 VFE is the vacancy formation energy, VME is the vacancy migration energy, VRV is the vacancy relaxation volume, EDT is the elastic dipole tensor, DST is the defect strain tensor, and SP stands for the saddle point of the migration.
 The two numbers following the tensor are the row and colume indices.
 Since VRV and DST11 are all proportional to EDT11, they appear as the same curve after normalization.
 The linear relationship shown in this figure validates our extrapolation.
-The intercepts of the fitted lines correspond to true values we want.
 }
 \end{figure}
 
 In Fig.~\ref{fig:extrapolation}, we plot the normalized property values for fcc aluminum versus the number of atoms in a supercell, calculated with the embedded atom model (EAM) by Mishin and Farkas \cite{mishin1999interatomic}.
 The linear relationship shown in this figure validates our extrapolation.
+
+Both the code and results are available in the OpenKIM repository \cite{openkim2016}.
+
+A key quantity in these results that identifies different vacancies and migrations is the position of the vacancy.
+In the simplest case where symmetry is preserved, this is unambiguously the position of the inversion center.
+However, in general, there is no clear definition for the position of a vacancy in the literature yet.
+Therefore, we provide one here:
+The position of the vacancy (or any point defect) is the point, where, if we characterize the effect of the defect as a series of force multipoles at this point, the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole.
+Appendix~\ref{app:position} provides a more detailed explaination for this definition.
 
 % Fig.~\ref{fig:VFEFitting} is a plot of VFE versus $1/n$, calculated with the EAM model of aluminum from Mishin and Farkas \cite{mishin1999interatomic}.
 % In this case, $A_0 = \unit{0.67515(1)}{\electronvolt}$ and $A_3 = \unit{-0.3644(27)}{\electronvolt}$, which implies that the monovacancy formation energy is \unit{0.67515(1)}{\electronvolt}.
@@ -585,382 +600,103 @@ Finally, for models with tunable parameters, it would be beneficial to have a un
 % \end{acknowledgments}
 
 \appendix
-\section{Property Description}
-\label{app:definition}
-In this section, we provide brief description of to some of the quantities we calculated and some other related quantities.
-For formal property definitions, please check the OpenKIM website \url{https://openkim.org/properties}.
+\section{Point Defect Position Definition}
+\label{app:position}
+We model a point defect as a series forces exerted on neighboring atoms.
+Let $\bm{F}^{v}$ be the body force exerted by the defect on atom $v$ situated at $\bm{l}^v$.
+Then the displacement field can be written as
+\begin{equation}
+u_i(\bm{x}) = \sum_{v=1}^{N} g_{ij}(\bm{x}-\bm{l}^v) F_j^v
+\end{equation}
+$g_{ij}$ is the Green's function of a unit point force \cite{seifmultipolar,ting1997three}.
+
+Expanding $u_i$ around an arbitrary point $\bm{x'}$, gives
+\begin{multline}
+u_i(\bm{x})
+= g_{ij}(\bm{x}-\bm{x'}) P_j^{(0)}
+ + \frac{\partial g_{ij}(\bm{x}-\bm{x'})}{\partial x_k'} P_{kj}^{(1)}\\
+ + \frac{\partial^2 g_{ij}(\bm{x}-\bm{x'})}{\partial x_k' \partial x_l'} P_{klj}^{(2)}
+ + \cdots
+\end{multline}
+Here $\bm{P}^{(k)}$ are the multipoles corresponds to $\bm{x'}$,
+\begin{equation}
+  P_j^{(0)} = \sum_{v=1}^N F_j^v = 0
+\end{equation}
+\begin{equation}
+  P_{kj}^{(1)} = \sum_{v=1}^N (l_k^v-x'_k) F_j^v = \sum_{v=1}^N l_k^v F_j^v
+\end{equation}
+\begin{align}
+  P_{klj}^{(2)} & = \sum_{v=1}^N (l_k^v-x'_k) (l_l^v-x'_l) F_j^v \nonumber \\
+  & = \sum_{v=1}^N l_k^vl_l^v F_j^v - x'_k P_{lj}^{(1)} - x'_l P_{kj}^{(1)}
+\end{align}
+
+$\bm{P}^{(1)}$ is the force dipole.
+It is independent of the $\bm{x'}$ we choose.
+Also, it is symmetric, because the torque on the system
+\begin{equation}
+  \tau_i = \sum_{v=1}^N l_j^v F_k^v - l_k^v F_j^v = P_{jk}^{(1)} - P_{kj}^{(1)} = 0
+\end{equation}
+Therefore, $\bm{P}^{(1)}$ is diagonalizable.
+
+$\bm{P}^{(2)}$ depends on the choice of $\bm{x'}$.
+Although we can perform multipole expansion with respect to any $\bm{x'}$, we hope our choice of $\bm{x'}$ can give a direct impression of where the defect is situated.
+Therefore, we propose using the following criteria:
+choose $\bm{x'}$ such that, in the basis where $\bm{P}^{(1)}$ is a diagonal matrix,
+\begin{equation}
+  P_{iii}^{(2)} = \sum_{v=1}^N (l_i^v-x'_i)^2 F_i^v = 0
+\end{equation}
+This gives an unambiguous definition for $\bm{x'}$ and also makes $\bm{x'}$ the center of the forces.
+And it is consistent with the cases where symmetry are preserved.
+
+% \section{Property Description}
+% \label{app:definition}
+% In this section, we provide a brief description to some of the quantities in our results.
+% For formal property definitions, please check the OpenKIM website \url{https://openkim.org/properties}.
+%
+% The formation of a vacancy
 
 
-The formation of a vacancy
-
-
-\section{obtaining data from OpenKIM}
+\section{Obtaining Results From OpenKIM}
 \label{app:data}
-Here is how to...
+All of the results and our codes are in the OpenKIM repository.
 
-% \section{Appendixes}
-%
-% To start the appendixes, use the \verb+\appendix+ command.
-% This signals that all following section commands refer to appendixes
-% instead of regular sections. Therefore, the \verb+\appendix+ command
-% should be used only once---to setup the section commands to act as
-% appendixes. Thereafter normal section commands are used. The heading
-% for a section can be left empty. For example,
-% \begin{verbatim}
-% \appendix
-% \section{}
-% \end{verbatim}
-% \appendix
-%
-% \section{\label{app:data}Scripts for Retrieving Data From OpenKIM}
-%
-% In this section, we list the scripts for retrieving the data used in this paper from OpenKIM.
-% %
-% \section{\label{app:results}Listing of Results}
-% All the results in this work are listed in Table~\ref{tab:fccresults} for archive.
-% The most updated data can be found at the OpenKIM website \url{https://openkim.org/}.
-%
-% The calculations are performed with the algorithm described in Section~\ref{sec:method}.
-% The code that implements this algorithm can also be found on the OpenKIM website.
-% Note that for some model-structure pairs, the calculation can't terminate within the time allowed, or produce results that are far from reality.
-% These items are marked as ``-'' in the two tables mentioned above.
-%
-% \setlength\LTleft{0pt}
-% \setlength\LTright{0pt}
-% \setlength{\LTcapwidth}{7in}
-%
-% \begin{longtable*}{@{\extracolsep{\fill}} c l c c c c c c}
-%  \caption{\label{tab:fccresults}
-%   Vacancy formation energy (VFE), migration energy (VME) and relaxation volume (VRV) calculated from atomistic simulations.
-%   See Section~\ref{sec:method} for the algorithm used in obtaining these results.
-%  }\\% \noalign{\nobreak\vspace{1pt}}%
-%  \toprule
-%  \multirow{2}{*}{Symbol} & \multirow{2}{*}{Model} & \multicolumn{2}{c}{VFE (eV)} & \multicolumn{2}{c}{VME (eV)} & \multicolumn{2}{c}{VRV ($\AA^3$)}\\
-%   & & fcc & hcp & fcc & hcp & fcc & hcp\\
-%  \colrule
-%  \nobreak\vspace{0.5pt}%
-%  \endfirsthead
-%  \caption{
-%   (continued)
-%  }\\
-%  \toprule
-%  \multirow{2}{*}{Symbol} & \multirow{2}{*}{Model} & \multicolumn{2}{c}{VFE (eV)} & \multicolumn{2}{c}{VME (eV)} & \multicolumn{2}{c}{VRV ($\AA^3$)}\\
-%   & & fcc & hcp & fcc & hcp & fcc & hcp\\ \colrule
-%  \endhead
-%  \botrule
-%  \endfoot
-%  \botrule
-%  \endlastfoot
-%  Ag & EAM\_Dynamo\_Ackland\_Tichy\_Ag & 1.02 & 1.03 & 0.98 & 0.97 & - & - \\
-%  Ag & EAM\_Dynamo\_Hale\_Wong\_pairHybrid\_PdAgH & 0.38 & 0.39 & 1.37 & 1.21 & - & - \\
-%  Ag & EAM\_Dynamo\_Hale\_Wong\_pairMorse\_PdAgH & - & 0.39 & - & 1.21 & - & - \\
-%  Ag & EAM\_Dynamo\_Williams\_Mishin\_Ag & 1.10 & 1.08 & 0.65 & 0.65 & - & - \\
-%  Ag & EAM\_Dynamo\_Williams\_Mishin\_CuAg & 1.10 & 1.08 & 0.65 & 0.65 & - & - \\
-%  Ag & EAM\_Dynamo\_Wu\_Trinkle\_CuAg & 1.10 & - & 0.65 & 1.40 & - & - \\
-%  Ag & EAM\_Dynamo\_Zhou\_Johnson\_Ag & 1.10 & 1.12 & 0.59 & 0.59 & - & - \\
-%  Ag & EMT\_Asap\_Standard\_Jacobsen\_Stoltze\_Norskov\_AlAgAuCuNiPdPt & 0.62 & - & 1.00 & - & - & - \\
-%  Ag & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Ag & 2.84 & 2.84 & 0.95 & 0.98 & 2.20 & 2.13 \\
-%  Ag & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Ag & 2.68 & 2.68 & 0.94 & 0.96 & 1.98 & 1.95 \\
-%  Ag & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Ag & 2.81 & 2.81 & 0.94 & 0.98 & 1.79 & 1.97 \\
-%  Al & EAM\_Dynamo\_Angelo\_Moody\_NiAlH & - & 0.60 & - & 0.10 & - & - \\
-%  Al & EAM\_Dynamo\_Cai\_Ye\_AlCu & - & - & 0.81 & 0.85 & - & - \\
-%  Al & EAM\_Dynamo\_Ercolessi\_Adams\_Al & 0.69 & 0.78 & 0.61 & 0.44 & - & - \\
-%  Al & EAM\_Dynamo\_Mendelev\_Asta\_AlMg & 0.66 & 0.64 & 0.64 & 0.54 & - & - \\
-%  Al & EAM\_Dynamo\_Mendelev\_Kramer\_Al & 0.66 & 0.64 & 0.64 & 0.54 & - & - \\
-%  Al & EAM\_Dynamo\_Mendelev\_Srolovitz\_AlFe & - & 0.66 & 0.41 & 0.62 & - & - \\
-%  Al & EAM\_Dynamo\_Mishin\_Farkas\_Al & 0.68 & 0.74 & 0.63 & 0.44 & - & - \\
-%  Al & EAM\_Dynamo\_Mishin\_Mehl\_NiAl & 4.00 & 3.31 & - & - & - & - \\
-%  Al & EAM\_Dynamo\_Mishin\_NiAl & 0.71 & - & 0.64 & - & - & - \\
-%  Al & EAM\_Dynamo\_PurjaPun\_Mishin\_NiAl & 0.68 & - & 0.63 & 1.12 & - & - \\
-%  Al & EAM\_Dynamo\_Sturgeon\_Laird\_Al & 0.89 & - & 0.55 & - & - & - \\
-%  Al & EAM\_Dynamo\_Vailhe\_Farkas\_CoAl & - & 0.68 & 1.66 & 0.23 & - & - \\
-%  Al & EAM\_Dynamo\_Winey\_Kubota\_Al & 0.66 & 0.64 & 0.43 & 0.30 & - & - \\
-%  Al & EAM\_Dynamo\_Zhou\_Johnson\_Al & 0.67 & 0.71 & 0.30 & 0.26 & - & - \\
-%  Al & EAM\_Dynamo\_Zope\_Mishin\_Al & 0.71 & 0.76 & 0.64 & 0.49 & - & - \\
-%  Al & EAM\_Dynamo\_Zope\_Mishin\_TiAl & 0.95 & 0.76 & 0.49 & 0.49 & - & - \\
-%  Al & EMT\_Asap\_Standard\_Jacobsen\_Stoltze\_Norskov\_AlAgAuCuNiPdPt & 0.94 & - & 0.40 & - & - & - \\
-%  Al & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Al & 2.61 & 2.62 & 0.55 & 0.60 & 8.62 & 3.15 \\
-%  Al & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Al & 2.43 & 2.43 & 0.55 & 0.58 & 3.18 & 2.57 \\
-%  Al & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Al & 2.59 & 2.59 & 0.56 & 0.59 & 3.35 & 3.14 \\
-%  Ar & Pair\_LJ\_Smooth\_Bernardes\_Ar & 0.07 & 0.07 & 0.06 & 0.06 & 0.77 & 0.89 \\
-%  Ar & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_HighCutoff\_Ar & 0.09 & 0.09 & 0.07 & 0.07 & 1.36 & 1.37 \\
-%  Ar & Pair\_Morse\_Sigmoid\_Jelinek\_Ar & 0.00 & 0.00 & 0.00 & 0.00 & - & - \\
-%  Ar & Pair\_Morse\_Shifted\_Jelinek\_Ar & 0.09 & 0.09 & 0.07 & 0.07 & 0.87 & 0.88 \\
-%  Ar & Pair\_Morse\_Smoothed90\_Jelinek\_Ar & 0.09 & 0.09 & 0.07 & 0.07 & 0.86 & 0.88 \\
-%  Ar & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_LowCutoff\_Ar & 0.08 & 0.08 & 0.06 & 0.06 & 0.93 & 1.06 \\
-%  Ar & Pair\_Lennard\_Jones\_Truncated\_Nguyen\_Ar & 0.09 & 0.09 & 0.08 & 0.07 & - & 24.83 \\
-%  Ar & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_MedCutoff\_Ar & 0.09 & 0.09 & 0.07 & 0.07 & 1.34 & 1.33 \\
-%  Au & EMT\_Asap\_Standard\_Jacobsen\_Stoltze\_Norskov\_AlAgAuCuNiPdPt & 0.07 & - & 1.03 & - & - & - \\
-%  Au & EAM\_Dynamo\_Zhou\_Johnson\_Au & 1.00 & 1.02 & 0.59 & 0.59 & - & - \\
-%  Au & EAM\_Dynamo\_Ackland\_Tichy\_Au & 0.96 & 0.99 & 0.90 & 0.90 & - & - \\
-%  Au & MorseEIP\_GuthikondaElliott\_2011\_AuCd & 3.82 & 3.82 & 1.67 & 1.70 & 1.49 & 1.49 \\
-%  Ca & LennardJones612\_Universal & 0.85 & - & 0.26 & - & - & - \\
-%  Ca & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Ca & 1.51 & 1.51 & 0.30 & 0.33 & 9.20 & 9.21 \\
-%  Ca & LennardJones612\_UniversalShifted & 1.08 & - & 0.60 & - & - & - \\
-%  Ca & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Ca & 1.61 & 1.61 & 0.30 & 0.33 & 9.84 & 9.92 \\
-%  Ca & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Ca & 1.63 & 1.63 & 0.30 & 0.33 & 10.07 & 10.07 \\
-%  Ba & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Ba & 1.40 & 1.39 & 0.22 & 0.25 & 16.77 & 16.00 \\
-%  Ba & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Ba & 1.48 & 1.48 & 0.22 & 0.25 & 17.75 & 17.48 \\
-%  Ba & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Ba & 1.50 & 1.50 & 0.22 & 0.25 & 18.37 & 17.86 \\
-%  Co & EAM\_Dynamo\_Zhou\_Johnson\_Co & 1.83 & 1.93 & 0.78 & 0.89 & - & - \\
-%  Co & EAM\_Dynamo\_PurjaPun\_Mishin\_Co & 1.56 & 1.49 & 0.95 & 1.01 & - & - \\
-%  Co & EAM\_Dynamo\_Vailhe\_Farkas\_CoAl & 1.44 & - & 1.17 & 28.50 & - & - \\
-%  Cr & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Cr & 3.51 & 3.51 & 1.29 & 1.29 & 1.31 & 2.15 \\
-%  Cr & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Cr & 3.69 & 3.69 & 1.30 & 1.35 & 1.39 & 1.38 \\
-%  Cr & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Cr & 3.72 & 3.72 & 1.30 & 1.35 & 1.42 & 1.40 \\
-%  Cu & EAM\_Dynamo\_Hoyt\_Garvin\_PbCu & 1.28 & 1.28 & 0.67 & 0.67 & - & - \\
-%  Cu & EAM\_Dynamo\_Cai\_Ye\_AlCu & 1.27 & 1.27 & 0.65 & 0.66 & - & - \\
-%  Cu & EAM\_Dynamo\_Foiles\_Baskes\_Universal3\_Cu & 1.28 & 1.28 & 0.67 & 0.67 & - & - \\
-%  Cu & EAM\_Dynamo\_Bonny\_Pasianot\_FeCuNi & 1.27 & 1.25 & 0.69 & 0.67 & - & - \\
-%  Cu & EAM\_Dynamo\_Ackland\_Tichy\_Cu & 1.19 & 1.20 & 0.98 & 0.97 & - & - \\
-%  Cu & EAM\_Dynamo\_Mendelev\_King\_Cu & 1.11 & 1.09 & 0.92 & 0.89 & - & - \\
-%  Cu & EAM\_Dynamo\_Onat\_Durukanoglu\_CuNi & 0.94 & 18.88 & 0.79 & - & - & - \\
-%  Cu & EAM\_Dynamo\_Mendelev\_Kramer\_Cu & 1.05 & 1.04 & 0.99 & 0.97 & - & - \\
-%  Cu & EAM\_Dynamo\_Mishin\_Mehl\_Cu & 1.27 & 1.25 & 0.69 & 0.67 & - & - \\
-%  Cu & EAM\_Dynamo\_Onat\_Durukanoglu\_CuNi & 0.94 & 1.24 & 0.79 & 0.64 & - & - \\
-%  Cu & EAM\_Dynamo\_Zhou\_Johnson\_Cu & 1.28 & 1.32 & 0.55 & 0.54 & - & - \\
-%  Cu & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Cu & 3.02 & 3.00 & 0.72 & 0.77 & 1.93 & 2.60 \\
-%  Cu & EAM\_Dynamo\_Mendelev\_Kramer\_CuZr & 1.05 & 1.04 & 0.99 & 0.97 & - & - \\
-%  Cu & EAM\_Dynamo\_Mendelev\_Sordelet\_CuZr & 1.05 & 1.04 & 0.99 & 0.97 & - & - \\
-%  Cu & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Cu & 3.18 & 3.18 & 0.77 & 0.81 & 2.52 & 2.40 \\
-%  Cu & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Cu & 3.21 & 3.21 & 0.77 & 0.82 & 2.20 & 2.16 \\
-%  Cd & LennardJones612\_Universal & 0.30 & - & 0.31 & - & - & - \\
-%  Cd & MorseEIP\_GuthikondaElliott\_2011\_AuCd & 1.12 & 1.12 & 0.61 & 0.63 & - & - \\
-%  Fe & Pair\_Johnson\_Fe & 1.51 & 1.51 & 9.74 & 9.67 & 0.00 & 0.00 \\
-%  Fe & model\_Fe\_PF\_DudarevDerlet & 1.95 & 1.95 & 1.25 & 1.13 & 0.61 & 0.62 \\
-%  Fe & EAM\_Dynamo\_Ackland\_Bacon\_Fe & 1.94 & 1.94 & 1.46 & 1.37 & - & - \\
-%  Fe & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Fe & 3.62 & 3.60 & 0.97 & 0.98 & 1.83 & 1.24 \\
-%  Fe & EAM\_Dynamo\_Zhou\_Johnson\_Fe & 1.69 & 1.69 & 0.95 & 0.78 & - & - \\
-%  Fe & model\_Fe\_PF\_chiesa\_quinticsplines & 1.99 & 1.99 & 1.34 & 1.05 & 1.68 & 1.68 \\
-%  Fe & model\_Fe\_PF\_mendelev & 1.76 & - & 0.13 & - & - & - \\
-%  Fe & EAM\_Dynamo\_Mendelev\_Han\_Fe\_2 & 1.76 & 1.77 & 0.13 & 0.37 & - & - \\
-%  Fe & EAM\_Dynamo\_Bonny\_Pasianot\_FeNi & 1.45 & 1.77 & 3.67 & 0.37 & - & - \\
-%  Fe & EAM\_Dynamo\_Mendelev\_Han\_Fe\_5 & 1.71 & 1.70 & 0.81 & 0.60 & - & - \\
-%  Fe & LennardJones612\_Universal & 8.42 & - & 2.69 & - & - & - \\
-%  Fe & EAM\_Dynamo\_Bonny\_Pasianot\_FeCuNi & 1.70 & - & 0.08 & - & - & - \\
-%  Fe & EAM\_Dynamo\_Ackland\_Mendelev\_FeP & 1.76 & - & 0.43 & - & - & - \\
-%  Fe & EAM\_Dynamo\_Mendelev\_Han\_VFe & 1.76 & 1.77 & 0.43 & 0.47 & - & - \\
-%  Fe & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Fe & 3.81 & 3.81 & 0.98 & 1.03 & 2.02 & 1.99 \\
-%  Fe & EAM\_Dynamo\_Mendelev\_Srolovitz\_AlFe & 1.76 & 1.76 & 0.43 & 0.93 & - & - \\
-%  Fe & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Fe & 3.85 & 3.85 & 0.98 & 1.03 & 2.06 & 2.06 \\
-%  Fe & EAM\_Dynamo\_Hepburn\_Ackland\_FeC & 1.76 & 1.77 & 0.43 & 0.47 & - & - \\
-%  He & LennardJones612\_UniversalShifted & 0.00 & 0.00 & 0.00 & 0.00 & - & - \\
-%  He & LennardJones612\_UniversalShifted & 0.00 & - & 0.00 & - & - & - \\
-%  He & LennardJones612\_Universal & 0.00 & 0.00 & 0.00 & 0.00 & - & - \\
-%  He & LennardJones612\_Universal & 0.00 & 0.00 & 0.00 & 0.00 & - & - \\
-%  Er & LennardJones612\_UniversalShifted & 5.88 & - & 2.71 & - & - & - \\
-%  Er & LennardJones612\_Universal & 6.20 & - & 4.32 & - & - & - \\
-%  Kr & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_LowCutoff\_Kr & 0.11 & 0.11 & 0.08 & 0.08 & 1.43 & 1.42 \\
-%  Kr & LennardJones612\_UniversalShifted & - & 0.02 & - & 0.37 & - & - \\
-%  Kr & LennardJones612\_UniversalShifted & - & 0.14 & - & 0.08 & - & - \\
-%  Kr & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_MedCutoff\_Kr & 0.11 & 0.11 & 0.09 & 0.09 & 1.60 & 1.59 \\
-%  Kr & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_HighCutoff\_Kr & 0.12 & 0.12 & 0.09 & 0.09 & 1.64 & 1.64 \\
-%  Mg & EMT\_Asap\_MetalGlass\_CuMgZr & 0.47 & - & 0.34 & - & - & - \\
-%  Mg & EAM\_Dynamo\_Zhou\_Johnson\_Mg & 0.68 & 0.66 & 0.41 & 0.42 & - & - \\
-%  Mg & EAM\_Dynamo\_Sun\_Mendelev\_Mg & 0.86 & 0.87 & 0.61 & 0.64 & - & - \\
-%  Mg & EAM\_Dynamo\_Mendelev\_Asta\_AlMg & 0.18 & 0.09 & 0.78 & 0.53 & - & - \\
-%  Mg & LennardJones612\_Universal & 0.66 & - & 0.49 & - & - & - \\
-%  Cs & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Cs & 0.51 & 0.52 & 0.03 & 0.04 & 47.17 & 43.60 \\
-%  Cs & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Cs & 0.56 & 0.56 & 0.03 & 0.04 & - & - \\
-%  Cs & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Cs & 0.57 & 0.57 & 0.03 & 0.04 & - & - \\
-%  Ne & LennardJones612\_Universal & 0.00 & 0.00 & 0.00 & 0.00 & - & - \\
-%  Ne & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_LowCutoff\_Ne & 0.02 & 0.02 & 0.02 & 0.02 & 0.38 & 0.38 \\
-%  Ne & Pair\_Morse\_Shifted\_Glyde\_Ne & 0.03 & 0.03 & 0.03 & 0.03 & 0.16 & 0.16 \\
-%  Ne & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_MedCutoff\_Ne & 0.03 & 0.03 & 0.02 & 0.02 & 0.44 & 0.44 \\
-%  Ne & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_HighCutoff\_Ne & 0.03 & 0.03 & 0.02 & 0.02 & 0.46 & 0.46 \\
-%  Mo & model\_Mo\_PF\_cubicsplines & 2.56 & 2.56 & 2.33 & 2.38 & 2.47 & 2.44 \\
-%  Mo & EAM\_Dynamo\_Zhou\_Johnson\_Mo & 3.25 & 3.26 & 2.28 & 2.13 & - & - \\
-%  Mo & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Mo & 6.20 & 6.22 & 2.53 & 2.61 & 1.50 & 1.45 \\
-%  Mo & EAM\_Dynamo\_Smirnova\_UMoXe & - & - & - & 0.80 & - & - \\
-%  Mo & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Mo & 6.50 & 6.51 & 2.56 & 2.63 & 1.57 & 1.56 \\
-%  Mo & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Mo & 6.56 & 6.56 & 2.56 & 2.63 & 1.60 & 2.27 \\
-%  Nb & model\_Nb\_PF\_cubicsplines & 2.18 & - & - & - & - & 8.40 \\
-%  Ni & EAM\_Dynamo\_Ackland\_Tichy\_Ni & 1.42 & 1.42 & 0.81 & 0.86 & - & - \\
-%  Ni & EAM\_Dynamo\_Bonny\_Pasianot\_FeNi & 1.56 & 1.79 & 0.98 & 0.61 & - & - \\
-%  Ni & EAM\_Dynamo\_Mishin\_Mehl\_NiAl & 0.56 & 0.73 & 1.03 & 0.87 & - & - \\
-%  Ni & EAM\_Dynamo\_Bonny\_Pasianot\_FeCuNi & 1.72 & 1.71 & 0.75 & 0.75 & - & - \\
-%  Ni & EAM\_Dynamo\_Mishin\_Farkas\_Ni & 1.60 & - & 1.29 & - & - & - \\
-%  Ni & EAM\_Dynamo\_Zhou\_Johnson\_Ni & 1.72 & 1.70 & 0.87 & 0.80 & - & - \\
-%  Ni & EAM\_Dynamo\_Onat\_Durukanoglu\_CuNi & 1.47 & 1.70 & 0.83 & 0.57 & - & - \\
-%  Ni & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Ni & 3.65 & 3.63 & 0.97 & 0.98 & 1.71 & 1.16 \\
-%  Ni & EAM\_Dynamo\_Mendelev\_Ni & 1.76 & 1.71 & 1.03 & 0.96 & - & - \\
-%  Ni & EAM\_Dynamo\_Onat\_Durukanoglu\_CuNi & 1.46 & 49.58 & 0.83 & - & - & - \\
-%  Ni & EAM\_Dynamo\_Mishin\_NiAl & - & 1.56 & - & 1.05 & - & - \\
-%  Ni & EAM\_Dynamo\_PurjaPun\_Mishin\_NiAl & - & 1.56 & - & 1.05 & - & - \\
-%  Ni & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Ni & 3.84 & 3.84 & 0.98 & 1.04 & 1.90 & 1.89 \\
-%  Ni & EAM\_Dynamo\_Mendelev\_NiZr & 1.76 & - & 1.03 & - & - & - \\
-%  Ni & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Ni & 3.88 & 3.88 & 0.98 & 1.04 & 1.93 & 1.72 \\
-%  Na & LennardJones612\_UniversalShifted & 4.14 & - & 1.42 & - & - & - \\
-%  Na & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Na & 0.72 & 0.73 & 0.04 & 0.06 & 12.33 & 15.17 \\
-%  Na & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Na & 0.79 & 0.79 & 0.04 & 0.06 & 18.10 & 16.49 \\
-%  Na & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Na & 0.80 & 0.80 & 0.04 & 0.06 & 18.78 & 19.56 \\
-%  Pb & EAM\_Dynamo\_Zhou\_Johnson\_Pb & 0.59 & 0.60 & 0.30 & 0.31 & - & - \\
-%  Pb & EAM\_Dynamo\_Landa\_Wynblatt\_AlPb & 0.31 & - & 0.23 & - & - & - \\
-%  Pb & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Pb & 1.84 & 1.84 & 0.72 & 0.74 & 3.06 & 2.99 \\
-%  Pb & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Pb & 1.93 & 1.93 & 0.72 & 0.75 & 3.22 & 3.26 \\
-%  Pb & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Pb & 1.94 & 1.94 & 0.73 & 0.75 & 3.17 & 3.27 \\
-%  Pd & EMT\_Asap\_Standard\_Jacobsen\_Stoltze\_Norskov\_AlAgAuCuNiPdPt & 1.02 & - & 0.73 & - & - & - \\
-%  Pd & EAM\_Dynamo\_Hale\_Wong\_pairHybrid\_PdAgH & 1.25 & 1.35 & 0.45 & 0.33 & - & - \\
-%  Pd & EAM\_Dynamo\_Hale\_Wong\_pairMorse\_PdAgH & - & 1.35 & 0.39 & 0.33 & - & - \\
-%  Dy & LennardJones612\_UniversalShifted & 5.65 & - & 3.18 & - & - & - \\
-%  Dy & LennardJones612\_Universal & 5.68 & - & 4.99 & 1.60 & - & - \\
-%  Pt & EAM\_Dynamo\_Zhou\_Johnson\_Pt & 1.56 & 1.66 & 0.73 & 0.65 & - & - \\
-%  Pt & EMT\_Asap\_Standard\_Jacobsen\_Stoltze\_Norskov\_AlAgAuCuNiPdPt & 1.02 & - & 0.98 & - & - & - \\
-%  K & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_K & 0.62 & 0.62 & 0.04 & 0.05 & - & 33.47 \\
-%  K & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_K & 0.66 & 0.67 & 0.04 & 0.05 & 31.68 & 35.84 \\
-%  K & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_K & 0.67 & 0.68 & 0.04 & 0.05 & 32.09 & 33.01 \\
-%  Ru & EAM\_Dynamo\_Fortini\_Mendelev\_Ru & 1.91 & 2.15 & 0.89 & 1.37 & - & - \\
-%  Ho & LennardJones612\_Universal & 5.68 & - & 4.99 & 1.60 & - & - \\
-%  Ho & LennardJones612\_UniversalShifted & 5.65 & - & 3.18 & - & - & - \\
-%  Ta & EAM\_Dynamo\_Li\_Siegel\_Ta & 2.93 & 2.93 & 1.89 & 1.74 & - & - \\
-%  Ta & model\_Ta\_PF\_cubicsplines\_derletnguyenmanhdudarev & 2.37 & 2.48 & - & - & - & 7.61 \\
-%  Ti & EAM\_Dynamo\_Ackland\_Ti & 1.45 & 1.43 & 0.72 & 0.78 & - & - \\
-%  Ti & EAM\_Dynamo\_Zhou\_Johnson\_Ti & 1.63 & 1.72 & 0.71 & 0.81 & - & - \\
-%  Ti & EAM\_Dynamo\_Zope\_Mishin\_TiAl & 1.86 & 1.66 & 0.77 & 0.71 & - & - \\
-%  Si & Three\_Body\_Stillinger\_Weber\_Balamane\_Si & 0.03 & 1.69 & - & - & - & 0.96 \\
-%  Si & Three\_Body\_Stillinger\_Weber\_Si & 0.02 & 1.58 & - & - & - & 0.99 \\
-%  Si & Three\_Body\_Stillinger\_Weber\_Si & 0.02 & 1.58 & - & - & - & 0.99 \\
-%  Si & Three\_Body\_Stillinger\_Weber\_Zhang\_Silicene\_Model1\_Si & - & 1.09 & - & 0.73 & - & 4.22 \\
-%  W & EAM\_Dynamo\_Zhou\_Johnson\_W & 3.91 & 3.91 & 2.82 & 2.65 & - & - \\
-%  W & model\_W\_PF\_cubicsplines & 2.72 & 2.72 & 3.47 & 3.37 & 1.81 & 1.81 \\
-%  W & EAM\_Dynamo\_Ackland\_W & 3.60 & 3.60 & 3.67 & 3.11 & - & - \\
-%  W & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_W & 7.97 & 7.96 & 2.83 & 2.88 & 1.80 & 1.79 \\
-%  W & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_W & 8.36 & 8.36 & 2.80 & 2.92 & 2.56 & 2.05 \\
-%  W & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_W & 8.43 & 8.43 & 2.85 & 2.94 & 1.97 & 1.94 \\
-%  Y & Dipole\_Umeno\_YSZ & 0.00 & - & 0.00 & - & - & - \\
-%  Xe & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_LowCutoff\_Xe & 0.15 & 0.15 & 0.12 & 0.12 & 1.95 & 1.95 \\
-%  Xe & EAM\_Dynamo\_Smirnova\_UMoXe & - & 0.00 & 0.23 & 0.13 & - & - \\
-%  Xe & LennardJones612\_Universal & 0.20 & - & 0.14 & - & - & - \\
-%  Xe & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_MedCutoff\_Xe & 0.16 & 0.16 & 0.12 & 0.13 & 2.04 & 2.03 \\
-%  Xe & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_HighCutoff\_Xe & 0.17 & 0.17 & 0.13 & 0.13 & 2.09 & 2.09 \\
-%  Zr & Dipole\_Umeno\_YSZ & 0.00 & - & 0.00 & - & - & - \\
-%  Zr & EMT\_Asap\_MetalGlass\_CuMgZr & 0.59 & - & 0.47 & - & - & - \\
-%  Zr & EAM\_Dynamo\_Zhou\_Johnson\_Zr & 1.83 & 1.94 & 0.74 & 0.87 & - & - \\
-%  Zr & EAM\_Dynamo\_Mendelev\_Kramer\_CuZr & - & - & 0.49 & - & - & - \\
-%  Sr & LennardJones612\_UniversalShifted & 1.10 & - & 0.77 & - & - & - \\
-%  Sr & LennardJones612\_Universal & 1.05 & 1.03 & 1.19 & 0.39 & - & - \\
-%  Sr & LennardJones612\_UniversalShifted & 0.40 & - & 2.45 & - & - & - \\
-%  Sc & LennardJones612\_UniversalShifted & 12.17 & - & 4.39 & - & - & - \\
-%  Rb & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Rb & 0.55 & 0.55 & 0.03 & 0.04 & 39.08 & 41.53 \\
-%  Rb & Pair\_Morse\_Shifted\_GirifalcoWeizer\_MedCutoff\_Rb & 0.59 & 0.59 & 0.02 & 0.04 & 43.31 & 44.28 \\
-%  Rb & Pair\_Morse\_Shifted\_GirifalcoWeizer\_HighCutoff\_Rb & 0.60 & 0.60 & 0.02 & 0.03 & 45.54 & 45.31 \\
-%  V & model\_V\_PF\_cubicsplines\_derletnguyenmanhdudarev & - & - & - & - & - & 3.51 \\
-%  Al & EAM\_Dynamo\_Landa\_Wynblatt\_AlPb & - & 0.76 & - & 0.42 & - & - \\
-%  Ar & LennardJones612\_UniversalShifted & - & 0.10 & - & 0.08 & - & - \\
-%  Cu & EAM\_Dynamo\_Wu\_Trinkle\_CuAg & - & 0.83 & - & 0.42 & - & - \\
-%  Ne & LennardJones612\_Universal & - & 0.00 & - & 0.00 & - & - \\
-%  K & LennardJones612\_Universal & - & 4.62 & - & 3.03 & - & - \\
-%  Dy & LennardJones612\_Universal & - & 5.77 & - & 4.31 & - & - \\
-%  Xe & LennardJones612\_UniversalShifted & - & - & - & 1.28 & - & - \\
-%  Sr & LennardJones612\_Universal & - & 1.09 & - & 1.04 & - & - \\
-%  Ho & LennardJones612\_Universal & - & 5.77 & - & 4.31 & - & - \\
-%  Zr & EAM\_Dynamo\_Mendelev\_NiZr & - & 2.27 & - & 1.13 & - & - \\
-%  Er & LennardJones612\_Universal & - & 6.31 & - & 4.94 & - & - \\
-%  Tb & LennardJones612\_Universal & - & 10.33 & - & 3.59 & - & - \\
-%  Pa & LennardJones612\_Universal & - & 9.60 & - & 4.76 & - & - \\
-%  Y & LennardJones612\_Universal & - & 16.86 & - & 5.40 & - & - \\
-%  Zn & LennardJones612\_UniversalShifted & - & 1.48 & - & 1.69 & - & - \\
-% \end{longtable*}
-%
-% \setlength\LTleft{0pt}
-% \setlength\LTright{0pt}
-% \setlength{\LTcapwidth}{7in}
-% \begin{longtable*}{@{\extracolsep{\fill}}  c  p{5in} c  c}
-%  \caption{\label{tab:bestmodels}
-%   In this table, we list the models currently available on OpenKIM that are most consistent with DFT and experiments.
-%   They are selected based on the mean absolute percentage error (MAPE) between the vacancy property results they produce and the reference data we have.
-%   Here $n$ is the number of vacancy-related reference data available for these models.
-%  }\\
-%  \toprule
-%  \noalign{\nobreak\vspace{1pt}}%
-%  Symbol & Model & n & MAPE \\
-%  \noalign{\nobreak\vspace{1pt}}%
-%  \colrule
-%  \noalign{\nobreak\vspace{1pt}}%
-%  \endfirsthead
-%  \caption{
-%   (continued)
-%  }\\
-%  \toprule
-%  \noalign{\nobreak\vspace{1pt}}%
-%  Symbol & Model & n & MAPE \\
-%  \noalign{\nobreak\vspace{1pt}}%
-%  \colrule
-%  \noalign{\nobreak\vspace{1pt}}%
-%  \endhead
-%  \botrule
-%  \endfoot
-%  \botrule
-%  \endlastfoot
-%  Ag & EAM\_Dynamo\_Zhou\_Johnson\_Ag & 6 & 24.11\% \\
-%  Al & EAM\_Dynamo\_Mishin\_Farkas\_Al & 6 & 8.00\% \\
-%  Au & EAM\_Dynamo\_Zhou\_Johnson\_Au & 6 & 60.40\% \\
-%  Ba & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Ba & 4 & 30.48\% \\
-%  Ca & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Ca & 6 & 33.00\% \\
-%  Cd & LennardJones612\_Universal & 2 & 18.47\% \\
-%  Co & EAM\_Dynamo\_PurjaPun\_Mishin\_Co & 4 & 17.22\% \\
-%  Cs & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Cs & 4 & 64.49\% \\
-%  Cu & EAM\_Dynamo\_Onat\_Durukanoglu\_CuNi & 6 & 9.02\% \\
-%  Fe & EAM\_Dynamo\_Ackland\_Bacon\_Fe & 6 & 17.21\% \\
-%  K & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_K & 4 & 73.45\% \\
-%  Kr & Pair\_Lennard\_Jones\_Shifted\_Bernardes\_LowCutoff\_Kr & 2 & 20.38\% \\
-%  Mg & EAM\_Dynamo\_Zhou\_Johnson\_Mg & 6 & 8.60\% \\
-%  Na & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Na & 2 & 79.50\% \\
-%  Ni & EAM\_Dynamo\_Ackland\_Tichy\_Ni & 4 & 9.30\% \\
-%  Pb & EAM\_Dynamo\_Zhou\_Johnson\_Pb & 6 & 36.27\% \\
-%  Pd & EMT\_Asap\_Standard\_Jacobsen\_Stoltze\_Norskov\_AlAgAuCuNiPdPt & 4 & 21.45\% \\
-%  Pt & EAM\_Dynamo\_Zhou\_Johnson\_Pt & 6 & 64.98\% \\
-%  Rb & Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Rb & 4 & 75.66\% \\
-%  Ru & EAM\_Dynamo\_Fortini\_Mendelev\_Ru & 4 & 33.26\% \\
-%  Sr & LennardJones612\_UniversalShifted & 2 & 43.93\% \\
-%  Ta & model\_Ta\_PF\_cubicsplines\_derletnguyenmanhdudarev & 2 & 5.88\% \\
-%  Ti & EAM\_Dynamo\_Zope\_Mishin\_TiAl & 6 & 33.57\% \\
-%  W & model\_W\_PF\_cubicsplines & 2 & 37.38\% \\
-%  Zr & EAM\_Dynamo\_Zhou\_Johnson\_Zr & 5 & 21.83\% \\
-%  Mo & model\_Mo\_PF\_cubicsplines & 1 & 30.54\% \\
-% \end{longtable*}
+The results can be accessed through OpenKIM Query \url{query.openkim.org}.
+We can obtain the results either through the web interface or through any programming language that supports HTTP requests.
+The backend of this query API is a MongoDB database, and in order to obtain the results we want, we need to construct our query with the correct MongoDB syntax.
+The website of MongoDB, \url{mongodb.org}, provides a detailed documentation of this.
 
-%\section{Appendixes}
-%
-%To start the appendixes, use the \verb+\appendix+ command.
-%This signals that all following section commands refer to appendixes
-%instead of regular sections. Therefore, the \verb+\appendix+ command
-%should be used only once---to setup the section commands to act as
-%appendixes. Thereafter normal section commands are used. The heading
-%for a section can be left empty. For example,
-%\begin{verbatim}
-%\appendix
-%\section{}
-%\end{verbatim}
-%will produce an appendix heading that says ``APPENDIX A'' and
-%\begin{verbatim}
-%\appendix
-%\section{Background}
-%\end{verbatim}
-%will produce an appendix heading that says ``APPENDIX A: BACKGROUND''
-%(note that the colon is set automatically).
-%
-%If there is only one appendix, then the letter ``A'' should not
-%appear. This is suppressed by using the star version of the appendix
-%command (\verb+\appendix*+ in the place of \verb+\appendix+).
-%
-%\section{A little more on appendixes}
-%
-%Observe that this appendix was started by using
-%\begin{verbatim}
-%\section{A little more on appendixes}
-%\end{verbatim}
-%
-%Note the equation number in an appendix:
-%\begin{equation}
-%E=mc^2.
-%\end{equation}
-%
-%\subsection{\label{app:subsec}A subsection in an appendix}
-%
-%You can use a subsection or subsubsection in an appendix. Note the
-%numbering: we are now in Appendix~\ref{app:subsec}.
-%
+Here is an example of using Python to obtain all the fcc Al lattice constants (TODO: replace by vacancy formation energy) calculated with various interatomic potentials:
+\begin{lstlisting}
+import requests
+result = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"a.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"},"species.source-value":"Al"}'}).json()
+\end{lstlisting}
+
+To obtain a plot of lattice constant versus bulk modulus for all the models and all the elements, we can do
+\begin{lstlisting}
+import requests
+import matplotlib.pyplot as plt
+result_lat = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"a.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"}}'}).json()
+dict_lat = {r[u'meta.subject.kimcode']: r[u'a.source-value'] for r in result_lat}
+result_bulk = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"isothermal-bulk-modulus.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/bulk-modulus-isothermal-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^ElasticConstantsCubic_fcc"}}'}).json()
+xdata = []
+ydata = []
+for r in result_bulk:
+    model = r[u'meta.subject.kimcode']
+    if not model in dict_lat:
+        continue
+    ydata.append(r[u'isothermal-bulk-modulus.source-value'])
+    xdata.append(dict_lat[model])
+plt.scatter(xdata, ydata)
+plt.xlabel('a')
+plt.ylabel('bulk modulus')
+plt.show()
+\end{lstlisting}
+The code above has been tested in the Python 2.7 version of Anaconda 4.0.0.
+
+
+
+
+
 %Note the equation numbers in this appendix, produced with the
 %subequations environment:
 %\begin{subequations}
