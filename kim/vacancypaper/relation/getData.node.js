@@ -15,7 +15,7 @@ for(var i = 0; i < dirs.length; i++) {
   data.push(res);
 }
 
-console.log(data);
+// console.log(data);
 
 var items = [
   'elem',
@@ -29,35 +29,41 @@ var items = [
   'volume',
   'bulk*volume',
   'shear*volume',
-  'vacancy-formation-energy',
-  'vacancy-migration-energy',
-  'vacancy-relaxation-volume',
+  'formation-energy',
+  'migration-energy',
+  'relaxation-volume',
   'edt11',
   'spedt11',
-  'spedt33'
+  'spedt33',
+  'spdst11',
+  'spdst33'
 ];
 
+var itemsLen = items.length;
+for(var i = 2; i < itemsLen; i++) {
+  items.push('ln_' + items[i])
+}
 output = [items.join(',')];
 
 for(var i = 0; i < data.length; i++) {
-  row = [];
-  res = data[i];
-  info = res['info'];
+  var row = [];
+  var res = data[i];
+  var info = res['info'];
   row.push(info['elem']);
   row.push(info['model']);
-  a = res['a']['source-value'];
+  var a = res['a']['source-value'];
   row.push(a);
-  row.push(res['free-energy-per-atom']['source-value']);
+  row.push(-res['free-energy-per-atom']['source-value']);
   var EST = res['partial-elastic-stiffness-tensor']['source-value'];
-  c11 = EST[0][0];
-  c12 = EST[0][1];
+  var c11 = EST[0][0];
+  var c12 = EST[0][1];
   row.push(c11); // c11
   row.push(c12); // c12
-  bulk = (c11 + c12 * 2) / 3;
-  shear = (c11 - c12) / 2;
+  var bulk = (c11 + c12 * 2) / 3;
+  var shear = (c11 - c12) / 2;
   row.push(bulk); // bulk
   row.push(shear); // shear
-  vol = Math.pow(a, 3);
+  var vol = Math.pow(a, 3);
   row.push(vol);
   row.push(vol * bulk);
   row.push(vol * shear);
@@ -65,12 +71,26 @@ for(var i = 0; i < data.length; i++) {
   row.push(res['vacancy-migration-energy']['source-value']);
   row.push(res['vacancy-relaxation-volume']['source-value']);
   row.push(res['elastic-dipole-tensor']['source-value'][0][0]);
-  SPEDT = res['saddle-point-elastic-dipole-tensor']['source-value'];
+  var SPEDT = res['saddle-point-elastic-dipole-tensor']['source-value'];
   row.push(SPEDT[0][0]);
   row.push(SPEDT[2][2]);
+  var SPDST = res['saddle-point-defect-strain-tensor']['source-value'];
+  row.push(SPDST[0][0]);
+  row.push(SPDST[2][2]);
+
+  // Add ln(x)
+  var rowLen = row.length;
+  for(var j = 2; j < rowLen; j++) {
+    var val = row[j];
+    if(val > 0) {
+      row.push(Math.log(val));
+    } else {
+      row.push(-100.0);
+    }
+  }
   output.push(row.join(','));
 }
 
-console.log(output.join('\n'));
+// console.log(output.join('\n'));
 
 fs.writeFileSync('data.csv', output.join('\n'));
