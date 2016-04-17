@@ -199,7 +199,6 @@ The paper is organized as follows.
 In Sec.~\ref{sec:method} we describe the algorithm used for calculating the monovacancy properties.
 In Sec.~\ref{sec:results} we show the plots of our results, compare them with the reference data, and explore how they relate to each other and to other elemental properties.
 Sec.~\ref{sec:conclusion} concludes this paper.
-And Appendix~\ref{app:data} list the scripts used for obtaining the data from OpenKIM.
 
 \section{\label{sec:method}Methodology}
 
@@ -250,7 +249,16 @@ The defect strain tensor, DST ($\Lambda_{ij}$) is obtained by
 \end{equation}
 where $S_{ijkl}$ is the elastic compliance tensor, which is the inverse of the elastic stiffness tensor.
 
-The relaxation volume, VRV, is the trace of the defect strain tensor.
+The relaxation volume, VRV, is the decrease in the volume of the material due to the monovacancy under constant stress.
+There are two methods for calculating this quantity.
+One is through relaxing both the positions of the atoms and the size of the supercell.
+The other is through its relaxationship with the defect strain tensor
+\begin{equation}
+  \label{eq:VRV}
+  \mathit{VRV} = V_0\epsilon_{ii} = \Lambda_{ii}
+\end{equation}
+We verified that these two methods give consistent results.
+Since the second method does not involve additional calculations, we used that one in our calculation.
 
 For vacancy migration, we used nudged elastic band method to obtain the migration path and cubic spline interpolation to obtain the saddle point energy and configuration.
 We used similar extrapolation method to obtain the vacancy migration energy (VME) and the saddle point elastic dipole tensor and defect strain tensor.
@@ -396,15 +404,16 @@ Appendix~\ref{app:position} provides a more detailed explaination for this defin
 
 \section{\label{sec:results}Results and Discussion}
 
+All the results calculated in this work are available in the OpenKIM repository \cite{openkim2016}.
+In Appendix~\ref{app:data}, we provide scripts for retrieving these results through OpenKIM Query API.
+As new potential models are added into this system, new results will be calculated automatically with our code.
+
 \subsection{\label{sec:calcvsref}Calculated Results Versus Reference Data}
 
-All the results calculated in this work are available in the OpenKIM repository \cite{openkim2016}.
-In Appendix~\ref{app:data}, we list the scripts that can automatically retrieve these results through OpenKIM Query, the data querying API provided by OpenKIM.
-
-Comparison of our results and the reference data from DFT calculations and experiments can be found in Fig.~\ref{fig:compare}, where Fig.~\ref{fig:compare}(a) and \ref{fig:compare}(b) are the results for fcc structures, and Fig.~\ref{fig:compare}(c) and \ref{fig:compare}(d) are the results for hcp structures.
-The red dots and the blue dots in these figures represent the reference data from DFT calculations and experiments, respectively.
-The black symbols represent the results from atomistic simulations.
-The type of the interatomic model is indicated by the shape of the symbol: the circles represent the embedded-atom method (EAM), the triangles represent the pairwise models, and the cross signs represent all the other types of models, such as the three-body models.
+Fig.~\ref{fig:compare} compares our results and with the reference data from DFT calculations and experiments.
+% The red dots and the blue dots in these figures represent the reference data from DFT calculations and experiments, respectively.
+% The black symbols represent the results from atomistic simulations.
+% The type of the interatomic model is indicated by the shape of the symbol: the circles represent the embedded-atom method (EAM), the triangles represent the pairwise models, and the cross signs represent all the other types of models, such as the three-body models.
 \noindent\begin{figure*}
 \centering
 \noindent\ignorespaces
@@ -418,147 +427,144 @@ The type of the interatomic model is indicated by the shape of the symbol: the c
 \caption{\label{fig:compare}
  Comparison of the results from our atomistic simulations and the reference data, where Fig.~(a) and (b) are the results for fcc structures, and Fig.~(c) and (d) are the results for hcp structures.
  The `\#' sign next to the symbol of each element indicates whether the structure presented by the figure is the element's natural state.
+ The error bars are smaller than the size of the symbols.
 }
 \end{figure*}
 
 We can see from these figures that the EAM models, in general, produce similar VFE and VME as DFT calculations and experiments.
 While most pairwise models tend to produce larger values for VFE, especially for elements with Mendeleev numbers ranging from 25 to 45, which correspond to the transition metals and the post-transition metals.
 
-One explanation for the pairwise models to get larger VFE could be that pairwise models assume the strength of the bonds only depend on the distance between the two atoms.
-They ignore the fact that the change in the number of bonds can also affect the strength of the bonds, and thus the energy.
+To further explore how pairwise models come up with larger VFEs, we used fcc Al as an example and looked into the relationship between its cohesive energy $E_0$, unrelaxed vacancy formation energy $E_u$, and relaxed vacancy formation energy $E_r$.
+We found that, with pairwise potential (Morse), $E_0 = 2.70\electronvolt \approx E_u$.
+While with EAM potential (Mishin and Farkas), $E_0 = 3.36\electronvolt$, $E_u = 0.77\electronvolt \approx 0.2E_0 < E_0$.
+The energy change due to relaxation, $|E_u-E_r|$, is much smaller than $E_u$ in both cases.
+We corsorily tested a few other transition metals and found similar relationships.
+Therefore, the overestimation of VFE is mostly due to the incorrect estimation of the total energy when the coordination number in the neighborhood of the vacancy changes.
 
-To see this in detail, we exam the unrelaxed vacancy formation energy, $\mathit{UnrelaxedVFE}$, which the vacancy formation energy without position relaxation.
-It consists of three parts, which can be expressed by
-\begin{equation}
-\label{eq:vfedecomp}
-\mathit{UnrelaxedVFE} = N\cdot E_{bond} + \sum\Delta E_{bond} - E_{coh}
-\end{equation}
-where $N$ is the number of bonds surrounding each atom.
-The first term corresponds to the breaking of the bonds between the vacant site and its nearest neighbors.
-We ignore the contribution from breaking the bonds between the vacant site and its second nearest neighbors because it is much smaller than the first term.
-The second term corresponds to the energy change in the remaining bonds.
-And the third term is the cohesive energy, corresponding to the $n-1$ in Eq.~(\ref{eq:vfecalc}), which also equals to $N\cdot E_{bond}/2$, as the energy of each bond is shared between the two atoms it connects.
-For all the pairwise models, we shall have $\mathit{UnrelaxedVFE}\approx E_{coh}$, as $\sum\Delta E_{bond}$ is zero; while for all the models that do take changes in the surrounding environment into consideration besides the distance between two atoms, we shall have $\mathit{UnrelaxedVFE}$ significantly different from $E_{coh}$.
-In Table~\ref{tab:cohvfe} we show our verification: the pairwise models do get similar values for $\mathit{UnrelaxedVFE}$ and $E_{coh}$, while other types of models get significantly different values.
-\begin{table}[!b]
-\caption{\label{tab:cohvfe}
- Relationship between the cohesive energy, $E_{coh}$, and the unrelaxed vacancy formation energy, $\mathit{UnrelaxedVFE}$, calculated for fcc structures with different types of models.
- We can see that the pairwise models do get similar values for these two items while other types of models do get significantly different values.
- All the models can be found in the OpenKIM repository by the ID numbers shown in the footnotes.
-}
-\begin{ruledtabular}
-\begin{tabular}{l c c}
- Model & $E_{coh}/\electronvolt$ & $\mathit{UnrelaxedVFE}/\electronvolt$\\
-\hline
-Pairwise Al\footnotemark[1] & 2.7004 & 2.7004\\
-Pairwise Cu\footnotemark[1] & 3.2741 & 3.2741\\
-EAM Al\footnotemark[2] & 3.3599 & 0.7691\\
-EAM Cu\footnotemark[3] & 3.5193 & 1.2196\\
-EMT Al\footnotemark[4] & 3.2788 & 0.9806\\
-EMT Cu\footnotemark[4] & 3.2213 & 1.2788\\
-\end{tabular}
-\end{ruledtabular}
-\footnotetext[1]{(ID: 411898953661\_001(Al) and 673777079812\_001(Cu)) Morse pair potential with parameters from Girifalco and Weizer, 1959.}
-\footnotetext[2]{(ID: 651801486679\_001) EAM Al potential with parameters from Mishin et al., 1999.}
-\footnotetext[3]{(ID: 179025990738\_001) EAM Cu potential with parameters from Ackland et al., 1987.}
-\footnotetext[4]{(ID: 118428466217\_002) EMT implementation in ASAP by Jacobsen et al.}
-\end{table}
+Besides the EAM models, there are also several models in our database that, although only supports a few elements, do give accurate results.
+For example, ...
 
-===(Draft of draft below this line)===
+In addition, several new models are under active development and will be added into the OpenKIM repository soon, including ...
 
-In Table~\ref{tab:cohvfe}, we show an example of fcc copper: as we move the atom next to the vacant slight away from the original position, the change in the cohesive energy according to the EAM potential is about 40\% smaller than the value according to the pairwise potential.
-This implies that as we create vacancy and remove bonds, the strength of the remaining bonds may decrease.
-We propose that the vacancy formation energy can be expressed as
-\begin{equation}
-\label{eq:vfedecomp}
-\mathit{VFE} = E_{cohesive} + \Delta E_{bonds, all} + \Delta E_{relaxation}
-\end{equation}
-Where $\Delta E_{bonds, all}$ is the change in the bond energy and the $\Delta E_{relaxation}$ is the change in energy due to position relaxation.
-When we remove an atom, all the bonds associated with that atom are also removed, which means the energy change is $n \times E_{bond}$, where $n$ is the number of bonds surround each atom and $E_{bond}$ is the energy of a single bond.
-Since each bond is associated with two atoms, thus the cohesive energy, $E_{cohesive}$, of an atom shall be the energy of half of the bonds associated with the atom, that is $n \times E_{bond}/2$.
-Compare with Eq.~(\ref{eq:vfecalc}), we can get the first $E_{cohesive}$ term in Eq.~\ref{eq:vfedecomp}.
-For pairwise potentials, $\Delta E_{bonds, all}$ is zero and $\Delta E_{relaxation}$ is usually much smaller than $E_{cohesive}$, so the vacancy formation energy according to them will be very close to the cohesive energy.
-This can be verified with our data.
-For example, with a pairwise potential for fcc copper, we will get the cohesive energy is 3.27 eV and the vacancy formation energy is 3.02 eV. We have also verified that without relaxation (no $\Delta E_{relaxation}$), the unrelaxed vacancy formation energy is also 3.27 eV, same as $E_{cohesive}$.
-
-\begin{table}
-\caption{\label{tab:cu}
- Change in the cohesive energy of fcc copper as we move the atom next to the vacant slight slightly along the $x$ direction away from the original position.
-}
-\begin{ruledtabular}
-\begin{tabular}{c c c}
- Displacement (\AA) & EAM\footnotemark[1] (eV) & Pairwise\footnotemark[2] (eV)\\
-\hline
-0.01 & 0.000 & 0.000 \\
-0.02 & 0.001 & 0.002 \\
-0.04 & 0.005 & 0.009 \\
-0.08 & 0.021 & 0.037 \\
-0.16 & 0.092 & 0.148 \\
-0.32 & 0.407 & 0.596 \\
-0.64 & 1.649 & 2.440 \\
-1.28 & 5.383 & 9.306 \\
-2.56 & 13.37 & 41.91 \\
-5.12 & 10.31 & 22.04 \\
-\end{tabular}
-\end{ruledtabular}
-\footnotetext[1]{EAM\_Dynamo\_Ackland\_Tichy\_Cu.}
-\footnotetext[2]{Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Cu.}
-\end{table}
-
-For pairwise potentials, the bond energy per atom increase linearly with the number of bonds.
-However, experiments show there is a quadratic relationship between them.
-This implies that when we remove a bond, the strength of the remaining bonds will be weakened.
-Therefore, the change in energy during position relaxation will be smaller than if the bond strength remains the same.
-And this change in energy is exactly the main component of the vacancy formation energy.
-
-Other types of potentials sometimes also produce accurate results but are only available to a few elements.
-This suggests that right now in general EAM is the most promising method for describing vacancy effects.
-We believe there are several reasons why EAM outperforms other methods:
-\begin{enumerate}
-\item EAM incorporates the multibody effects, which is crucial for describing the interaction between atoms.
-\item The training data for the EAM potentials usually includes both experimental data and DFT calculation results.
-\item For the EAM potentials, most of the information contained in the training data is kept into the potential models, while for other fixed-form potentials, lots of information is lost during the fitting process.
-\end{enumerate}
-
-In Table~\ref{tab:bestmodels}, we list the models currently available on OpenKIM that are most consistent with DFT and experiments.
-They are selected based on the mean absolute percentage error (MAPE), a measure of prediction accuracy of models used in statistics, which in this case is defined as the average relative error to our reference data
-\begin{equation}
-\label{eq:mape}
-\mathit{MAPE} = \frac{1}{n}\sum_i\left|\frac{C_i-R_i}{R_i}\right|
-\end{equation}
-Here $n$ is the number of reference data available for the items we successfully calculate, $C_i$ is the calculated value, and $R_i$ is the reference value.
-The value of $\mathit{MAPE}$ for each model in this table is shown in column 4.
-Note that in our reference data, the mean absolute percentage error between the DFT results and experimental results is 27.87\%.
-Comparing to this, we can see that for most of the elements in this table, there exists a potential that can produce reasonably accurate results.
-These potentials are all good candidates for atomistic simulation when vacancy effects are significant.
-
-We can also see from these two tables that for nearly all the elements that have EAM potentials, the EAM potentials are selected as the best models in Table~\ref{tab:bestmodels} according to the criteria above.
-Only in very few cases, other types of potentials perform better than the EAM potentials.
-This is consistent with our previous analysis.
+%
+%
+% the reason for the overestimation of VFE is likely to be that pairwise potentials could not give correct cohesive energy when there are changes in bond structures.
+%
+% tested that for Al, with Pair Morse potential, the cohesive energy is 2.70 eV, equals exactly to the unrelaxed formation energy, the relaxed formation energy is 2.43 eV, so the relaxation energy is 2.70 - 2.43 = 0.27 eV; With an EAM potential, the cohesive energy is 3.36 eV, while the unrelaxed formation energy is only 0.77 eV, different from cohesive energy. The relaxed formation energy is 0.68 eV, so the relaxation energy is 0.09 eV, smaller than the Pair Morse counterparts
+%
+% One explanation for the pairwise models to get larger VFE could be that pairwise models assume the strength of the bonds only depend on the distance between the two atoms and unable to account for the fact that the change in the number of bonds can also affect the strength of the bonds, and thus the energy.
+%
+% To see this in detail, we exam the unrelaxed vacancy formation energy, $\mathit{UnrelaxedVFE}$, which the vacancy formation energy without position relaxation.
+% It consists of three parts, which can be expressed by
+% \begin{equation}
+% \label{eq:vfedecomp}
+% \mathit{UnrelaxedVFE} = N\cdot E_{bond} + \sum\Delta E_{bond} - E_{coh}
+% \end{equation}
+% where $N$ is the number of bonds surrounding each atom.
+% The first term corresponds to the breaking of the bonds between the vacant site and its nearest neighbors.
+% We ignore the contribution from breaking the bonds between the vacant site and its second nearest neighbors because it is much smaller than the first term.
+% The second term corresponds to the energy change in the remaining bonds.
+% And the third term is the cohesive energy, corresponding to the $n-1$ in Eq.~(\ref{eq:vfecalc}), which also equals to $N\cdot E_{bond}/2$, as the energy of each bond is shared between the two atoms it connects.
+% For all the pairwise models, we shall have $\mathit{UnrelaxedVFE}\approx E_{coh}$, as $\sum\Delta E_{bond}$ is zero; while for all the models that do take changes in the surrounding environment into consideration besides the distance between two atoms, we shall have $\mathit{UnrelaxedVFE}$ significantly different from $E_{coh}$.
+% In Table~\ref{tab:cohvfe} we show our verification: the pairwise models do get similar values for $\mathit{UnrelaxedVFE}$ and $E_{coh}$, while other types of models get significantly different values.
+% \begin{table}[!b]
+% \caption{\label{tab:cohvfe}
+%  Relationship between the cohesive energy, $E_{coh}$, and the unrelaxed vacancy formation energy, $\mathit{UnrelaxedVFE}$, calculated for fcc structures with different types of models.
+%  We can see that the pairwise models do get similar values for these two items while other types of models do get significantly different values.
+%  All the models can be found in the OpenKIM repository by the ID numbers shown in the footnotes.
+% }
+% \begin{ruledtabular}
+% \begin{tabular}{l c c}
+%  Model & $E_{coh}/\electronvolt$ & $\mathit{UnrelaxedVFE}/\electronvolt$\\
+% \hline
+% Pairwise Al\footnotemark[1] & 2.7004 & 2.7004\\
+% Pairwise Cu\footnotemark[1] & 3.2741 & 3.2741\\
+% EAM Al\footnotemark[2] & 3.3599 & 0.7691\\
+% EAM Cu\footnotemark[3] & 3.5193 & 1.2196\\
+% EMT Al\footnotemark[4] & 3.2788 & 0.9806\\
+% EMT Cu\footnotemark[4] & 3.2213 & 1.2788\\
+% \end{tabular}
+% \end{ruledtabular}
+% \footnotetext[1]{(ID: 411898953661\_001(Al) and 673777079812\_001(Cu)) Morse pair potential with parameters from Girifalco and Weizer, 1959.}
+% \footnotetext[2]{(ID: 651801486679\_001) EAM Al potential with parameters from Mishin et al., 1999.}
+% \footnotetext[3]{(ID: 179025990738\_001) EAM Cu potential with parameters from Ackland et al., 1987.}
+% \footnotetext[4]{(ID: 118428466217\_002) EMT implementation in ASAP by Jacobsen et al.}
+% \end{table}
+%
+% ===(Draft of draft below this line)===
+%
+% In Table~\ref{tab:cohvfe}, we show an example of fcc copper: as we move the atom next to the vacant slight away from the original position, the change in the cohesive energy according to the EAM potential is about 40\% smaller than the value according to the pairwise potential.
+% This implies that as we create vacancy and remove bonds, the strength of the remaining bonds may decrease.
+% We propose that the vacancy formation energy can be expressed as
+% \begin{equation}
+% \label{eq:vfedecomp}
+% \mathit{VFE} = E_{cohesive} + \Delta E_{bonds, all} + \Delta E_{relaxation}
+% \end{equation}
+% Where $\Delta E_{bonds, all}$ is the change in the bond energy and the $\Delta E_{relaxation}$ is the change in energy due to position relaxation.
+% When we remove an atom, all the bonds associated with that atom are also removed, which means the energy change is $n \times E_{bond}$, where $n$ is the number of bonds surround each atom and $E_{bond}$ is the energy of a single bond.
+% Since each bond is associated with two atoms, thus the cohesive energy, $E_{cohesive}$, of an atom shall be the energy of half of the bonds associated with the atom, that is $n \times E_{bond}/2$.
+% Compare with Eq.~(\ref{eq:vfecalc}), we can get the first $E_{cohesive}$ term in Eq.~\ref{eq:vfedecomp}.
+% For pairwise potentials, $\Delta E_{bonds, all}$ is zero and $\Delta E_{relaxation}$ is usually much smaller than $E_{cohesive}$, so the vacancy formation energy according to them will be very close to the cohesive energy.
+% This can be verified with our data.
+% For example, with a pairwise potential for fcc copper, we will get the cohesive energy is 3.27 eV and the vacancy formation energy is 3.02 eV. We have also verified that without relaxation (no $\Delta E_{relaxation}$), the unrelaxed vacancy formation energy is also 3.27 eV, same as $E_{cohesive}$.
+%
+% \begin{table}
+% \caption{\label{tab:cu}
+%  Change in the cohesive energy of fcc copper as we move the atom next to the vacant slight slightly along the $x$ direction away from the original position.
+% }
+% \begin{ruledtabular}
+% \begin{tabular}{c c c}
+%  Displacement (\AA) & EAM\footnotemark[1] (eV) & Pairwise\footnotemark[2] (eV)\\
+% \hline
+% 0.01 & 0.000 & 0.000 \\
+% 0.02 & 0.001 & 0.002 \\
+% 0.04 & 0.005 & 0.009 \\
+% 0.08 & 0.021 & 0.037 \\
+% 0.16 & 0.092 & 0.148 \\
+% 0.32 & 0.407 & 0.596 \\
+% 0.64 & 1.649 & 2.440 \\
+% 1.28 & 5.383 & 9.306 \\
+% 2.56 & 13.37 & 41.91 \\
+% 5.12 & 10.31 & 22.04 \\
+% \end{tabular}
+% \end{ruledtabular}
+% \footnotetext[1]{EAM\_Dynamo\_Ackland\_Tichy\_Cu.}
+% \footnotetext[2]{Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Cu.}
+% \end{table}
+%
+% For pairwise potentials, the bond energy per atom increase linearly with the number of bonds.
+% However, experiments show there is a quadratic relationship between them.
+% This implies that when we remove a bond, the strength of the remaining bonds will be weakened.
+% Therefore, the change in energy during position relaxation will be smaller than if the bond strength remains the same.
+% And this change in energy is exactly the main component of the vacancy formation energy.
+%
+% Other types of potentials sometimes also produce accurate results but are only available to a few elements.
+% This suggests that right now in general EAM is the most promising method for describing vacancy effects.
+% We believe there are several reasons why EAM outperforms other methods:
+% \begin{enumerate}
+% \item EAM incorporates the multibody effects, which is crucial for describing the interaction between atoms.
+% \item The training data for the EAM potentials usually includes both experimental data and DFT calculation results.
+% \item For the EAM potentials, most of the information contained in the training data is kept into the potential models, while for other fixed-form potentials, lots of information is lost during the fitting process.
+% \end{enumerate}
+%
+% In Table~\ref{tab:bestmodels}, we list the models currently available on OpenKIM that are most consistent with DFT and experiments.
+% They are selected based on the mean absolute percentage error (MAPE), a measure of prediction accuracy of models used in statistics, which in this case is defined as the average relative error to our reference data
+% \begin{equation}
+% \label{eq:mape}
+% \mathit{MAPE} = \frac{1}{n}\sum_i\left|\frac{C_i-R_i}{R_i}\right|
+% \end{equation}
+% Here $n$ is the number of reference data available for the items we successfully calculate, $C_i$ is the calculated value, and $R_i$ is the reference value.
+% The value of $\mathit{MAPE}$ for each model in this table is shown in column 4.
+% Note that in our reference data, the mean absolute percentage error between the DFT results and experimental results is 27.87\%.
+% Comparing to this, we can see that for most of the elements in this table, there exists a potential that can produce reasonably accurate results.
+% These potentials are all good candidates for atomistic simulation when vacancy effects are significant.
+%
+% We can also see from these two tables that for nearly all the elements that have EAM potentials, the EAM potentials are selected as the best models in Table~\ref{tab:bestmodels} according to the criteria above.
+% Only in very few cases, other types of potentials perform better than the EAM potentials.
+% This is consistent with our previous analysis.
 
 \subsection{\label{sec:calcvsprop}Relationship to Other Properties}
 
-\begin{figure*}
-\centering
-\noindent\ignorespaces
-\subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_energy_fcc}}\hfill
-\subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_energy_fcc}}
-\newline
-\noindent\ignorespaces
-\subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_energy_hcp}}\hfill
-\subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_energy_hcp}}
-\newline
-\noindent\ignorespaces
-\subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_bulk_fcc}}\hfill
-\subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_bulk_fcc}}
-\newline
-\noindent\ignorespaces
-\subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_bulk_hcp}}\hfill
-\subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_bulk_hcp}}
-\caption{\label{fig:vsenergy}
- VFE and VME versus cohesive energy and bulk modulus.
-}
-\end{figure*}
 
 We plot the vacancy property results from our atomistic simulation against cohesive energy and bulk modulus in Fig.~\ref{fig:vsenergy}.
 Both the cohesive energy and bulk modulus are obtained from the Materials Project \cite{jain2013commentary,de2015charting}.
@@ -566,6 +572,30 @@ Here we use the same symbol as in Fig.~\ref{fig:compare}: the circles represent 
 
 We can see from these plots that as cohesive energy increases, vacancy formation energy and migration energy also increase.
 This is consistent with previous results from DFT \cite{angsten2014elemental}.
+%
+%
+% \begin{figure*}
+% \centering
+% \noindent\ignorespaces
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_energy_fcc}}\hfill
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_energy_fcc}}
+% \newline
+% \noindent\ignorespaces
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_energy_hcp}}\hfill
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_energy_hcp}}
+% \newline
+% \noindent\ignorespaces
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_bulk_fcc}}\hfill
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_bulk_fcc}}
+% \newline
+% \noindent\ignorespaces
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_bulk_hcp}}\hfill
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_bulk_hcp}}
+% \caption{\label{fig:vsenergy}
+%  VFE and VME versus cohesive energy and bulk modulus.
+% }
+% \end{figure*}
+
 
 \section{\label{sec:conclusion}Conclusion}
 
@@ -580,18 +610,18 @@ The types of these models agree with our previous analysis: for elements that ha
 
 We also plot the results against other elemental properties.
 The plots show that vacancy formation energy and vacancy migration energy increase with cohesive energy and bulk modulus, which is consistent with previous DFT based studies \cite{angsten2014elemental}.
-
-\section{\label{sec:conclusion}Future Works}
-
-First of all, more accurate reference data will be extremely beneficial for improving the accuracy of our assessment.
-This may be done by improvements in the algorithm used in DFT calculations or the procedure used in experiments.
-The usage of other computational methods, such as quantum chemistry methods or quantum Monte Carlo may also help.
-
-In addition, the way we select the best models also worth further exploration.
-The measure used in this study is the mean absolute percentage error, which is widely used but has some biases \cite{mayer1993statistical}.
-It is possible that through some statistical analysis we can get a more suitable measure for this specific situation, and select the best model to perform the calculation we need accordingly, or select multiple models to perform the same calculation and assigning different weight to the result produced by each model accordingly and calculate the weighted average as the final result \cite{frederiksen2004bayesian}.
-
-Finally, for models with tunable parameters, it would be beneficial to have a unified system that can give the best parameter set (or sets) based on the reference data and the requirement of the user.
+%
+% \section{\label{sec:conclusion}Future Works}
+%
+% First of all, more accurate reference data will be extremely beneficial for improving the accuracy of our assessment.
+% This may be done by improvements in the algorithm used in DFT calculations or the procedure used in experiments.
+% The usage of other computational methods, such as quantum chemistry methods or quantum Monte Carlo may also help.
+%
+% In addition, the way we select the best models also worth further exploration.
+% The measure used in this study is the mean absolute percentage error, which is widely used but has some biases \cite{mayer1993statistical}.
+% It is possible that through some statistical analysis we can get a more suitable measure for this specific situation, and select the best model to perform the calculation we need accordingly, or select multiple models to perform the same calculation and assigning different weight to the result produced by each model accordingly and calculate the weighted average as the final result \cite{frederiksen2004bayesian}.
+%
+% Finally, for models with tunable parameters, it would be beneficial to have a unified system that can give the best parameter set (or sets) based on the reference data and the requirement of the user.
 %
 % \begin{acknowledgments}
 % We wish to acknowledge the support of the author community in using
@@ -660,6 +690,8 @@ And it is consistent with the cases where symmetry are preserved.
 \label{app:data}
 All of the results and our codes are in the OpenKIM repository.
 
+If you only need to find out how each model performs relative to the reference data, you can
+
 The results can be accessed through OpenKIM Query \url{query.openkim.org}.
 We can obtain the results either through the web interface or through any programming language that supports HTTP requests.
 The backend of this query API is a MongoDB database, and in order to obtain the results we want, we need to construct our query with the correct MongoDB syntax.
@@ -668,27 +700,30 @@ The website of MongoDB, \url{mongodb.org}, provides a detailed documentation of 
 Here is an example of using Python to obtain all the fcc Al lattice constants (TODO: replace by vacancy formation energy) calculated with various interatomic potentials:
 \begin{lstlisting}
 import requests
-result = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"a.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"},"species.source-value":"Al"}'}).json()
+res = requests.get('https://query.openkim.org/api?flat=on&query={"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"},"species.source-value":"Al"}&limit=0&fields={"a.source-value":1,"meta.subject.kimcode":1}&database=data').json()
 \end{lstlisting}
 
 To obtain a plot of lattice constant versus bulk modulus for all the models and all the elements, we can do
 \begin{lstlisting}
 import requests
+import pandas as pd
 import matplotlib.pyplot as plt
-result_lat = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"a.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"}}'}).json()
-dict_lat = {r[u'meta.subject.kimcode']: r[u'a.source-value'] for r in result_lat}
-result_bulk = requests.post("https://query.openkim.org/api",data={u'flat': u'on', u'database': u'data', u'limit': u'0', u'fields': u'{"isothermal-bulk-modulus.source-value":1,"meta.subject.kimcode":1}', u'query': u'{"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/bulk-modulus-isothermal-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^ElasticConstantsCubic_fcc"}}'}).json()
-xdata = []
-ydata = []
-for r in result_bulk:
-    model = r[u'meta.subject.kimcode']
-    if not model in dict_lat:
-        continue
-    ydata.append(r[u'isothermal-bulk-modulus.source-value'])
-    xdata.append(dict_lat[model])
-plt.scatter(xdata, ydata)
-plt.xlabel('a')
-plt.ylabel('bulk modulus')
+
+# Obtain data
+res_lat = pd.read_json('https://query.openkim.org/api?flat=on&query={"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"}}&limit=0&fields={"a.source-value":1,"species.source-value":1,"meta.subject.kimcode":1}&database=data')
+res_bulk = pd.read_json('https://query.openkim.org/api?flat=on&query={"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/bulk-modulus-isothermal-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^ElasticConstantsCubic_fcc"}}&limit=0&fields={"isothermal-bulk-modulus.source-value":1,"meta.subject.kimcode":1,"species.source-value":1}&database=data')
+
+# Merge on species and model name
+res_lat['species'] = res_lat['species.source-value'].apply(lambda x: x[0])
+res_bulk['species'] = res_bulk['species.source-value'].apply(lambda x: x[0])
+res = pd.merge(res_lat, res_bulk, how = 'inner', on = ['meta.subject.kimcode', 'species'])
+
+# Remove outliers
+bulk = res['isothermal-bulk-modulus.source-value']
+res_cleaned = res[(bulk > 0) & (bulk < 1000)]
+
+# Plot
+res_cleaned.plot(x = 'a.source-value', y = 'isothermal-bulk-modulus.source-value', style = 'o')
 plt.show()
 \end{lstlisting}
 The code above has been tested in the Python 2.7 version of Anaconda 4.0.0.

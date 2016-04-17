@@ -59,7 +59,7 @@
     "has-unit"     false
     "extent"       [3]
     "required"     false
-    "description"  "This quantity describes the center of the elastic distortion caused by the vacancy. In cases where symmetry is preserved, this is the position of the removed atom. In general, if we characterize the effect of the vacancy as a series of force multipoles at some point, this is the position of the point where the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole. The position shall be expressed in fractional coordinates relative to the host conventional unit cell. If there are several equivalent positions, the smallest non-negative fractional x, y and z coordinates are taken."
+    "description"  "This quantity describes the center of the elastic distortion caused by the vacancy. In cases where symmetry is preserved, this is the position of the removed atom. In general, if we characterize the effect of the vacancy as a series of force multipoles at some point, this is the position of the point where the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole. The position shall be expressed in fractional coordinates relative to the host conventional unit cell fields. If there are several equivalent positions, the smallest non-negative fractional x, y and z coordinates are taken."
   }
   "host-basis-atom-coordinates" {
     "type"         "float"
