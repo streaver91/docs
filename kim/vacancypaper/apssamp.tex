@@ -565,14 +565,96 @@ The results for new models will be calculated automatically once they are added.
 
 \subsection{\label{sec:calcvsprop}Relationship to Other Properties}
 
+The relationship between these vacancy properties and other elemental properties can provide additional information for choosing atomistic models.
+In general, we shall choose the models that give similar relationship to the relationship predicted by other reliable atomistic models or by other reliable methods, such as DFT.
 
-We plot the vacancy property results from our atomistic simulation against cohesive energy and bulk modulus in Fig.~\ref{fig:vsenergy}.
-Both the cohesive energy and bulk modulus are obtained from the Materials Project \cite{jain2013commentary,de2015charting}.
-Here we use the same symbol as in Fig.~\ref{fig:compare}: the circles represent embedded-atom method (EAM), the triangles represent pairwise potentials, and the cross signs represent all the other types of potentials, such as three-body potentials.
+Previous literatures have shown that the vacancy formation and migration energies are strongly correlated with the cohesive energy and the bulk modulus.
+We verify these findings and further explore other relationships with the EAM models we have.
 
-We can see from these plots that as cohesive energy increases, vacancy formation energy and migration energy also increase.
-This is consistent with previous results from DFT \cite{angsten2014elemental}.
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth, clip, trim = 10mm 10mm 10mm 10mm]{vfevme_vs_coh}% Here is how to import EPS art
+\caption{\label{fig:vfevmevscoh}
+Property values normalized by the extrapolated values versus the inverse of the number of atoms in a supercell.
+These values are calculated for fcc Al with the embedded atom model (EAM) from Mishin and Farkas \cite{mishin1999interatomic}.
+The migration is from (0.0, 0.0, 0.0) to (0.5, 0.5, 0.0) in a conventional fcc unit cell.
+VFE is the vacancy formation energy, VME is the vacancy migration energy, VRV is the vacancy relaxation volume, EDT is the elastic dipole tensor, DST is the defect strain tensor, and SP stands for the saddle point of the migration.
+The two numbers following the tensor are the row and colume indices.
+Since VRV and DST11 are all proportional to EDT11, they appear as the same curve after normalization.
+The linear relationship shown in this figure validates our extrapolation.
+}
+\end{figure}
+
+Fig.~\ref{fig:vfevmevscoh} shows the relationship between the vacancy formation and migration energies and the cohesive energy.
+We can see there is a linear trend between the vacancy-related energies and the cohesive energy.
+For the relationship between the vacancy formation energy and the cohesive energy, the slope is $0.32\pm0.04$, which agrees well with previous the previous DFT study, which gives a slope of $0.317$.
+For the relationship betweent the vacancy migration energy and the cohesive energy, the slope is $0.14\pm0.04$, which is also similar to the DFT result, $0.191$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth, clip, trim = 10mm 3mm 10mm 10mm]{vme_vs_bulk}% Here is how to import EPS art
+\caption{\label{fig:vmevsbulk}
+Property values normalized by the extrapolated values versus the inverse of the number of atoms in a supercell.
+These values are calculated for fcc Al with the embedded atom model (EAM) from Mishin and Farkas \cite{mishin1999interatomic}.
+The migration is from (0.0, 0.0, 0.0) to (0.5, 0.5, 0.0) in a conventional fcc unit cell.
+VFE is the vacancy formation energy, VME is the vacancy migration energy, VRV is the vacancy relaxation volume, EDT is the elastic dipole tensor, DST is the defect strain tensor, and SP stands for the saddle point of the migration.
+The two numbers following the tensor are the row and colume indices.
+Since VRV and DST11 are all proportional to EDT11, they appear as the same curve after normalization.
+The linear relationship shown in this figure validates our extrapolation.
+}
+\end{figure}
+
+Fig.~\ref{fig:vmevsbulk} shows the relationship between the vacancy migration energy and the bulk modulus.
+We can see there is also a linearly increasing trend.
+The slope of the fitted line is $(0.57\pm0.10)\angstrom^3 = (3.5\pm0.6)\electronvolt\per\mathrm{GPa}$, which is slightly smaller than the DFT prediction, $5.5\electronvolt\per\mathrm{GPa}$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth, clip, trim = 10mm 3mm 10mm 10mm]{vrv_vs_bulk}% Here is how to import EPS art
+\caption{\label{fig:vrvvsbulk}
+Property values normalized by the extrapolated values versus the inverse of the number of atoms in a supercell.
+These values are calculated for fcc Al with the embedded atom model (EAM) from Mishin and Farkas \cite{mishin1999interatomic}.
+The migration is from (0.0, 0.0, 0.0) to (0.5, 0.5, 0.0) in a conventional fcc unit cell.
+VFE is the vacancy formation energy, VME is the vacancy migration energy, VRV is the vacancy relaxation volume, EDT is the elastic dipole tensor, DST is the defect strain tensor, and SP stands for the saddle point of the migration.
+The two numbers following the tensor are the row and colume indices.
+Since VRV and DST11 are all proportional to EDT11, they appear as the same curve after normalization.
+The linear relationship shown in this figure validates our extrapolation.
+}
+\end{figure}
+
+Fig.~\ref{fig:vrvvsbulk} shows the relationship between the vacancy relaxation volume and the bulk modulus.
+We expected that as the bulk modulus increases, the effect on the bulk strain due to the internal pressure created by the vacancy becomes smaller.
+And we can see from the figure that there is a downward linear trend as expected.
+The slope of the fitted line is $(-4.2\pm0.7)\angstrom^6\per\electronvolt$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth, clip, trim = 10mm 3mm 10mm 10mm]{vfe_vs_vrv}% Here is how to import EPS art
+\caption{\label{fig:vfevsvrv}
+Property values normalized by the extrapolated values versus the inverse of the number of atoms in a supercell.
+These values are calculated for fcc Al with the embedded atom model (EAM) from Mishin and Farkas \cite{mishin1999interatomic}.
+The migration is from (0.0, 0.0, 0.0) to (0.5, 0.5, 0.0) in a conventional fcc unit cell.
+VFE is the vacancy formation energy, VME is the vacancy migration energy, VRV is the vacancy relaxation volume, EDT is the elastic dipole tensor, DST is the defect strain tensor, and SP stands for the saddle point of the migration.
+The two numbers following the tensor are the row and colume indices.
+Since VRV and DST11 are all proportional to EDT11, they appear as the same curve after normalization.
+The linear relationship shown in this figure validates our extrapolation.
+}
+\end{figure}
+
+We also found there is a strong correlation between the vacancy formation energy and the vacancy relaxation volume.
+Fig.~\ref{fig:vfevsvrv} shows the relationship.
+The slope of the fitted line is $(-0.14\pm0.02)~\electronvolt\per\angstrom^3$.
+The downward trend can be quanlitatively explained by the fact that, when the relaxation volume is large, more energy is needed for the vacancy to pull the neighboring atoms towards itself.
+
+
 %
+% We plot the vacancy property results from our atomistic simulation against cohesive energy and bulk modulus in Fig.~\ref{fig:vsenergy}.
+% Both the cohesive energy and bulk modulus are obtained from the Materials Project \cite{jain2013commentary,de2015charting}.
+% Here we use the same symbol as in Fig.~\ref{fig:compare}: the circles represent embedded-atom method (EAM), the triangles represent pairwise potentials, and the cross signs represent all the other types of potentials, such as three-body potentials.
+%
+% We can see from these plots that as cohesive energy increases, vacancy formation energy and migration energy also increase.
+% This is consistent with previous results from DFT \cite{angsten2014elemental}.
+% %
 %
 % \begin{figure*}
 % \centering
