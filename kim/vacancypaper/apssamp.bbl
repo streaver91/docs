@@ -192,62 +192,6 @@
   }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Physical Review
   B}\ }\textbf {\bibinfo {volume} {59}},\ \bibinfo {pages} {3393} (\bibinfo
   {year} {1999})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Jain}\ \emph {et~al.}(2013)\citenamefont {Jain},
-  \citenamefont {Ong}, \citenamefont {Hautier}, \citenamefont {Chen},
-  \citenamefont {Richards}, \citenamefont {Dacek}, \citenamefont {Cholia},
-  \citenamefont {Gunter}, \citenamefont {Skinner}, \citenamefont {Ceder} \emph
-  {et~al.}}]{jain2013commentary}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
-  {Jain}}, \bibinfo {author} {\bibfnamefont {S.~P.}\ \bibnamefont {Ong}},
-  \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Hautier}}, \bibinfo
-  {author} {\bibfnamefont {W.}~\bibnamefont {Chen}}, \bibinfo {author}
-  {\bibfnamefont {W.~D.}\ \bibnamefont {Richards}}, \bibinfo {author}
-  {\bibfnamefont {S.}~\bibnamefont {Dacek}}, \bibinfo {author} {\bibfnamefont
-  {S.}~\bibnamefont {Cholia}}, \bibinfo {author} {\bibfnamefont
-  {D.}~\bibnamefont {Gunter}}, \bibinfo {author} {\bibfnamefont
-  {D.}~\bibnamefont {Skinner}}, \bibinfo {author} {\bibfnamefont
-  {G.}~\bibnamefont {Ceder}},  \emph {et~al.},\ }\href@noop {} {\bibfield
-  {journal} {\bibinfo  {journal} {Apl Materials}\ }\textbf {\bibinfo {volume}
-  {1}},\ \bibinfo {pages} {011002} (\bibinfo {year} {2013})}\BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {De~Jong}\ \emph {et~al.}(2015)\citenamefont
-  {De~Jong}, \citenamefont {Chen}, \citenamefont {Angsten}, \citenamefont
-  {Jain}, \citenamefont {Notestine}, \citenamefont {Gamst}, \citenamefont
-  {Sluiter}, \citenamefont {Ande}, \citenamefont {van~der Zwaag}, \citenamefont
-  {Plata} \emph {et~al.}}]{de2015charting}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
-  {De~Jong}}, \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Chen}},
-  \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Angsten}}, \bibinfo
-  {author} {\bibfnamefont {A.}~\bibnamefont {Jain}}, \bibinfo {author}
-  {\bibfnamefont {R.}~\bibnamefont {Notestine}}, \bibinfo {author}
-  {\bibfnamefont {A.}~\bibnamefont {Gamst}}, \bibinfo {author} {\bibfnamefont
-  {M.}~\bibnamefont {Sluiter}}, \bibinfo {author} {\bibfnamefont {C.~K.}\
-  \bibnamefont {Ande}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
-  {van~der Zwaag}}, \bibinfo {author} {\bibfnamefont {J.~J.}\ \bibnamefont
-  {Plata}},  \emph {et~al.},\ }\href@noop {} {\bibfield  {journal} {\bibinfo
-  {journal} {Scientific data}\ }\textbf {\bibinfo {volume} {2}} (\bibinfo
-  {year} {2015})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Mayer}\ and\ \citenamefont
-  {Butler}(1993)}]{mayer1993statistical}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Mayer}}\ and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Butler}},\
-  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Ecological
-  modelling}\ }\textbf {\bibinfo {volume} {68}},\ \bibinfo {pages} {21}
-  (\bibinfo {year} {1993})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Frederiksen}\ \emph {et~al.}(2004)\citenamefont
-  {Frederiksen}, \citenamefont {Jacobsen}, \citenamefont {Brown},\ and\
-  \citenamefont {Sethna}}]{frederiksen2004bayesian}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.~L.}\ \bibnamefont
-  {Frederiksen}}, \bibinfo {author} {\bibfnamefont {K.~W.}\ \bibnamefont
-  {Jacobsen}}, \bibinfo {author} {\bibfnamefont {K.~S.}\ \bibnamefont {Brown}},
-  \ and\ \bibinfo {author} {\bibfnamefont {J.~P.}\ \bibnamefont {Sethna}},\
-  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Physical review
-  letters}\ }\textbf {\bibinfo {volume} {93}},\ \bibinfo {pages} {165501}
-  (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Seif}\ and\ \citenamefont
   {Ghoniem}()}]{seifmultipolar}%
   \BibitemOpen
@@ -280,6 +224,62 @@
   \href@noop {} {\emph {\bibinfo {booktitle} {MRS Proceedings}}},\ Vol.\
   \bibinfo {volume} {141}\ (\bibinfo {organization} {Cambridge Univ Press},\
   \bibinfo {year} {1988})\ p.~\bibinfo {pages} {31}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Frederiksen}\ \emph {et~al.}(2004)\citenamefont
+  {Frederiksen}, \citenamefont {Jacobsen}, \citenamefont {Brown},\ and\
+  \citenamefont {Sethna}}]{frederiksen2004bayesian}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.~L.}\ \bibnamefont
+  {Frederiksen}}, \bibinfo {author} {\bibfnamefont {K.~W.}\ \bibnamefont
+  {Jacobsen}}, \bibinfo {author} {\bibfnamefont {K.~S.}\ \bibnamefont {Brown}},
+  \ and\ \bibinfo {author} {\bibfnamefont {J.~P.}\ \bibnamefont {Sethna}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Physical review
+  letters}\ }\textbf {\bibinfo {volume} {93}},\ \bibinfo {pages} {165501}
+  (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Mayer}\ and\ \citenamefont
+  {Butler}(1993)}]{mayer1993statistical}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Mayer}}\ and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Butler}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Ecological
+  modelling}\ }\textbf {\bibinfo {volume} {68}},\ \bibinfo {pages} {21}
+  (\bibinfo {year} {1993})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {De~Jong}\ \emph {et~al.}(2015)\citenamefont
+  {De~Jong}, \citenamefont {Chen}, \citenamefont {Angsten}, \citenamefont
+  {Jain}, \citenamefont {Notestine}, \citenamefont {Gamst}, \citenamefont
+  {Sluiter}, \citenamefont {Ande}, \citenamefont {van~der Zwaag}, \citenamefont
+  {Plata} \emph {et~al.}}]{de2015charting}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {De~Jong}}, \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Chen}},
+  \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Angsten}}, \bibinfo
+  {author} {\bibfnamefont {A.}~\bibnamefont {Jain}}, \bibinfo {author}
+  {\bibfnamefont {R.}~\bibnamefont {Notestine}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Gamst}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Sluiter}}, \bibinfo {author} {\bibfnamefont {C.~K.}\
+  \bibnamefont {Ande}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {van~der Zwaag}}, \bibinfo {author} {\bibfnamefont {J.~J.}\ \bibnamefont
+  {Plata}},  \emph {et~al.},\ }\href@noop {} {\bibfield  {journal} {\bibinfo
+  {journal} {Scientific data}\ }\textbf {\bibinfo {volume} {2}} (\bibinfo
+  {year} {2015})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Jain}\ \emph {et~al.}(2013)\citenamefont {Jain},
+  \citenamefont {Ong}, \citenamefont {Hautier}, \citenamefont {Chen},
+  \citenamefont {Richards}, \citenamefont {Dacek}, \citenamefont {Cholia},
+  \citenamefont {Gunter}, \citenamefont {Skinner}, \citenamefont {Ceder} \emph
+  {et~al.}}]{jain2013commentary}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Jain}}, \bibinfo {author} {\bibfnamefont {S.~P.}\ \bibnamefont {Ong}},
+  \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Hautier}}, \bibinfo
+  {author} {\bibfnamefont {W.}~\bibnamefont {Chen}}, \bibinfo {author}
+  {\bibfnamefont {W.~D.}\ \bibnamefont {Richards}}, \bibinfo {author}
+  {\bibfnamefont {S.}~\bibnamefont {Dacek}}, \bibinfo {author} {\bibfnamefont
+  {S.}~\bibnamefont {Cholia}}, \bibinfo {author} {\bibfnamefont
+  {D.}~\bibnamefont {Gunter}}, \bibinfo {author} {\bibfnamefont
+  {D.}~\bibnamefont {Skinner}}, \bibinfo {author} {\bibfnamefont
+  {G.}~\bibnamefont {Ceder}},  \emph {et~al.},\ }\href@noop {} {\bibfield
+  {journal} {\bibinfo  {journal} {Apl Materials}\ }\textbf {\bibinfo {volume}
+  {1}},\ \bibinfo {pages} {011002} (\bibinfo {year} {2013})}\BibitemShut
+  {NoStop}%
 \bibitem [{\citenamefont {Carlsson}(1990)}]{carlsson1990beyond}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont

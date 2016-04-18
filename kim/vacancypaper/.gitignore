@@ -2,3 +2,5 @@
 apssamp.aux
 apssamp.log
 *.opj
+*.bbl
+*.blg
