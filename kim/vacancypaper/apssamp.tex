@@ -135,11 +135,11 @@ breakindent=0pt
              %  but any date may be explicitly specified
 
 \begin{abstract}
-In this paper, we describe how we obtain the monovacancy properties for all the elements and all the simple crystal structures for the hundreds of interatomic potential models available on OpenKIM at this time.
-The properties we calculated includes the vacancy formation energy, the vacancy migration energy, the vacancy relaxation volume, the elastic dipole tensor, the defect strain tensor, and the saddle point elastic dipole tensor and defect strain tensor.
+In this paper, we describe how we obtain the monovacancy properties for all the elements and all the simple crystal structures predicted by the hundreds of interatomic potential models on OpenKIM, the knowledgebase of interatomic models.
+The properties we calculated include the vacancy formation energy, the vacancy migration energy, the vacancy relaxation volume, the elastic dipole tensor, the defect strain tensor, and the saddle point elastic dipole tensor and defect strain tensor.
 The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
-These results can provide use information when selecting interatomic models.
-We also examed how these properties depends on each other and on other elemental properties.
+These results can provide use information for selecting interatomic models.
+We also examed how these properties depend on each other and other elemental properties.
 
 %An article usually includes an abstract, a concise summary of the work
 %covered at length in the main body of the article.
@@ -165,15 +165,15 @@ We also examed how these properties depends on each other and on other elemental
 \section{\label{sec:intro}Introduction}
 
 A longtime goal of scientists' is to be able to calculate the properties of materials from their structures accurately and efficiently.
-There are several approaches to this problem, including the density functional theory (DFT), the quantum monte carlo (QMC), and the atomistic simulation.
+There are several approaches to this problem, including the density functional theory (DFT) and the atomistic simulation.
 DFT has developed rapidly in the recent few decades and achieved decent accuracy for many small-scale systems.
 However, in many cases, the size, the complexity, or the timescale we want to simulate, demands a much more efficient method.
 And atomistic simulation with good interatomic potentials is one of the methods that can fulfill this demand.
 
-Several different types of interatomic models have been developed over the past few decades, from pairwise models like Lennard-Jones, to those based on cluster functionals, such as the embedded-atom method (EAM) \cite{daw1993embedded, daw1984embedded}.
+Several different types of interatomic models have been developed over the past few decades, from pairwise models, like Lennard-Jones, to those based on cluster functionals, such as the embedded-atom method (EAM) \cite{daw1993embedded, daw1984embedded}.
 One problem that has hindered the development of atomistic simulation is that the models developed by various researchers are usually presented in different formats, making them difficult to be reused.
 The OpenKIM project \cite{bierbaum2014openkim, openkim2016} solves this problem by providing a unified framework for model developers to submit, and for model users to perform atomistic simulations with these models \cite{tadmor2011potential}.
-It also hosts a repository of reference data from other sources, such as DFT and experiments, to assess the quality of these models.
+It also hosts a repository of reference data from other sources, such as DFT and experiments, for assessing the quality of these models.
 % sample elements from the whole periodic table and various structures and find out or discover suitable materials and structures in an automated way, which in the past could only be done with DFT \cite{ceder2010opportunities, zhou2010iron,norskov2009towards} and thus was only applicable for small structures.
 
 In this study, we focus on vacancies, the simplest and the most common point defects.
@@ -181,22 +181,23 @@ Finding interatomic models that can accurately describe vacancy effects is extre
 Vacancies affect dislocation climbing and creeping \cite{weertman1955theory}, mediate the diffusion of substitutional defects \cite{fahey1989point}, and are the dominant flow mechanism under external fields, such as gravity \cite{sethna2014flow}.
 Also, some scientists are proposing using \ce{^{28}Si} for a new kilogram definition \cite{andreas2011counting}, and how to obtain the vacancy concentration accurately is a crucial part of this work.
 
-In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the most common monovacancy properties for all the elements and all the simple crystal structures with the interatomic potential models available on OpenKIM at this time.
+In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the most common monovacancy properties for all the elements and all the simple crystal structures predicted by the interatomic potential models available on OpenKIM at this time.
 The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), and the saddle point elastic dipole tensor (SPEDT) and defect strain tensor (SPDST).
-The OpenKIM website properties page \url{https://openkim.org/properties} provides a brief description to some of these quantities.
+The OpenKIM website properties page \url{https://openkim.org/properties} provides a brief description to these quantities.
+Sec.~\ref{sec:method} describes how we perform the calculation.
 The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
-Sec.~\ref{sec:method} describes how we calculate these quantities.
-These results can be compared with data from other sources, such as density function theory (DFT), quantum monte carlo (QMC), and experiments, and provide use information when selecting interatomic models for vacancy-related simulations.
+These results can be compared with data from other sources, such as the density function theory (DFT), the quantum Monte Carlo (QMC), or the experiments, and provide use information when selecting interatomic models for vacancy-related simulations.
 They can also be used with continuous models to obtain an initial guess for further atomistic simulations \cite{bozhevolnyi2001multiple}.
 In this paper, we compared our VFE and VME results for fcc and hcp structures to DFT calculations and experiments \cite{angsten2014elemental}.
 We found that EAM potential models, in general, provide results closer to these reference data then other models at this time, especially for transition metals.
 
 In addition, we explored how these properties relate to each other, and to other elemental properties, such as the cohesive energy and the bulk modulus.
-Both the vacancy formation energy and the vacancy migration energy show a linearly increase trend to the cohesive energy, with slopes of $0.32\pm0.04$ and $0.14\pm0.04$ respectively.
-Migration energy also shows a linearly increase trend to the bulk modules, with a slope of $(0.57\pm0.03)\angstrom^3$.
-While the vacancy relaxation volume shows a linearly decrease trend, with a slope of $(-4.2\pm0.7)\angstrom^6\per\electronvolt$.
-And finally, we found that the vacancy formation energy decreases with the relaxation volume, with a slope of $(-0.14\pm0.02)\electronvolt\per\angstrom^3$.
-
+Both the vacancy formation energy and the vacancy migration energy show a linear increasing trend to the cohesive energy, with slopes of $0.32\pm0.04$ and $0.14\pm0.04$ respectively.
+Migration energy also shows a linear increasing trend to the bulk modules, with a slope of $(0.57\pm0.03)\angstrom^3$.
+While the vacancy relaxation volume shows a linear decreasing trend, with a slope of $(-4.2\pm0.7)\angstrom^6\per\electronvolt$.
+And finally, we found that the vacancy formation energy also decreases with the relaxation volume, with a slope of $(-0.14\pm0.02)\electronvolt\per\angstrom^3$.
+All of these results are consistent with physics intuition and previous literatures.
+These relationships can provide additional information in selecting models and screening structures.
 
 The paper is organized as follows.
 In Sec.~\ref{sec:method} we describe the method for calculating the monovacancy properties.
@@ -209,7 +210,7 @@ In this section, we explain how we calculated the monovacancy properties, includ
 For a brief description of these quantities, you can check the OpenKIM website properties page \url{https://openkim.org/properties}.
 
 The calculation is based on OpenKIM \cite{openkim2016} and the Atomic Simulation Environment (ASE) \cite{bahn2002object}.
-The code can be found in the OpenKIM repository with ID \code{00000000000000}.
+The code can be found in the OpenKIM repository with ID \lstinline{00000000000000}.
 Here, we discuss the algorithm used for obtaining each of these quantities.
 
 The free energy per unit volume of a crystal can be described by the following equation \cite{freedman2009elastic}
@@ -230,8 +231,8 @@ For a supercell of volume $V_0$ with a monovacancy, Eq.~\ref{eq:VFE0} is equival
   (E_{V_0, d} - E_{V_0}) + E_{0} = \mathit{VFE} + \frac{E_{dd}}{V_0} \stackrel{\mathrm{def}}{=} \mathit{g}(V_0)
 \end{equation}
 Here $E_{V_0, d}$ and $E_{V_0}$ are the free energy of the supercell with and withouth the defect respectively.
-And we defined the expression in the middle as $\mathit{g(V_0)}$, thus $\mathit{VFE} = g(\inf)$.
-We obtained this $g(\inf)$ through extrapolation.
+And we defined the expression in the middle as $\mathit{g(V_0)}$, thus $\mathit{VFE} = g(\infty)$.
+We obtained this $g(\infty)$ through extrapolation.
 The uncertainty of this value is the root sum square of the uncertainty from the extrapolation and the uncertainty from the atomistic relaxation.
 
 The negative derivative of $f$ with respect to strain gives the stress
@@ -258,16 +259,16 @@ where $S_{ijkl}$ is the elastic compliance tensor, which is the inverse of the e
 The relaxation volume, VRV, is the decrease in the volume of the material due to the monovacancy.
 There are two methods for calculating this quantity.
 One is through relaxing both the positions of the atoms and the size of the supercell.
-And the other is through its relaxationship with the defect strain tensor.
-For an orthorhomic supercell
+And the other is through its relationship with the defect strain tensor.
+For an orthorhombic supercell
 \begin{equation}
   \label{eq:VRV}
   \mathit{VRV} = V_0\epsilon_{ii} = \Lambda_{ii}
 \end{equation}
 We verified that these two methods give consistent results.
 Since the second method does not involve additional relaxation, we used that one in our calculation.
-Note that the supercells used in our calculation are all orthorhombic cells.
-For sc, fcc, bcc, and diamond structures, we used the conventional cubic cell as the basis for constructing supercells, and for hcp structures, we also used the orthorhombic cell (with lattice vectors $[a, \sqrt{3}a, c]$) as the basis.
+Note that the supercells used in our calculation for different structures are all orthorhombic cells.
+For sc, fcc, bcc, and diamond structures, we used the conventional cubic cell as the basis for constructing supercells, and for hcp structures, we also used orthorhombic cells (with lattice vectors $[a, \sqrt{3}a, c]$) as the basis.
 
 For vacancy migration, we used nudged elastic band method to obtain the migration path and cubic spline interpolation to obtain the saddle point energy and configuration.
 We used similar extrapolation method to obtain the vacancy migration energy (VME) and the saddle point elastic dipole tensor and defect strain tensor.
@@ -281,12 +282,12 @@ Property values normalized by the extrapolated values versus the inverse of the 
 These values are calculated for fcc aluminum with the embedded atom model (EAM) from Mishin and Farkas \cite{mishin1999interatomic}.
 The migration path is from (0.0, 0.0, 0.0) to (0.5, 0.5, 0.0) in a conventional fcc unit cell.
 VFE is the vacancy formation energy, VME is the vacancy migration energy, VRV is the vacancy relaxation volume, EDT is the elastic dipole tensor, DST is the defect strain tensor, and SP stands for the saddle point of the migration.
-The two numbers following the tensor are the row and colume indices.
+The two numbers following the tensor are the row and column indices.
 Since VRV and DST11 are all proportional to EDT11, they will appear as the same curve after normalization, we only show EDT11 here.
 EDT22 and EDT33 are the same as EDT11, and all the off-diagonal terms of EDT are zero.
 So does DST.
 The linear relationship shown in this figure validates our extrapolation.
-In order to make the graph clearer, the error estimation is not shown here.
+In order to keep the graph clear, the error bars are not shown here.
 }
 \end{figure}
 
@@ -301,7 +302,7 @@ In the simplest case where symmetry is preserved, this is unambiguously the posi
 However, in general, there is no clear definition for the position of a vacancy in the literature yet.
 Therefore, we provide one here:
 The position of the vacancy (or any point defect) is the point, where, if we characterize the effect of the defect as a series of force multipoles at this point, the diagonal terms of the force quadruple are zero in the basis that diagonalizes the force dipole.
-Appendix~\ref{app:position} provides a more detailed explaination of this definition.
+Appendix~\ref{app:position} provides a more detailed explanation of this definition.
 
 % Fig.~\ref{fig:VFEFitting} is a plot of VFE versus $1/n$, calculated with the EAM model of aluminum from Mishin and Farkas \cite{mishin1999interatomic}.
 % In this case, $A_0 = \unit{0.67515(1)}{\electronvolt}$ and $A_3 = \unit{-0.3644(27)}{\electronvolt}$, which implies that the monovacancy formation energy is \unit{0.67515(1)}{\electronvolt}.
@@ -438,7 +439,7 @@ Fig.~\ref{fig:compare} compares our results and with the reference data from DFT
 \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=1.0\textwidth]{hcp_vme_new}}
 \caption{\label{fig:compare}
  Comparison of the results from our atomistic simulations and the reference data, where Fig.~(a) and (b) are the results for fcc structures, and Fig.~(c) and (d) are the results for hcp structures.
- The `\#' sign next to the symbol of each element indicates whether the structure presented by the figure is the element's natural state.
+ The `\#' sign next to the symbol of each element indicates whether the structure presented in the figure is the element's natural state.
  The error bars are smaller than the size of the symbols.
 }
 \end{figure*}
@@ -450,7 +451,7 @@ To further explore how pairwise models come up with larger VFEs, we used fcc Al 
 We found that, with pairwise potential (Morse), $E_0 = 2.70\electronvolt \approx E_u$.
 While with EAM potential (Mishin and Farkas), $E_0 = 3.36\electronvolt$, $E_u = 0.77\electronvolt \approx 0.2E_0 < E_0$.
 The energy change due to relaxation, $|E_u-E_r|$, is much smaller than $E_u$ in both cases.
-We corsorily tested a few other transition metals and found similar relationships.
+We cursorily tested a few other transition metals and found similar relationships.
 Therefore, the overestimation of VFE is mostly due to the incorrect estimation of the total energy when the coordination number in the neighborhood of the vacancy changes.
 
 Besides the EAM models, there are also several models in our database that, although only supports a few elements, do give accurate results.
@@ -598,7 +599,7 @@ The fitted slope for the formation energy and the migration energy are $0.32\pm0
 Fig.~\ref{fig:vfevmevscoh} shows the relationship between the vacancy formation and migration energies and the cohesive energy.
 We can see there is a linear trend between the vacancy-related energies and the cohesive energy.
 For the relationship between the vacancy formation energy and the cohesive energy, the slope is $0.32\pm0.04$, which agrees well with previous the previous DFT study, which gives a slope of $0.317$.
-For the relationship betweent the vacancy migration energy and the cohesive energy, the slope is $0.14\pm0.04$, which is also similar to the DFT result, $0.191$.
+For the relationship between the vacancy migration energy and the cohesive energy, the slope is $0.14\pm0.04$, which is also similar to the DFT result, $0.191$.
 
 \begin{figure}
 \centering
@@ -645,7 +646,7 @@ The fitted slope and intercept are $(-0.14\pm0.02)~\electronvolt\per\angstrom^3$
 We also found there is a strong correlation between the vacancy formation energy and the vacancy relaxation volume.
 Fig.~\ref{fig:vfevsvrv} shows the relationship.
 The slope of the fitted line is $(-0.14\pm0.02)~\electronvolt\per\angstrom^3$.
-The downward trend can be quanlitatively explained by the fact that, when the relaxation volume is large, more energy is needed for the vacancy to pull the neighboring atoms towards itself.
+The downward trend can be qualitatively explained by the fact that, when the relaxation volume is large, more energy is needed for the vacancy to pull the neighboring atoms towards itself.
 
 
 %
@@ -761,7 +762,7 @@ choose $\bm{x'}$ such that, in the basis where $\bm{P}^{(1)}$ is a diagonal matr
   P_{iii}^{(2)} = \sum_{v=1}^N (l_i^v-x'_i)^2 F_i^v = 0
 \end{equation}
 This gives an unambiguous definition for $\bm{x'}$ and also makes $\bm{x'}$ the center of the forces.
-And it is consistent with the cases where symmetry are preserved.
+And it is consistent with the case where the symmetry is preserved.
 
 % \section{Property Description}
 % \label{app:definition}
