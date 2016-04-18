@@ -53,6 +53,7 @@
 \usepackage{listings}
 \usepackage[version=3]{mhchem}
 \usepackage[]{SIunits}
+\usepackage{multirow}
 
 \lstset{
 basicstyle=\small\ttfamily,
@@ -651,29 +652,29 @@ Fig.~\ref{fig:vfevsvrv} shows the relationship.
 The slope of the fitted line is $(-0.14\pm0.02)~\electronvolt\per\angstrom^3$.
 This downward trend is also consistent with the intuition that the energy needed for the vacancy to pull the neighboring atoms towards itself decreases with the help of additional bulk strain.
 
-The results above are from fcc structures.
-We summarize the results for the other structures in Table~\ref{tab:relation}.
+The results above are from fcc structures for the models available on OpenKIM at this time.
+Appendix~\ref{app:data} provides Python scripts for retrieving the data from the OpenKIM repository, which can be used to obtain the relationships for all the structures with the latest data.
 
 % \begin{table}
 % \caption{\label{tab:relation}
 %  Relationships between vacancy properties and other elemental properties.
 % }
 % \begin{ruledtabular}
-% \begin{tabular}{l | l | c | c | c}
-%   y & x & structure & slope & intercept
-  % \multirow{5}{*}{Vacancy Formation Energy} & \multirow{5}{*}{Cohesive Energy} & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & bcc & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & fcc & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & diamond & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & hcp & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % \multirow{6}{*}{Vacancy Migration Energy} & \multirow{6}{*}{Cohesive Energy} & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & sc & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
-  % & & bcc & $(0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & fcc & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & diamond & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & hcp(1,0,0) & (0.00\pm0.00) & (0.00\pm0.00) \\
-  % & & hcp(0,0,1) & (0.00\pm0.00) & (0.00\pm0.00) \\
+% \begin{tabular}{c | c | c}
+%   \multicolumn{3}{c}{Formation Energy versus Cohesive Energy} \\
+%   structure & slope & intercept \\
+%   % \multirow{5}{*}{Vacancy Formation Energy} & \multirow{5}{*}{Cohesive Energy} & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & bcc & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & fcc & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & diamond & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & hcp & (0.00\pm0.00) & (0.00\pm0.00) \\
+%  sc & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  fcc & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  bcc & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  diamond & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  hcp(1,0,0) & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  hcp(0,0,1) & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
 % \end{tabular}
 % \end{ruledtabular}
 % \end{table}
