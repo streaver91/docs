@@ -185,12 +185,12 @@ Also, some scientists are proposing using \ce{^{28}Si} for a new kilogram defini
 In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the most common monovacancy properties for all the elements and all the simple crystal structures predicted by the interatomic potential models available on OpenKIM at this time.
 The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), and the saddle point elastic dipole tensor (SPEDT) and defect strain tensor (SPDST).
 The OpenKIM website properties page \url{https://openkim.org/properties} provides a brief description to these quantities.
-Sec.~\ref{sec:method} describes how we perform the calculation.
+Sec.~\ref{sec:method} describes the method we used to obtain these quantities.
 The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
-These results can be compared with data from other sources, such as the density function theory (DFT), the quantum Monte Carlo (QMC), or the experiments, and provide use information when selecting interatomic models for vacancy-related simulations.
+The results can be compared with data from other sources, such as the density function theory (DFT), the quantum Monte Carlo (QMC), and the experiments, and provide use information when selecting interatomic models for vacancy-related simulations.
 They can also be used with continuous models to obtain an initial guess for further atomistic simulations \cite{bozhevolnyi2001multiple}.
 In this paper, we compared our VFE and VME results for fcc and hcp structures to DFT calculations and experiments \cite{angsten2014elemental}.
-We found that EAM potential models, in general, provide results closer to these reference data then other models at this time, especially for transition metals.
+We found that EAM potentials, in general, provide results closer to these reference data then other models at this time.
 
 In addition, we explored how these properties relate to each other, and to other elemental properties, such as the cohesive energy and the bulk modulus.
 Both the vacancy formation energy and the vacancy migration energy show a linear increasing trend to the cohesive energy, with slopes of $0.32\pm0.04$ and $0.14\pm0.04$ respectively.
@@ -201,7 +201,7 @@ All of these results are consistent with physics intuition and previous literatu
 These relationships can provide additional information in selecting models and screening structures.
 
 The paper is organized as follows.
-In Sec.~\ref{sec:method} we describe the method for calculating the monovacancy properties.
+In Sec.~\ref{sec:method} we describe the method we used for calculating the monovacancy properties.
 In Sec.~\ref{sec:results} we show the plots of our results, compare them with the reference data, and explore how they relate to each other and to other elemental properties.
 And Sec.~\ref{sec:conclusion} concludes this paper.
 
@@ -211,8 +211,8 @@ In this section, we explain how we calculated the monovacancy properties, includ
 For a brief description of these quantities, you can check the OpenKIM website properties page \url{https://openkim.org/properties}.
 
 The calculation is based on OpenKIM \cite{openkim2016} and the Atomic Simulation Environment (ASE) \cite{bahn2002object}.
-The code can be found in the OpenKIM repository with ID \lstinline{TD_000000000000}.
-Here, we discuss the algorithm used for obtaining each of these quantities.
+The code can be found in the OpenKIM repository with ID \lstinline{TD_000000000000} (TODO).
+Here, we discuss the method we used for obtaining each of these quantities.
 
 The free energy per unit volume of a crystal can be described by the following equation \cite{freedman2009elastic}
 \begin{equation}\label{eq:f}
@@ -284,9 +284,9 @@ These values are calculated for fcc aluminum with the embedded atom model (EAM) 
 The migration path is from (0.0, 0.0, 0.0) to (0.5, 0.5, 0.0) in a conventional fcc unit cell.
 VFE is the vacancy formation energy, VME is the vacancy migration energy, VRV is the vacancy relaxation volume, EDT is the elastic dipole tensor, DST is the defect strain tensor, and SP stands for the saddle point of the migration.
 The two numbers following the tensor are the row and column indices.
-Since VRV and DST11 are all proportional to EDT11, they will appear as the same curve after normalization, we only show EDT11 here.
+Since VRV and DST11 are all proportional to EDT11, they will appear as the same curve after normalization, so we show EDT11 here only.
 EDT22 and EDT33 are the same as EDT11, and all the off-diagonal terms of EDT are zero.
-So does DST.
+So are the terms in DST.
 The linear relationship shown in this figure validates our extrapolation.
 In order to keep the graph clear, the error bars are not shown here.
 }
@@ -460,7 +460,7 @@ Therefore, the overestimation of VFE is mostly due to the incorrect estimation o
 Besides the EAM models, there are also several models in our database that, although only supports a few elements, do give accurate results.
 For example, the three-body potentials give decent results for diamond silicon.
 
-In addition, several new models are also under active development and will be added into the OpenKIM repository soon, such as ...
+In addition, several new models are also under active development and will be added into the OpenKIM repository soon, such as ... (TODO)
 The results for new models will be calculated automatically by the system once they are added.
 
 %
@@ -584,10 +584,10 @@ The results for new models will be calculated automatically by the system once t
 
 The relationship between these vacancy properties and other elemental properties can provide additional information for choosing atomistic models and screening structures:
 we shall be carefull when the model we are going to use give results that are inconsistent with these relationships;
-and when the calculation of the vacancy properties are too time-consuming, we may use the information from other properties to filter out some structures.
+and when the calculation of the vacancy properties are too expensive, we may use the information from other computationally less expensive properties to filter out some structures.
 
 Previous literatures have shown that the vacancy formation and migration energies are strongly correlated with the cohesive energy and the bulk modulus.
-We verify these findings and further explore other relationships here with the EAM models we have and fcc structures.
+We verify these findings here and further explore other relationships, with EAM models and fcc structures.
 
 \begin{figure}
 \centering
@@ -602,8 +602,8 @@ The fitted slope for the formation energy and the migration energy are $0.32\pm0
 
 Fig.~\ref{fig:vfevmevscoh} shows the relationship between the vacancy formation and migration energies and the cohesive energy.
 We can see there is a linear increasing trend between the vacancy-related energies and the cohesive energy.
-For the relationship between the vacancy formation energy and the cohesive energy, the slope is $0.32\pm0.04$, which agrees well with a previous DFT study, which gives a slope of $0.317$ \cite{angsten2014elemental}.
-For the relationship between the vacancy migration energy and the cohesive energy, the slope is $0.14\pm0.04$, which is also similar to the DFT result, $0.191$.
+For the relationship between VFE and the cohesive energy, the slope is $0.32\pm0.04$, which agrees well with a previous DFT study, which gives a slope of $0.317$ \cite{angsten2014elemental}.
+For the relationship between VME and the cohesive energy, the slope is $0.14\pm0.04$, which is also similar to the DFT result, $0.191$.
 
 \begin{figure}
 \centering
@@ -618,7 +618,8 @@ The fitted slope and intercept are $(0.57\pm0.10)~\angstrom^3$ and $(0.32\pm0.08
 
 Fig.~\ref{fig:vmevsbulk} shows the relationship between the vacancy migration energy and the bulk modulus.
 We can see there is also a linearly increasing trend.
-The slope of the fitted line is $(0.57\pm0.10)~\angstrom^3 = (3.5\pm0.6)~\electronvolt\per\mathrm{GPa}$, which is qualitatively the same but quantitatively a little bit smaller than the DFT prediction, $5.5~\electronvolt\per\mathrm{GPa}$.
+The slope of the fitted line is $(0.57\pm0.10)~\angstrom^3 = (3.5\pm0.6)~\electronvolt\per\mathrm{GPa}$.
+This result is quantitatively a little bit smaller than the DFT prediction, $5.5~\electronvolt\per\mathrm{GPa}$, but qualitatively still the same.
 
 \begin{figure}
 \centering
@@ -652,7 +653,7 @@ Fig.~\ref{fig:vfevsvrv} shows the relationship.
 The slope of the fitted line is $(-0.14\pm0.02)~\electronvolt\per\angstrom^3$.
 This downward trend is also consistent with the intuition that the energy needed for the vacancy to pull the neighboring atoms towards itself decreases with the help of additional bulk strain.
 
-The results above are from fcc structures for the models available on OpenKIM at this time.
+The results above are from fcc structures and the models available on OpenKIM at this time.
 Appendix~\ref{app:data} provides Python scripts for retrieving the data from the OpenKIM repository, which can be used to obtain the relationships for all the structures with the latest data.
 
 % \begin{table}
@@ -713,18 +714,18 @@ Appendix~\ref{app:data} provides Python scripts for retrieving the data from the
 
 \section{\label{sec:conclusion}Conclusion}
 
-In this study, we try to solve the problem of assessing the quality of interatomic models currently available in the OpenKIM repository \url{https://openkim.org/intro-models/} in terms of their ability to describe vacancy-related properties.
+In this study, we try to solve the problem of assessing the quality of interatomic models in terms of their ability to describe vacancy-related properties.
 
-We developed tests using the OpenKIM API to perform the atomistic calculation and obtain the most important monovacancy properties for all the interatomic models in the OpenKIM repository and all the simple structures.
+We developed tests using the OpenKIM API to perform atomistic calculations and obtain the most important monovacancy properties for all the simple structures and all the interatomic models in the OpenKIM repository at this time.
 
 Then, we compare the calculated data with the reference data from DFT and experiments.
-The results show that at this time, the EAM potentials, in general, agree with DFT calculations and experiments better than other kinds of potential models in the repository.
+The results show that the EAM potentials, in general, agree with DFT calculations and experiments better than other kinds of potential models in the repository at this time.
 The pairwise potentials tend to overestimate the vacancy formation energy for transition metals and post-transition metals.
 One caveat to note is that neither the DFT results nor the experiments are assured to be accurate.
 It is always beneficial to have more accurate and more comprehensive reference data from other sources to compare our results with.
 
 And finally, we looked into how these properties related to each other and to other elemental properties.
-We got consistent results with previous studies, which further proved the reliability of our results and these relationships.
+We got consistent results with physics intuition and previous studies, which further proved the reliability of our results and these relationships.
 These relationships can provide additional information for choosing models and screening structures.
 
 % \section{\label{sec:conclusion}Future Works}
@@ -804,16 +805,15 @@ And it is consistent with the case where the symmetry is preserved.
 
 \section{Obtaining Results From OpenKIM}
 \label{app:data}
-All of the results and our codes are in the OpenKIM repository.
+The results can be obtained either via the web interface directly \url{https://openkim.org/intro-tests/} or through OpenKIM Query \url{query.openkim.org}.
+We describe the later one in this section.
 
-If you only need to find out how each model performs relative to the reference data, you can
-
-The results can be accessed through OpenKIM Query \url{query.openkim.org}.
-We can obtain the results either through the web interface or through any programming language that supports HTTP requests.
+OpenKIM Query works for any programming languages as long as they support HTTP requests.
+We use Python here as an example.
 The backend of this query API is a MongoDB database, and in order to obtain the results we want, we need to construct our query with the correct MongoDB syntax.
 The website of MongoDB, \url{mongodb.org}, provides a detailed documentation of this.
 
-Here is an example of using Python to obtain all the fcc Al lattice constants (TODO: replace by vacancy formation energy) calculated with various interatomic potentials:
+Here is an example of using Python to obtain all the fcc aluminum lattice constants (TODO: replace by vacancy formation energy) calculated with various interatomic potentials:
 \begin{lstlisting}
 import requests
 res = requests.get('https://query.openkim.org/api?flat=on&query={"meta.type":"tr","property-id":"tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt","meta.runner.kimcode":{"$regex":"^LatticeConstantCubicEnergy_fcc"},"species.source-value":"Al"}&limit=0&fields={"a.source-value":1,"meta.subject.kimcode":1}&database=data').json()
@@ -841,6 +841,12 @@ res_cleaned = res[(bulk > 0) & (bulk < 1000)]
 # Plot
 res_cleaned.plot(x = 'a.source-value', y = 'isothermal-bulk-modulus.source-value', style = 'o')
 plt.show()
+\end{lstlisting}
+
+We can also perform a linear regression with the data obtained above
+\begin{lstlisting}
+from pandas.stats.api import ols
+ols(y = res_cleaned['isothermal-bulk-modulus.source-value'], x = res_cleaned['a.source-value'])
 \end{lstlisting}
 The code above has been tested in the Python 2.7 version of Anaconda 4.0.0.
 
