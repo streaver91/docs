@@ -649,34 +649,35 @@ The fitted slope and intercept are $(-0.14\pm0.02)~\electronvolt\per\angstrom^3$
 We also found there is a strong correlation between the vacancy formation energy and the vacancy relaxation volume.
 Fig.~\ref{fig:vfevsvrv} shows the relationship.
 The slope of the fitted line is $(-0.14\pm0.02)~\electronvolt\per\angstrom^3$.
-This downward trend is also consistent with the intuition that the energy needed for the vacancy to pull the neighboring atoms towards itself decreases with the help of an increase in the bulk strain.
+This downward trend is also consistent with the intuition that the energy needed for the vacancy to pull the neighboring atoms towards itself decreases with the help of additional bulk strain.
 
-\begin{table}
-\caption{\label{tab:relation}
- Change in the cohesive energy of fcc copper as we move the atom next to the vacant slight slightly along the $x$ direction away from the original position.
-}
-\begin{ruledtabular}
-\begin{tabular}{c c c}
- Displacement (\AA) & EAM\footnotemark[1] (eV) & Pairwise\footnotemark[2] (eV)\\
-\hline
-0.01 & 0.000 & 0.000 \\
-0.02 & 0.001 & 0.002 \\
-0.04 & 0.005 & 0.009 \\
-0.08 & 0.021 & 0.037 \\
-0.16 & 0.092 & 0.148 \\
-0.32 & 0.407 & 0.596 \\
-0.64 & 1.649 & 2.440 \\
-1.28 & 5.383 & 9.306 \\
-2.56 & 13.37 & 41.91 \\
-5.12 & 10.31 & 22.04 \\
-\end{tabular}
-\end{ruledtabular}
-\footnotetext[1]{EAM\_Dynamo\_Ackland\_Tichy\_Cu.}
-\footnotetext[2]{Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Cu.}
-\end{table}
+The results above are from fcc structures.
+We summarize the results for the other structures in Table~\ref{tab:relation}.
 
-The results above are calculated with fcc structures.
-The relationships for the other structures are summarized in Table~\ref{tab:relation}.
+% \begin{table}
+% \caption{\label{tab:relation}
+%  Relationships between vacancy properties and other elemental properties.
+% }
+% \begin{ruledtabular}
+% \begin{tabular}{l | l | c | c | c}
+%   y & x & structure & slope & intercept
+  % \multirow{5}{*}{Vacancy Formation Energy} & \multirow{5}{*}{Cohesive Energy} & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & bcc & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & fcc & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & diamond & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & hcp & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % \multirow{6}{*}{Vacancy Migration Energy} & \multirow{6}{*}{Cohesive Energy} & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & sc & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+  % & & bcc & $(0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & fcc & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & diamond & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & hcp(1,0,0) & (0.00\pm0.00) & (0.00\pm0.00) \\
+  % & & hcp(0,0,1) & (0.00\pm0.00) & (0.00\pm0.00) \\
+% \end{tabular}
+% \end{ruledtabular}
+% \end{table}
+
 %
 % We plot the vacancy property results from our atomistic simulation against cohesive energy and bulk modulus in Fig.~\ref{fig:vsenergy}.
 % Both the cohesive energy and bulk modulus are obtained from the Materials Project \cite{jain2013commentary,de2015charting}.
@@ -713,17 +714,17 @@ The relationships for the other structures are summarized in Table~\ref{tab:rela
 
 In this study, we try to solve the problem of assessing the quality of interatomic models currently available in the OpenKIM repository \url{https://openkim.org/intro-models/} in terms of their ability to describe vacancy-related properties.
 
-We developed tests using the OpenKIM API to perform the atomistic calculation of most important monovacancy properties for all the available interatomic models and all the simple structures.
+We developed tests using the OpenKIM API to perform the atomistic calculation and obtain the most important monovacancy properties for all the interatomic models in the OpenKIM repository and all the simple structures.
 
-Then, we compare the calculation results with reference data from density functional (DFT) calculations and experiments.
+Then, we compare the calculated data with the reference data from DFT and experiments.
 The results show that at this time, the EAM potentials, in general, agree with DFT calculations and experiments better than other kinds of potential models in the repository.
-The pairwise potentials tend to overestimate the vacancy formation energy for transition metals.
-One caveat to note is that neither the DFT results nor the experiments results are assured to be accurate.
+The pairwise potentials tend to overestimate the vacancy formation energy for transition metals and post-transition metals.
+One caveat to note is that neither the DFT results nor the experiments are assured to be accurate.
 It is always beneficial to have more accurate and more comprehensive reference data from other sources to compare our results with.
 
 And finally, we looked into how these properties related to each other and to other elemental properties.
 We got consistent results with previous studies, which further proved the reliability of our results and these relationships.
-These relationships can provide additional information for choosing models.
+These relationships can provide additional information for choosing models and screening structures.
 
 % \section{\label{sec:conclusion}Future Works}
 %
