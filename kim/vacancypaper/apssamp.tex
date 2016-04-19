@@ -179,11 +179,15 @@ It also hosts a repository of reference data from other sources, such as DFT and
 
 In this study, we focus on vacancies, the simplest and the most common point defects.
 Finding interatomic models that can accurately describe vacancy effects is extremely beneficial for furthering our understanding and application of materials.
-Vacancies affect dislocation climbing and creeping \cite{weertman1955theory}, mediate the diffusion of substitutional defects \cite{fahey1989point}, and are the dominant flow mechanism under external fields, such as gravity \cite{sethna2014flow}.
-Also, some scientists are proposing using \ce{^{28}Si} for a new kilogram definition \cite{andreas2011counting}, and how to obtain the vacancy concentration accurately is a crucial part of this work.
+Vacancies mediate dislocation climb and creep \cite{weertman1955theory} and the diffusion of substitutional defects \cite{fahey1989point}.
+They are also the dominant flow mechanism under external fields, such as gravity \cite{sethna2014flow}.
+And in metrology, some scientists are proposing using \ce{^{28}Si} for a new kilogram definition, and obtaining the vacancy concentration is a crucial part of this work.
+As mentioned in their report, they have achieved an accuracy below $5~\mu\gram$ in the $1~\kilogram$ mass determination, and the point defect correction is as large as $24.3(3.3)~\mu\gram$ \cite{andreas2011counting}.
 
-In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the most common monovacancy properties for all the elements and all the simple crystal structures predicted by the interatomic potential models available on OpenKIM at this time.
+In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculated the most important monovacancy properties for all the elements and all the simple crystal structures predicted by the interatomic potential models available on OpenKIM at this time.
 The properties we calculated includes the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), and the saddle point elastic dipole tensor (SPEDT) and defect strain tensor (SPDST).
+VFE and VME give us the local energy change.
+VRV and the four tensors describe the long-range environmental impact.
 The OpenKIM website properties page \url{https://openkim.org/properties} provides a brief description to these quantities.
 Sec.~\ref{sec:method} describes the method we used to obtain these quantities.
 The structures we calculated includes sc, fcc, bcc, diamond, and hcp.
@@ -197,7 +201,7 @@ Both the vacancy formation energy and the vacancy migration energy show a linear
 Migration energy also shows a linear increasing trend to the bulk modules, with a slope of $(0.57\pm0.03)\angstrom^3$.
 While the vacancy relaxation volume shows a linear decreasing trend, with a slope of $(-4.2\pm0.7)\angstrom^6\per\electronvolt$.
 And finally, we found that the vacancy formation energy also decreases with the relaxation volume, with a slope of $(-0.14\pm0.02)\electronvolt\per\angstrom^3$.
-All of these results are consistent with physics intuition and previous literatures.
+All of these results are consistent with physics intuition and previous literatures \cite{angsten2014elemental}.
 These relationships can provide additional information in selecting models and screening structures.
 
 The paper is organized as follows.
