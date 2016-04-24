@@ -1,0 +1,259 @@
+%% ****** Start of file apstemplate.tex ****** %
+%%
+%%
+%%   This file is part of the APS files in the REVTeX 4 distribution.
+%%   Version 4.1r of REVTeX, August 2010
+%%
+%%
+%%   Copyright (c) 2001, 2009, 2010 The American Physical Society.
+%%
+%%   See the REVTeX 4 README file for restrictions and more information.
+%%
+%
+% This is a template for producing manuscripts for use with REVTEX 4.0
+% Copy this file to another name and then work on that file.
+% That way, you always have this original template file to use.
+%
+% Group addresses by affiliation; use superscriptaddress for long
+% author lists, or if there are many overlapping affiliations.
+% For Phys. Rev. appearance, change preprint to twocolumn.
+% Choose pra, prb, prc, prd, pre, prl, prstab, prstper, or rmp for journal
+%  Add 'draft' option to mark overfull boxes with black boxes
+%  Add 'showpacs' option to make PACS codes appear
+%  Add 'showkeys' option to make keywords appear
+%\documentclass[aps,prl,preprint,groupedaddress]{revtex4-1}
+%\documentclass[aps,prl,preprint,superscriptaddress]{revtex4-1}
+\documentclass[aps,prl,reprint,groupedaddress]{revtex4-1}
+
+\usepackage{multirow}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{longtable}
+\usepackage{afterpage}
+\usepackage{tabularx}
+\usepackage{upquote}
+\usepackage{listings}
+\usepackage[version=3]{mhchem}
+\usepackage[]{SIunits}
+\usepackage{multirow}
+
+% You should use BibTeX and apsrev.bst for references
+% Choosing a journal automatically selects the correct APS
+% BibTeX style file (bst file), so only uncomment the line
+% below if necessary.
+%\bibliographystyle{apsrev4-1}
+
+\begin{document}
+
+% Use the \preprint command to place your local institutional report
+% number in the upper righthand corner of the title page in preprint mode.
+% Multiple \preprint commands are allowed.
+% Use the 'preprintnumbers' class option to override journal defaults
+% to display numbers if necessary
+%\preprint{}
+
+%Title of paper
+\title{A Exam: Pair Product Projector}
+
+% repeat the \author .. \affiliation  etc. as needed
+% \email, \thanks, \homepage, \altaffiliation all apply to the current
+% author. Explanatory text should go in the []'s, actual e-mail
+% address or url should go in the {}'s for \email and \homepage.
+% Please use the appropriate macro foreach each type of information
+
+% \affiliation command applies to all authors since the last
+% \affiliation command. The \affiliation command should follow the
+% other information
+% \affiliation can be followed by \email, \homepage, \thanks as well.
+\author{Junhao Li}
+\email[]{jl2922@cornell.edu}
+%\homepage[]{Your web page}
+%\thanks{}
+%\altaffiliation{}
+\affiliation{
+Department of Physics and Laboratory of Atomic and Solid State Physics\\
+Cornell University, Ithaca, NY 14853, USA
+}
+
+%Collaboration name if desired (requires use of superscriptaddress
+%option in \documentclass). \noaffiliation is required (may also be
+%used with the \author command).
+%\collaboration can be followed by \email, \homepage, \thanks as well.
+%\collaboration{}
+%\noaffiliation
+
+\date{\today}
+
+\begin{abstract}
+% insert abstract here
+\end{abstract}
+
+% insert suggested PACS numbers in braces on next line
+\pacs{}
+% insert suggested keywords - APS authors don't need to do this
+%\keywords{}
+
+%\maketitle must follow title, authors, abstract, \pacs, and \keywords
+\maketitle
+
+% body of paper here - Use proper section commands
+% References should be done using the \cite, \ref, and \label commands
+% Put \label in argument of \section for cross-referencing
+\section{\label{sec:background}Background}
+Quantum Monte Carlo (QMC) method is capable of solving the Schrödinger equation with high accuracy while scales nicely as a function of system size.
+The accuracy comes from the insistence of using the 3N-dimensional many-electron wave function as the basic quantity, as apposed to subsumming the complexity into lower-dimentional functions, such as the exchange-correlation functional in DFT.
+In addition, we can use pseudopotentials to reduce the number of dimensions and incorporate relativistic corrections.
+And QMC, while trying to keep the exact valence-valence correlation, can also give better estimation of the core-valence correlation than mean-field based methods.
+
+A typical QMC calculation of the ground-state energy $E_0$ proceeds as follows. First we come up with a trial wave function $\Psi_T$ with tunable parameters.
+We optimize these parameters with variational Monte Carlo (VMC).
+Then we try to sample $f = \Psi_0\Psi_T$ and calculate the local energy $E_L = H\Psi_T/\Psi_T$.
+Here $\Psi_0$ is the exact ground-state wave function.
+And finally the ground-state energy is given by the average local energy
+\begin{equation}
+E_0 = \frac{\langle \Psi_0|H|\Psi_T \rangle}{\langle \Psi_0|\Psi_T \rangle}
+= \frac{\int f(\mathbf{R})E_L(\mathbf{R})d\mathbf{R}}{\int f(\mathbf{R})d\mathbf{R}} \approx \langle E_L \rangle
+\end{equation}
+
+To sample $f = \Psi_0\Psi_T$, the traditional approach is through diffusion Monte Carlo (DMC) with fixed-node approximation (FN).
+
+DMC starts from an initial guess $f = \Psi\Psi_T$ and propagates $\Psi$ in imaginary time $\tau=it$.
+Suppose the expansion of $\Psi$ in terms of the eigenfunctions of the Hamiltonian is
+\begin{equation}
+\Psi = \sum_{n=0}^{\infty}c_n\phi_ne^{-(E_n-E_T)\tau}
+\end{equation}
+We can see that as $\tau\to\infty$, all the excited-state eigenfunctions die away, and through carefull control of $E_T$, we will have $\Psi\to\phi_0=\Psi_0$ and $f\to\Psi_0\Psi_T$.
+In practice, we represent $f$ with an ensemble of walkers with attached weights in the 3N-dimentional space.
+According to the Schrödinger equation, $\Psi$ evolves in imaginary time as
+\begin{equation}
+\label{eq:img_sho}
+-\frac{\partial \Psi}{\partial \tau} = -\frac{1}{2}\nabla^2\Psi+(V-E_T)\Psi
+\end{equation}
+substituting $f=\Psi\Psi_T$ into Eq.~(\ref{eq:img_sho}) and rearrange, we get $f$ envolves as
+\begin{equation}
+\label{eq:f}
+-\frac{\partial f}{\partial \tau} = -\frac{1}{2}\nabla^2f+\nabla\cdot(v_Df)+(E_L-E_T)f
+\end{equation}
+where $v_D = \nabla\Psi/\Psi$.
+The right hand side of Eq.~(\ref{eq:f}) can be viewed as a diffusion term $-\frac{1}{2}\nabla^2f$, a drift term $\nabla\cdot(v_Df)$, and a reweighting term $(E_L-E_T)f$.
+In short-time approximation, we can treat each term in each step separately, adjust the positions of the walkers according to the diffusion term and the drift term, and weights according to the reweighting term.
+After a reasonable amount of steps, the distribution and the weights of the walkers resemble $f=\Psi_0\Psi_T$.
+
+This pure DMC works well for single-particle systems.
+However, when dealing with many-electron systems, it suffers from the well-know ``fermion sign problems''.
+In the setting mentioned above (1st-quantized basis), this problem has two main components.
+First, the dominant state is a bosonic state, instead of a fermionic state.
+Second, weights can become negative and walkers representing $\Psi_0$ and $-\Psi_0$ will build up. Since they are equally good wave functions, a severe signal-to-noise issue will occur.
+
+Fixed-node approaximation avoids this problem by forcing the walkers to stay within their initial nodal pockets of $\Psi_T$, thus the signs of the walkers remain unchanged.
+It produces the exact ground-state energy if the nodes of the trail function coincide with the exact ones.
+Otherwise, the variational principle applies and we will get a slightly higher energy.
+Several ways of optimizing the nodes are being actively developed.
+
+\section{Pair Product Projector}
+
+
+\section{Approximations}
+
+\subsection{}
+\subsubsection{}
+
+% If in two-column mode, this environment will change to single-column
+% format so that long equations can be displayed. Use
+% sparingly.
+%\begin{widetext}
+% put long equation here
+%\end{widetext}
+
+% figures should be put into the text as floats.
+% Use the graphics or graphicx packages (distributed with LaTeX2e)
+% and the \includegraphics macro defined in those packages.
+% See the LaTeX Graphics Companion by Michel Goosens, Sebastian Rahtz,
+% and Frank Mittelbach for instance.
+%
+% Here is an example of the general form of a figure:
+% Fill in the caption in the braces of the \caption{} command. Put the label
+% that you will use with \ref{} command in the braces of the \label{} command.
+% Use the figure* environment if the figure should span across the
+% entire page. There is no need to do explicit centering.
+
+% \begin{figure}
+% \includegraphics{}%
+% \caption{\label{}}
+% \end{figure}
+
+% Surround figure environment with turnpage environment for landscape
+% figure
+% \begin{turnpage}
+% \begin{figure}
+% \includegraphics{}%
+% \caption{\label{}}
+% \end{figure}
+% \end{turnpage}
+
+% tables should appear as floats within the text
+%
+% Here is an example of the general form of a table:
+% Fill in the caption in the braces of the \caption{} command. Put the label
+% that you will use with \ref{} command in the braces of the \label{} command.
+% Insert the column specifiers (l, r, c, d, etc.) in the empty braces of the
+% \begin{tabular}{} command.
+% The ruledtabular enviroment adds doubled rules to table and sets a
+% reasonable default table settings.
+% Use the table* environment to get a full-width table in two-column
+% Add \usepackage{longtable} and the longtable (or longtable*}
+% environment for nicely formatted long tables. Or use the the [H]
+% placement option to break a long table (with less control than
+% in longtable).
+% \begin{table}%[H] add [H] placement to break table across pages
+% \caption{\label{}}
+% \begin{ruledtabular}
+% \begin{tabular}{}
+% Lines of table here ending with \\
+% \end{tabular}
+% \end{ruledtabular}
+% \end{table}
+
+% Surround table environment with turnpage environment for landscape
+% table
+% \begin{turnpage}
+% \begin{table}
+% \caption{\label{}}
+% \begin{ruledtabular}
+% \begin{tabular}{}
+% \end{tabular}
+% \end{ruledtabular}
+% \end{table}
+% \end{turnpage}
+
+% Specify following sections are appendices. Use \appendix* if there
+% only one appendix.
+%\appendix
+%\section{}
+
+% If you have acknowledgments, this puts in the proper section head.
+%\begin{acknowledgments}
+% put your acknowledgments here.
+%\end{acknowledgments}
+
+% Create the reference section using BibTeX:
+\bibliography{pppNotes}
+
+\end{document}
+%
+% ****** End of file apstemplate.tex ******
+
+%
+% \begin{table}%[H] add [H] placement to break table across pages
+% \caption{\label{tab:compare} Cohesive energy of Si obtained through various computational methods and compared with experimental values.}
+% \begin{ruledtabular}
+% \begin{tabular}{l | c c c c}
+% Method & DFT & VMC & DMC & Experiment \\
+% \hline
+% Energy (\electronvolt) & 5.28\footnotemark[1] & 4.48(1)\footnotemark[2] & 4.63(2)\footnotemark[2] & 4.62(8)\footnotemark[1] \\
+% \end{tabular}
+% \end{ruledtabular}
+% \footnotetext[1]{Farid and Needs}
+% \footnotetext[2]{Leung \emph{et~al.}}
+% \end{table}
