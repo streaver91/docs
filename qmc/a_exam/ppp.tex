@@ -130,14 +130,28 @@ According to the Schrödinger equation, $\Psi$ evolves in imaginary time as
 \label{eq:img_sho}
 -\frac{\partial \Psi}{\partial \tau} = -\frac{1}{2}\nabla^2\Psi+(V-E_T)\Psi
 \end{equation}
+%
+% \begin{equation}
+% \label{eq:G1}
+% G_1(\bm{R'}|\bm{R};\tau)
+% = \frac{1}{(2\pi\tau)^{3N/2}} e^{-\frac{(\bm{R'}-\bm{R})^2}{2\tau}} e^{-\left(V-E_T\right)\tau}
+% \end{equation}
+% Here $V = (V(\bm{R'})+V(\bm{R}))/2$.
 substituting $f=\Psi\Psi_T$ into Eq.~(\ref{eq:img_sho}) and rearrange, we get $f$ envolves as
 \begin{equation}
 \label{eq:f}
 -\frac{\partial f}{\partial \tau} = -\frac{1}{2}\nabla^2f+\nabla\cdot(v_Df)+(E_L-E_T)f
 \end{equation}
 where $v_D = \nabla\Psi/\Psi$.
-The right hand side of Eq.~(\ref{eq:f}) can be viewed as a diffusion term $-\frac{1}{2}\nabla^2f$, a drift term $\nabla\cdot(v_Df)$, and a reweighting term $(E_L-E_T)f$.
-In short-time approximation, we can treat each term in each step separately, adjust the positions of the walkers according to the diffusion term and the drift term, and weights according to the reweighting term.
+The right hand side of Eq.~(\ref{eq:f}) can be viewed as a diffusion term $-\frac{1}{2}\nabla^2f$, a drifting term $\nabla\cdot(v_Df)$, and a reweighting term $(V-E_T)f$.
+In short-time approximation, we can treat each separately, adjust the positions of the walkers according to the diffusion term and the drifting term, and weights according to the reweighting term.
+This process can be represented by a probability transition matrix, or a projector
+\begin{equation}
+\label{eq:G1t}
+\widetilde{G}_1(\bm{R'}|\bm{R};\tau)
+= \frac{1}{(2\pi\tau)^{3N/2}} e^{-\frac{(\bm{R'}-\bm{R}-\bm{v}(\bm{R})\tau)^2}{2\tau}} e^{-\left(E_L-E_T\right)\tau}
+\end{equation}
+Here $\bm{v}(\bm{R}) = \nabla\Psi(\bm{R})/\Psi(\bm{R})$ and $E_L = (E_L(\bm{R'})+E_L(\bm{R}))/2$.
 After a reasonable amount of steps, the distribution and the weights of the walkers resemble $f=\Psi_0\Psi_T$.
 
 This pure DMC works well for single-particle systems.
@@ -149,12 +163,82 @@ Second, weights can become negative and walkers representing $\Psi_0$ and $-\Psi
 Fixed-node approaximation avoids this problem by forcing the walkers to stay within their initial nodal pockets of $\Psi_T$, thus the signs of the walkers remain unchanged.
 It produces the exact ground-state energy if the nodes of the trail function coincide with the exact ones.
 Otherwise, the variational principle applies and we will get a slightly higher energy.
-Several ways of optimizing the nodes are being actively developed.
+
+Several ways of optimizing the behavior near the nodal surfaces are being actively developed, such as release-node method and stochastic reconfiguration.
 
 \section{Pair Product Projector}
 
+Fixed-node approximation solves the ``fermion sign problems'' at the cost of forcing wave functions to have certain nodes at certain places, which according to the variational principle will give a systematically higher grond state energy.
+Methods trying to improve upon this can ameliorate the bias but still cannot get away from it.
+Therefore, we seek to approach from a new direction: instead of forcing the wave function to have certain nodal surfaces in order to get the higher fermionic state, we build the antisymmetrization of the wave function into the projector, so its intrinsic ground state would be the fermionic state, which is exactly the state we need for electrons.
+
+We achieve this by summing the contribution to all the permutations of $\bm{R'}$:
+\begin{equation}
+\label{eq:ppp}
+\widetilde{G}_2(\bm{R'}, \bm{R},\tau)
+= \sum\limits_{\sigma\in P} \mathrm{sgn}(\sigma) \widetilde{G}_1(\sigma(\bm{R'}), \bm{R}, \tau)
+\end{equation}
+Here $P$ is the set of all the permutations of the set $\{x:x \in I, 1 \leq x \leq N\}$, $N$ is the number of electrons.
+$\mathrm{sgn}(\sigma)$ means the sign of a permutation, which equals to $+1$ if $\sigma$ is even and $-1$ if $\sigma$ is odd.
+$\widetilde{G}_1$ is the usual projector, which does not take into account the antisymmetricity of the wave function of the identical fermions.
+
+$\widetilde{G}_1$ can either be the one from DMC as shown in Eq.~(\ref{eq:G1t}), or can be constructed using the pair actions from the path integral Monte Carlo (PIMC).
+
+When using the first approach, we need to use a nodeless guiding wave function $\Psi_G$ for $\Psi_T$ in $f$, otherwise, we are still imposing the fixed-node assumption, because the drifting term forbids the crossing of nodal surfaces.
+In doing so we will face a dilemma:
+One one hand, we want $\Psi_G$ to be as close to $|\Psi_T|$ as possible, so that the fluctuation in $E_L$ will become smaller and we will achieve a smaller uncertainty quicker.
+On the other hand, we have to smooth $|\Psi_T|$ near the nodal surfaces, and we wish the smooth area to be large so that the second derivative near the nodal surfaces can be smaller, which makes the walkers more stable.
+
+The rest of this report will be focusing on the second approach, which starts from pair actions.
+In this approach, we use
+\begin{align}
+\label{eq:G1ppp}
+\widetilde{G}_1 = \Psi_G(\bm{R'})G_1(\bm{R'}|\bm{R};\tau)/\Psi_G(\bm{R})\\
+G_1 =
+\prod\limits_{\alpha = 1}^{N_{\mathrm{nuc}}}\prod\limits_{i=1}^{N}
+p_{en}(\bm{r}_i'-\bm{r}_\alpha|\bm{r}_i-\bm{r}_\alpha;\tau)\\
+\prod\limits_{1\leq i < j \leq N}p_{ee}(\bm{r}_j'-\bm{r}_i'|\bm{r}_j-\bm{r}_i;\tau)
+e^{E_T}
+\end{align}
+Where $p_{en}$ and $p_{ee}$ are the pair projectors representing electron-nuclei and electron-electron interactions respectively.
+They are the inverse of the pair action from PIMC.
+One advantage of starting from the pair actions is that, with the same $\tau$, the time step error in this approach shall be smaller than the first approach, because the pair actions are calculated with much smaller time steps.
+
+One method of obtaining the pair action is matrix squaring.
+It starts from an extremely small $d\tau = \tau/2^n$, obtain its pair action, and squaring this action to get the value corresponding to the $\tau$ we want.
+Here $n$ is some large positive integer.
+As $d\tau \to 0$, we can approximate the path with a straight line and obtain its action.
+
+The disadvange is that there will be an electron-electron action term, which forbids us from packing all the terms into a determinant and evaluate in $O(n^3)$ time.
+In other words, the computational cost of obtaining the exact pair product projector as shown in Eq.~(\ref{eq:ppp}) is $O(n!)$.
+There maybe some algorithm capable of solving this in polynomial time.
+The equivalent form of this problem is:
+Suppose $M$ is a matrix of dimention $N^4$.
+Is there a polynomial time algorithm for calculating
+\begin{equation}
+\label{eq:algo}
+\sum\limits_{\sigma \in P}\prod\limits_{1\leq i < j \leq N}\mathrm{sgn}(\sigma)M_{i,j,\sigma(i),\sigma(j)}
+\end{equation}
+Here same as before, $P$ is the set of all the permutations.
+Although we have not found a polynomial time algorithm yet, there are some approximation algorithms that give results close to the exact sum.
 
 \section{Approximations}
+
+One approach to get an approximated sum is packing all the electron-nuclei actions into a determinant, which can be evaluated in $O(n^2)$, and use an average $U_{ee}$ for the electron-electron interaction.
+For example, we can use the following two approximated $U_{ee}$.
+\begin{center}
+\begin{eqnarray}
+U_{ee} = \sum\limits_{i<j}
+\frac{u_{ee}(\bm{r}_{ij}'|\bm{r}_{ij}';\tau) + u_{ee}(\bm{r}_{ij}|\bm{r}_{ij};\tau)}{2}\\
+U_{ee} = \sum\limits_{i<j}u_{ee}(\bm{r}_{ij}'|\bm{r}_{ij};\tau)
+\end{eqnarray}
+\end{center}
+Here $u_{ee}$ are the pair action.
+So the overall $G_2$ becomes
+\begin{equation}
+\label{eq:G2pppUee}
+G_2(\bm{R'}|\bm{R};\tau) =
+\end{equation}
 
 \subsection{}
 \subsubsection{}
@@ -178,10 +262,10 @@ Several ways of optimizing the nodes are being actively developed.
 % Use the figure* environment if the figure should span across the
 % entire page. There is no need to do explicit centering.
 
-% \begin{figure}
-% \includegraphics{}%
-% \caption{\label{}}
-% \end{figure}
+\begin{figure}
+\includegraphics{Test_3up_1=1}%
+\caption{\label{}}
+\end{figure}
 
 % Surround figure environment with turnpage environment for landscape
 % figure

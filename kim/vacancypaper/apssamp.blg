@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: apssamp.aux
 The style file: apsrev4-1.bst
@@ -11,6 +11,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: apssampNotes.bib
 Database file #2: apssamp.bib
+Warning--I didn't find a database entry for "Hanggi"
 control{REVTEX41Control}, control.key{N/A}, control.author{N/A}, control.editor{N/A}, control.title{N/A}, control.pages{N/A}, control.year{N/A}, control.eprint{N/A}, 
 control{apsrev41Control}, control.key{N/A}, control.author{08}, control.editor{1}, control.title{}, control.pages{0}, control.year{1}, control.eprint{N/A}, 
 Warning--jnrlst (dependency: not reversed) set 1
@@ -26,45 +27,45 @@ Control: production of eprint (0) enabled
 Warning--empty year in openkim2016
 Warning--missing journal in seifmultipolar
 Warning--empty year in seifmultipolar
-You've used 47 entries,
+You've used 48 entries,
             5847 wiz_defined-function locations,
-            1882 strings with 23141 characters,
-and the built_in function-call counts, 46650 in all, are:
-= -- 2854
+            1887 strings with 23621 characters,
+and the built_in function-call counts, 46914 in all, are:
+= -- 2886
 > -- 1316
 < -- 335
-+ -- 429
++ -- 431
 - -- 335
-* -- 7299
-:= -- 4498
-add.period$ -- 47
-call.type$ -- 47
-change.case$ -- 188
-chr.to.int$ -- 55
-cite$ -- 52
-duplicate$ -- 4415
-empty$ -- 3427
+* -- 7332
+:= -- 4531
+add.period$ -- 48
+call.type$ -- 48
+change.case$ -- 193
+chr.to.int$ -- 56
+cite$ -- 53
+duplicate$ -- 4433
+empty$ -- 3443
 format.name$ -- 768
-if$ -- 9266
+if$ -- 9315
 int.to.chr$ -- 1
-int.to.str$ -- 54
-missing$ -- 581
-newline$ -- 188
+int.to.str$ -- 55
+missing$ -- 582
+newline$ -- 191
 num.names$ -- 132
-pop$ -- 1874
+pop$ -- 1884
 preamble$ -- 2
-purify$ -- 223
+purify$ -- 227
 quote$ -- 0
-skip$ -- 1652
+skip$ -- 1663
 stack$ -- 0
-substring$ -- 1068
-swap$ -- 4162
+substring$ -- 1082
+swap$ -- 4175
 text.length$ -- 159
 text.prefix$ -- 0
 top$ -- 10
-type$ -- 664
+type$ -- 675
 warning$ -- 4
 while$ -- 137
 width$ -- 0
-write$ -- 408
-(There were 4 warnings)
+write$ -- 412
+(There were 5 warnings)
