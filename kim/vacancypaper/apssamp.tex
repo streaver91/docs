@@ -92,6 +92,11 @@ breakindent=0pt
   Department of Physics and Laboratory of Atomic and Solid State Physics\\
   Cornell University, Ithaca, NY 14853, USA
 }
+\author{Noam Bernstein}
+\affiliation{
+  Center for Computational Materials Science\\
+  Naval Research Laboratory, Washington, DC 20375, USA
+}
 \author{Ryan Elliott}
 \author{Ellad Tadmor}
 \affiliation{
@@ -205,7 +210,7 @@ Vacancies in electric fields have a direct Coulomb force in insulators, and an i
 The pressure dependence of the vacancy creation energy, and the energy change due to external stresses, will be given by its elastic dipole field (discussed above).
 Our vacancy will diffuse due to pressure gradients and concentration gradients, with a rate given by the free energy barrier to motion (which we also calculate).
 In turn, the pressure or stress dependence of the free energy will be determined by the difference between the vacancy's elastic dipole in the ground state and at the saddlepoint for the motion, which we also calculate.
-The entropic effects of vibrations at the ground state and saddlepoint, needed for the complete transition-state estimate for the prefactor of the diffusion constant~\cite{Hanggi}, will in general depend upon whether the system described is a classical simulation or a quantum solid, and goes beyond the purview of our work here.
+The entropic effects of vibrations at the ground state and saddlepoint, needed for the complete transition-state estimate for the prefactor of the diffusion constant~\cite{burada2009diffusion}, will in general depend upon whether the system described is a classical simulation or a quantum solid, and goes beyond the purview of our work here.
 
 % END FROM JIM
 
@@ -214,7 +219,7 @@ In order to assess how each interatomic potential model performs in vacancy-rela
 The properties we calculate include the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), and the saddle point elastic dipole tensor (SPEDT) and defect strain tensor (SPDST).
 VFE and VME give us the local energy change.
 VRV and the four tensors describe the long-range environmental impact.
-The OpenKIM website properties page \url{https://openkim.org/properties} provides a brief description to these quantities.
+The OpenKIM website properties page\footnote{OpenKIM website properties page url: \url{https://openkim.org/properties}} provides a brief description to these quantities.
 Sec.~\ref{sec:method} describes the method we used to obtain these quantities.
 The structures we calculate include sc, fcc, bcc, diamond, and hcp.
 The results can be compared with data from other sources, such as the density function theory (DFT), the quantum Monte Carlo (QMC), and the experiments, and provide use information when selecting interatomic models for vacancy-related simulations.
@@ -236,7 +241,7 @@ And Sec.~\ref{sec:conclusion} concludes this paper.
 \section{\label{sec:method}Methodology}
 
 In this section, we explain how we calculate the monovacancy properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), and the saddle point elastic dipole tensor (SPEDT) and defect strain tensor (SPDST).
-For a brief description of these quantities, you can check the OpenKIM website properties page \url{https://openkim.org/properties}.
+For a brief description of these quantities, you can check the OpenKIM website properties page.
 
 The calculation is based on OpenKIM \cite{openkim2016} and the Atomic Simulation Environment (ASE) \cite{bahn2002object}.
 The code can be found in the OpenKIM repository with ID \lstinline{TD_000000000000} (TODO).
@@ -249,7 +254,36 @@ f = f_0 + n_dE_d + \frac{1}{2}n_d^2E_{dd} + \frac{1}{2}C_{ijkl}\epsilon_{ij}\eps
 where $n_d$ is the defect concentration, $\epsilon_{ij}$ is the bulk strain, $E_d$ is the vacancy formation energy, $E_{dd}$ describes the energy from defect interaction, $C_{ijkl}$ is the elastic stiffness tensor, and $G_{ij}$ is the elastic dipole tensor.
 $f_0$ is the chemical potential. If $n$ is the number of atoms per unit volume and $E_0$ is the cohesive energy per atom corresponding to a perfect crystal (what we defined as the reservoir), then $f_0 = (n - n_d) E_{0}$.
 
-The negative derivative of $f$ with respect to $n_d$ under zero strain gives vacancy formation energy
+It is worthwhile to examine the physical meaning behind each terms.
+We assume the vacancies only interact with each other through the strain field and that the nonlinear behavior of the elasticity is negligible.
+Then for a unit volume, the total cohesive energy can be described by
+\begin{equation}
+\label{eq:f_explain}
+f =  \int_V E_{\mathrm{chemical}} + \frac{1}{2}C_{ijkl}\widetilde{\epsilon}_{ij}\widetilde{\epsilon}_{kl} dV
+\end{equation}
+Here $\widetilde{\epsilon}$ is the strain at each $dV$, which consists of the bulk strain $\epsilon$, the strain caused by the nearest vacancy $\widetilde{\epsilon}_V$ and other vacancies $\widetilde{\epsilon}_I$.
+\begin{equation}
+  \widetilde{\epsilon}_{ij} = \epsilon_{ij} + \widetilde{\epsilon}_{V,ij} + \widetilde{\epsilon}_{I,ij}
+\end{equation}
+Thus
+\begin{align}
+  \widetilde{\epsilon}_{ij}\widetilde{\epsilon}_{kl}
+  = & \epsilon_{ij}\epsilon_{kl} + \widetilde{\epsilon}_{V,ij}\widetilde{\epsilon}_{V,kl}
+  + 2\epsilon_{ij}\widetilde{\epsilon}_{V,kl}
+  + I(\epsilon, \widetilde{\epsilon}_{V}, \widetilde{\epsilon}_{I})
+\end{align}
+The first term is the energy due to the bulk strain.
+The second term together with the change in $E_\mathrm{chemical}$ give $E_d$.
+Since both of them peak at the vacant sites and drop rapidly when moving away, $\partial f /\partial E_d \propto n_d$.
+The third term gives how the formation energy change with respect to the bulk strain, and thus represents $G$.
+For the similar reason as above, $\partial f/\partial G \propto n_d$.
+And the last term, which includes all the remaining terms in the expansion, represents the interaction $E_{dd}$.
+To see how the total interaction energy changes, we first notice the strength of $\widetilde{\epsilon}_I$ is proportional $n_d$ due to the superposition in linear elasticity.
+In addition, note that if the vacant sites form a Bravais lattice, which is the configuration we are using in our calculation, the peak of these $\widetilde{\epsilon}_I$ will also occur on these lattice points.
+Therefore the number of peaks is proportional to $n_d$ as well.
+So the overall interaction energy to the lowest order approximation is related to $f$ by $\partial f/\partial E_{dd} \propto n_d^2$.
+
+From Eq.~(\ref{eq:f}), the negative derivative of $f$ with respect to $n_d$ under zero strain gives vacancy formation energy
 \begin{equation}
   \label{eq:VFE0}
   \mathit{VFE} = E_d = \left.\frac{\partial f}{\partial n_d}\right|_{\epsilon = 0} + E_{0} - n_d E_{dd}
@@ -263,6 +297,7 @@ Here $E_{V_0, d}$ and $E_{V_0}$ are the free energy of the supercell with and wi
 And we define the expression in the middle as $g(V_0)$, thus $\mathit{VFE} = g(\infty)$.
 We obtain this $g(\infty)$ through extrapolation.
 The uncertainty of this value is the root sum square of the uncertainty from the extrapolation and the uncertainty from the atomistic relaxation.
+
 
 The negative derivative of $f$ with respect to strain gives the stress
 \begin{equation}

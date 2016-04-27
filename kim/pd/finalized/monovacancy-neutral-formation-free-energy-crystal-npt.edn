@@ -1,9 +1,9 @@
 {
   "property-id" "tag:staff@noreply.openkim.org,2016-04-06:property/monovacancy-neutral-formation-free-energy-crystal-npt"
 
-  "property-title" "Formation free energy of a neutral monovacancy in a general crystal at finite temperature and stress"
+  "property-title" "Formation Free Energy of a Neutral Monovacancy in a General crystal at given temperature and stress"
 
-  "property-description" "Gibbs free energy of formation of a neutral monovacancy in a (possibly multispecies) infinite host crystal lattice at a specific temperature and stress state relative to a given infinite monoatomic reference lattice ('reservoir') at a possibly different temperature and stress state. In the limit of zero temperature this corresponds to the formation energy of the relaxed monovacancy."
+  "property-description" "Gibbs free energy of formation of a neutral monovacancy in an infinite crystal at a given temperature and stress state relative to a given infinite monoatomic reference lattice ('reservoir') at a possibly different temperature and stress state. In the limit of zero temperature this corresponds to the formation energy of the relaxed monovacancy."
 
   "vacancy-formation-free-energy" {
     "type"         "float"

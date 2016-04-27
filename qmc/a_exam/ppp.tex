@@ -67,7 +67,7 @@
 % other information
 % \affiliation can be followed by \email, \homepage, \thanks as well.
 \author{Junhao Li}
-\email[]{jl2922@cornell.edu}
+\email{jl2922@cornell.edu}
 %\homepage[]{Your web page}
 %\thanks{}
 %\altaffiliation{}
@@ -104,26 +104,27 @@ Cornell University, Ithaca, NY 14853, USA
 Quantum Monte Carlo (QMC) method is capable of solving the Schrödinger equation with high accuracy while scales nicely as a function of system size.
 The accuracy comes from the insistence of using the 3N-dimensional many-electron wave function as the basic quantity, as apposed to subsumming the complexity into lower-dimentional functions, such as the exchange-correlation functional in DFT.
 In addition, we can use pseudopotentials to reduce the number of dimensions and incorporate relativistic corrections.
-And QMC, while trying to keep the exact valence-valence correlation, can also give better estimation of the core-valence correlation than mean-field based methods.
+And QMC, while trying to keep the exact valence-valence correlation, can also give better estimation of the core-valence correlation than mean-field based methods when used with pseudopotentials.
 
 A typical QMC calculation of the ground-state energy $E_0$ proceeds as follows. First we come up with a trial wave function $\Psi_T$ with tunable parameters.
-We optimize these parameters with variational Monte Carlo (VMC).
-Then we try to sample $f = \Psi_0\Psi_T$ and calculate the local energy $E_L = H\Psi_T/\Psi_T$.
-Here $\Psi_0$ is the exact ground-state wave function.
+We then optimize these parameters with variational Monte Carlo (VMC).
+Next we try to sample $f = \Psi_0\Psi_T$ and calculate the local energy $E_L = H\Psi_T/\Psi_T$.
+Here $\Psi_0$ is the exact ground-state wave function, which can be accessed with projection Monte Carlo methods.
 And finally the ground-state energy is given by the average local energy
 \begin{equation}
 E_0 = \frac{\langle \Psi_0|H|\Psi_T \rangle}{\langle \Psi_0|\Psi_T \rangle}
 = \frac{\int f(\mathbf{R})E_L(\mathbf{R})d\mathbf{R}}{\int f(\mathbf{R})d\mathbf{R}} \approx \langle E_L \rangle
 \end{equation}
 
-To sample $f = \Psi_0\Psi_T$, the traditional approach is through diffusion Monte Carlo (DMC) with fixed-node approximation (FN).
+To sample $f = \Psi_0\Psi_T$, a traditional approach is through diffusion Monte Carlo (DMC) with fixed-node approximation (FN).
 
 DMC starts from an initial guess $f = \Psi\Psi_T$ and propagates $\Psi$ in imaginary time $\tau=it$.
 Suppose the expansion of $\Psi$ in terms of the eigenfunctions of the Hamiltonian is
 \begin{equation}
 \Psi = \sum_{n=0}^{\infty}c_n\phi_ne^{-(E_n-E_T)\tau}
 \end{equation}
-We can see that as $\tau\to\infty$, all the excited-state eigenfunctions die away, and through carefull control of $E_T$, we will have $\Psi\to\phi_0=\Psi_0$ and $f\to\Psi_0\Psi_T$.
+As $\tau\to\infty$, all the excited-state eigenfunctions die away, and through carefull control of $E_T$, we will have $\Psi\to\phi_0=\Psi_0$ and $f\to\Psi_0\Psi_T$.
+
 In practice, we represent $f$ with an ensemble of walkers with attached weights in the 3N-dimentional space.
 According to the Schrödinger equation, $\Psi$ evolves in imaginary time as
 \begin{equation}
@@ -145,7 +146,7 @@ substituting $f=\Psi\Psi_T$ into Eq.~(\ref{eq:img_sho}) and rearrange, we get $f
 where $v_D = \nabla\Psi/\Psi$.
 The right hand side of Eq.~(\ref{eq:f}) can be viewed as a diffusion term $-\frac{1}{2}\nabla^2f$, a drifting term $\nabla\cdot(v_Df)$, and a reweighting term $(V-E_T)f$.
 In short-time approximation, we can treat each separately, adjust the positions of the walkers according to the diffusion term and the drifting term, and weights according to the reweighting term.
-This process can be represented by a probability transition matrix, or a projector
+This process can be represented a projector
 \begin{equation}
 \label{eq:G1t}
 \widetilde{G}_1(\bm{R'}|\bm{R};\tau)
@@ -164,84 +165,183 @@ Fixed-node approaximation avoids this problem by forcing the walkers to stay wit
 It produces the exact ground-state energy if the nodes of the trail function coincide with the exact ones.
 Otherwise, the variational principle applies and we will get a slightly higher energy.
 
-Several ways of optimizing the behavior near the nodal surfaces are being actively developed, such as release-node method and stochastic reconfiguration.
+Several ways of optimizing the behavior near the nodal surfaces are being actively developed, such as the release-node method and the stochastic reconfiguration.
 
 \section{Pair Product Projector}
 
 Fixed-node approximation solves the ``fermion sign problems'' at the cost of forcing wave functions to have certain nodes at certain places, which according to the variational principle will give a systematically higher grond state energy.
-Methods trying to improve upon this can ameliorate the bias but still cannot get away from it.
-Therefore, we seek to approach from a new direction: instead of forcing the wave function to have certain nodal surfaces in order to get the higher fermionic state, we build the antisymmetrization of the wave function into the projector, so its intrinsic ground state would be the fermionic state, which is exactly the state we need for electrons.
+Methods trying to improve upon this can ameliorate the bias caused by these fixed nodes but still cannot get away from it.
 
-We achieve this by summing the contribution to all the permutations of $\bm{R'}$:
+Therefore, we try approach this problem from another new direction: instead of forcing the wave function to have certain nodal surfaces in order to get the fermionic state, we build the antisymmetry of the wave function into the projector, so its intrinsic ground state would be a fermionic state, which is the state we need for electrons.
+
+We achieve this by summing the contribution to all the permutations of the new proposed $\bm{R'}$:
 \begin{equation}
 \label{eq:ppp}
-\widetilde{G}_2(\bm{R'}, \bm{R},\tau)
-= \sum\limits_{\sigma\in P} \mathrm{sgn}(\sigma) \widetilde{G}_1(\sigma(\bm{R'}), \bm{R}, \tau)
+\widetilde{G}_2(\bm{R'}|\bm{R};\tau)
+= \sum\limits_{\sigma\in P} \mathrm{sgn}(\sigma) \widetilde{G}_1(\sigma(\bm{R'})|\bm{R};\tau)
 \end{equation}
 Here $P$ is the set of all the permutations of the set $\{x:x \in I, 1 \leq x \leq N\}$, $N$ is the number of electrons.
 $\mathrm{sgn}(\sigma)$ means the sign of a permutation, which equals to $+1$ if $\sigma$ is even and $-1$ if $\sigma$ is odd.
-$\widetilde{G}_1$ is the usual projector, which does not take into account the antisymmetricity of the wave function of the identical fermions.
+$\widetilde{G}_1$ is the usual projector, which does not take into account the antisymmetry of the wave function of identical fermions.
 
 $\widetilde{G}_1$ can either be the one from DMC as shown in Eq.~(\ref{eq:G1t}), or can be constructed using the pair actions from the path integral Monte Carlo (PIMC).
 
-When using the first approach, we need to use a nodeless guiding wave function $\Psi_G$ for $\Psi_T$ in $f$, otherwise, we are still imposing the fixed-node assumption, because the drifting term forbids the crossing of nodal surfaces.
+When using the one from DMC, we need to use a nodeless guiding wave function $\Psi_G$ for $\Psi_T$ in $f$, otherwise, we are still be imposing the fixed-node assumption, because the drifting term forbids the crossing of nodal surfaces.
 In doing so we will face a dilemma:
 One one hand, we want $\Psi_G$ to be as close to $|\Psi_T|$ as possible, so that the fluctuation in $E_L$ will become smaller and we will achieve a smaller uncertainty quicker.
-On the other hand, we have to smooth $|\Psi_T|$ near the nodal surfaces, and we wish the smooth area to be large so that the second derivative near the nodal surfaces can be smaller, which makes the walkers more stable.
+On the other hand, we have to smooth $|\Psi_T|$ near the nodal surfaces, and we wish the smooth over a large area so that the second derivative near the nodal surfaces can be smaller, which makes the walkers more stable.
 
 The rest of this report will be focusing on the second approach, which starts from pair actions.
-In this approach, we use
+
+In this approach, we use the following $G_1$ for calculating the sum in Eq.~(\ref{eq:ppp})
 \begin{align}
 \label{eq:G1ppp}
-\widetilde{G}_1 = \Psi_G(\bm{R'})G_1(\bm{R'}|\bm{R};\tau)/\Psi_G(\bm{R})\\
-G_1 =
-\prod\limits_{\alpha = 1}^{N_{\mathrm{nuc}}}\prod\limits_{i=1}^{N}
-p_{en}(\bm{r}_i'-\bm{r}_\alpha|\bm{r}_i-\bm{r}_\alpha;\tau)\\
-\prod\limits_{1\leq i < j \leq N}p_{ee}(\bm{r}_j'-\bm{r}_i'|\bm{r}_j-\bm{r}_i;\tau)
+\widetilde{G}_1 = & \Psi_G(\bm{R'})G_1(\bm{R'}|\bm{R};\tau)/\Psi_G(\bm{R})\\
+G_1 = &
+\prod\limits_{\alpha = 1}^{N_{\mathrm{nuc}}}\prod\limits_{k=1}^{N}
+p_{en}(\bm{r}_k'-\bm{r}_\alpha|\bm{r}_k-\bm{r}_\alpha;\tau)\nonumber\\
+ & \prod\limits_{1\leq i < j \leq N}p_{ee}(\bm{r}_j'-\bm{r}_i'|\bm{r}_j-\bm{r}_i;\tau)
 e^{E_T}
 \end{align}
-Where $p_{en}$ and $p_{ee}$ are the pair projectors representing electron-nuclei and electron-electron interactions respectively.
-They are the inverse of the pair action from PIMC.
-One advantage of starting from the pair actions is that, with the same $\tau$, the time step error in this approach shall be smaller than the first approach, because the pair actions are calculated with much smaller time steps.
+where $p_{en}$ and $p_{ee}$ are the pair projectors representing electron-nucleus and electron-electron interactions respectively.
+They are related to the pair actions by
+\begin{align}
+p_{en} = & e^{-u_{en}}\\
+p_{ee} = & e^{-u_{ee}}
+\end{align}
+One advantage of starting from the pair actions is that, with the same $\tau$, the time step error in this approach shall be smaller than the previous one, because the pair actions themselves are calculated with much smaller time steps.
 
-One method of obtaining the pair action is matrix squaring.
-It starts from an extremely small $d\tau = \tau/2^n$, obtain its pair action, and squaring this action to get the value corresponding to the $\tau$ we want.
+One typical method of obtaining the pair action is matrix squaring.
+It starts from an extremely small $d\tau = \tau/2^n$, obtain its transition matrix, and squaring this matrix repeatedly until we get to the $\tau$ we want.
 Here $n$ is some large positive integer.
-As $d\tau \to 0$, we can approximate the path with a straight line and obtain its action.
+When $d\tau \to 0$, we can approximate the path with a straight line and obtain its action through classical mechanics.
 
-The disadvange is that there will be an electron-electron action term, which forbids us from packing all the terms into a determinant and evaluate in $O(n^3)$ time.
-In other words, the computational cost of obtaining the exact pair product projector as shown in Eq.~(\ref{eq:ppp}) is $O(n!)$.
+The disadvantage of this approach is that the electron-electron action term forbids us from packing all the terms into a determinant, and therefore we cannot trivially evaluate it in $O(n^3)$ time as in the previous approach.
+In fact, the computational cost of obtaining the exact pair product projector as shown in Eq.~(\ref{eq:ppp}) is $O(n!)$.
+
 There maybe some algorithm capable of solving this in polynomial time.
-The equivalent form of this problem is:
-Suppose $M$ is a matrix of dimention $N^4$.
+The equivalent form of this problem can be described as follows:
+Suppose $M$ is a four dimention matrix with $N$ elements in each direction.
 Is there a polynomial time algorithm for calculating
 \begin{equation}
 \label{eq:algo}
 \sum\limits_{\sigma \in P}\prod\limits_{1\leq i < j \leq N}\mathrm{sgn}(\sigma)M_{i,j,\sigma(i),\sigma(j)}
 \end{equation}
 Here same as before, $P$ is the set of all the permutations.
-Although we have not found a polynomial time algorithm yet, there are some approximation algorithms that give results close to the exact sum.
+It does not seem to be an NP-hard problem, so there is a chance we can find some polynomial time algorithm for obtaining this sum.
+Although we have not found one yet.
 
-\section{Approximations}
+\subsection{Approximations}
 
-One approach to get an approximated sum is packing all the electron-nuclei actions into a determinant, which can be evaluated in $O(n^2)$, and use an average $U_{ee}$ for the electron-electron interaction.
+There are several approximation methods that can give results close to the exact sum in polynomial time.
+
+One method is to pack all the electron-nucleus actions into a determinant, which can be evaluated in $O(n^3)$, and use an averaged $U_{ee}$ for the electron-electron interactions.
 For example, we can use the following two approximated $U_{ee}$.
-\begin{center}
-\begin{eqnarray}
-U_{ee} = \sum\limits_{i<j}
+\begin{align}
+U_{ee} & = \sum\limits_{i<j}
 \frac{u_{ee}(\bm{r}_{ij}'|\bm{r}_{ij}';\tau) + u_{ee}(\bm{r}_{ij}|\bm{r}_{ij};\tau)}{2}\\
-U_{ee} = \sum\limits_{i<j}u_{ee}(\bm{r}_{ij}'|\bm{r}_{ij};\tau)
-\end{eqnarray}
-\end{center}
-Here $u_{ee}$ are the pair action.
-So the overall $G_2$ becomes
+U_{ee} & = \sum\limits_{i<j}u_{ee}(\bm{r}_{ij}'|\bm{r}_{ij};\tau)
+\end{align}
+Here $u_{ee}$ is the pair action.
+And the overall $G_2$ becomes
 \begin{equation}
 \label{eq:G2pppUee}
-G_2(\bm{R'}|\bm{R};\tau) =
+G_2(\bm{R'}|\bm{R};\tau) = |\bm{g}|e^{\tau E_T-U_{ee}}
+\end{equation}
+$\bm{g}$ is a matrix with elements describing the electron-nucleus interation
+\begin{equation}
+g_{ij} = \prod\limits_{\alpha = 1}^{N_{\mathrm{nuc}}}
+p_{en}(\bm{r}_j'-\bm{r}_\alpha|\bm{r}_i-\bm{r}_\alpha;\tau)
 \end{equation}
 
-\subsection{}
-\subsubsection{}
+A possibly better way to incorporate the electron-electron interactions is to put them into the determiant as well.
+It is better because the electron-electron interactions can vary significantly depends on the permutation.
+In this case, the overall $G_2$ is
+\begin{equation}
+\label{eq:G2pppUee3}
+G_2(\bm{R'}|\bm{R};\tau) = |\bm{g}|e^{\tau E_T}
+\end{equation}
+
+We can prove that there is no way to pack all the electron-electron interaction terms linearly into $\bm{g}$ and generate the exact permutation as shown in Eq.~(\ref{eq:ppp}) for any $N>2$.
+This is essentiall the same as assigning weights of each pair action to each element of the determinant and make the final expression to have the same interaction terms as the exact one for each permutation.
+In other words, it is equivalent to solving a set of linear equations $A\bm{x}=\bm{b}$.
+And I have checked that except for $N=2$, $\mathrm{rank}[A] < \mathrm{rank}[A \bm{b}]$, which means there is no way to satisfy all the permutations with only one determinant.
+
+One way to get close to Eq.~(\ref{eq:ppp}) is using the following $g_{ij}$
+\begin{align}
+\label{eq:eq:gUee3}
+g_{ij} & =
+\left(\frac{\mu}{2\pi\tau} \right )^{3/2}e^{-\frac{-\mu(\bm{r}_j'-\bm{r}_i)}{2\tau}-w_{en}(\bm{r}_j',\bm{r}_i)-w_{ee}(\bm{r}_j', \bm{r}_i)}
+\end{align}
+where
+\begin{align}
+w_{en}(\bm{r}_j',\bm{r}_i) = &
+\sum\limits_{\alpha=1}^{N\mathrm{nuc}}u_{en}(\bm{r}_i'-\bm{r}_\alpha|\bm{r}_i-\bm{r}_\alpha;\tau)\\
+w_{ee}(\bm{r}_j',\bm{r}_i) = &
+\sum\limits_{k=2}^{N}p_{ee}(\bm{r}_j'-M(\bm{r}_j',\bm{r}_k')|\\
+ & \bm{r}_i-M(\bm{r}_i,\bm{r}_k);\tau)/2\\
+M(\bm{r}_i,\bm{r}_j) = &
+\left\{\begin{matrix}
+\bm{r}_k, k \neq i\\
+\bm{r}_1, k = i\\
+\end{matrix}\right.
+\end{align}
+
+In Fig.~\ref{fig:comp} we show the comparison between the approximated values and the exact pair product projector.
+The thinest line is the exact pair product projector.
+The thicker lines are the approximations.
+We can see that the contours of the approximation methods look similar to the exact projector.
+Although the absolute value of the peak in the first two approximations are not quite close to the exact one.
+The third approximation performs well in the cases we have examined.
+
+\begin{figure}
+\includegraphics[scale=0.8,clip,trim=0 0 23cm 0]{Test_3up_1=1_mod}%
+\caption{\label{fig:comp}
+Comparison of the approximated values with the exact pair product projector.
+This is computed with $\tau = 1$ and three up-spin electrons.
+The thinest line is the exact pair product projector.
+The thicker lines are the approximations.
+We can see that their contours are similar.
+}
+\end{figure}
+
+Finally, I have some preliminary thoughts of using random methods to approximate the permutation.
+Assuming that the identity permutation has the largest contribution to the final sum.
+We can start from the identity permutation and randomly swap the terms.
+When the contribution drops below a certain threshold, we go back and start from the identity permutation again.
+And in the end, we add up the contribution from all the unique permutations we have explored.
+This may reach the desired uncertainty within a polynomial time of $N$ and is trivially parallelizable.
+
+\subsection{Implementation}
+
+We implemented the exact pair product projector and the three approximation methods in Fortran.
+This implementation has been added into CHAMP, the QMC package we are developing.
+
+The code starts with reading in the input file which describes the calculation to be performed.
+And then it loads the corresponding pair actions that are pre-calculated with PIMC and interpolates them with a 2D cubic spline.
+This includes both the electron-electron actions and the electron-nucleus actions.
+
+Next, it calculates the pair product projector with either the fully antisymmetrized version or one of the three approximations mentioned above according to the command-line input.
+The fully antisymmetrized method are evaluated with a recursive function.
+It takes $\Theta(N!)$ time and $\Theta(N)$ additional space.
+The other methods use determinants to simplify the permutation calculation.
+The determinants of the matrices are obtained with Gaussian elimination, which takes $\Theta(N^3)$ time.
+
+\subsection{Stochastic Reconfiguration}
+
+Pair product projector solves the problem of projecting onto a bosonic state.
+However, it does not solve all the ``fermion sign problem''.
+In particular, since $\Psi_0$ and $-\Psi_0$ have the same ground state energy, walkers representing $\Psi_0$ and $-\Psi_0$ can build up and competing with each other, resulting in an extremely low signal-to-noise ratio.
+
+Fortunately, there is already a method to deal with this problem, the stochastic reconfiguration.
+
+We define a walker to be sign violating if $\widetilde{w}_i = w_it_i/g_i < 0$.
+$w_i$, $t_i$ and $g_i$ are the weight, the values of the trial and guiding wave functions respectively.
+Stochastic reconfiguration tries to reconfigure the weights of all the walkers while keeping the total weights and the expectation value of a pre-selected set of observables unchanged.
+Under these two constraints, we try to make the sign violation as little as possible.
+A typical observable that we usually will include is the energy.
+This procedure still has some bias, since the sign violation can be affected by the guiding wave function in each step.
+However, this bias shall be much smaller than the bias introduced by the fixed-node approximation.
 
 % If in two-column mode, this environment will change to single-column
 % format so that long equations can be displayed. Use
@@ -262,10 +362,7 @@ G_2(\bm{R'}|\bm{R};\tau) =
 % Use the figure* environment if the figure should span across the
 % entire page. There is no need to do explicit centering.
 
-\begin{figure}
-\includegraphics{Test_3up_1=1}%
-\caption{\label{}}
-\end{figure}
+
 
 % Surround figure environment with turnpage environment for landscape
 % figure
@@ -317,12 +414,15 @@ G_2(\bm{R'}|\bm{R};\tau) =
 %\section{}
 
 % If you have acknowledgments, this puts in the proper section head.
-%\begin{acknowledgments}
-% put your acknowledgments here.
-%\end{acknowledgments}
+\section{Acknowledgments}
+\begin{acknowledgments}
+I gratefully thank Cyrus Umrigar for helping me understand quantum Monte Carlo and leading me to this problem.
+I also gratefully thank all the other group members, including Mingtong Han, Matthew Otten, and Adam Holmes for the useful discussions and patient help.
+\end{acknowledgments}
 
 % Create the reference section using BibTeX:
-\bibliography{pppNotes}
+\nocite{*}
+\bibliography{ppp}
 
 \end{document}
 %

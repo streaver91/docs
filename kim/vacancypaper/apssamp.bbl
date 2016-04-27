@@ -144,15 +144,17 @@
   {H.}~\bibnamefont {Fujimoto}},  \emph {et~al.},\ }\href@noop {} {\bibfield
   {journal} {\bibinfo  {journal} {Metrologia}\ }\textbf {\bibinfo {volume}
   {48}},\ \bibinfo {pages} {S1} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
-\bibitem [{Note1()}]{Note1}%
+\bibitem [{\citenamefont {Burada}\ \emph {et~al.}(2009)\citenamefont {Burada},
+  \citenamefont {H{\"a}nggi}, \citenamefont {Marchesoni}, \citenamefont
+  {Schmid},\ and\ \citenamefont {Talkner}}]{burada2009diffusion}%
   \BibitemOpen
-  \bibinfo {note} {There is a nomenclature problem in the field. The
-  anisotropic part of the $1/R^3$ elastic field around a defect in an isotropic
-  medium has the $L=2$ symmetry of an electrical quadrupole, and is often
-  described as the elastic quadrupole field. But calling the isotropic part a
-  monopole field would be strange since it also decays as $1/R^3$. We believe
-  neither choice is very satisfactory, but the alternative of naming it after
-  Eshelby seems strange as well.}\BibitemShut {Stop}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~S.}\ \bibnamefont
+  {Burada}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {H{\"a}nggi}},
+  \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Marchesoni}}, \bibinfo
+  {author} {\bibfnamefont {G.}~\bibnamefont {Schmid}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {P.}~\bibnamefont {Talkner}},\ }\href@noop {} {\bibfield
+  {journal} {\bibinfo  {journal} {ChemPhysChem}\ }\textbf {\bibinfo {volume}
+  {10}},\ \bibinfo {pages} {45} (\bibinfo {year} {2009})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Bozhevolnyi}\ and\ \citenamefont
   {Volkov}(2001)}]{bozhevolnyi2001multiple}%
   \BibitemOpen

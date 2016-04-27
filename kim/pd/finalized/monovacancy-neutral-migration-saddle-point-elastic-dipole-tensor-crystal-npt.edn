@@ -3,7 +3,7 @@
 
   "property-title" "The elastic dipole tensor at the top of the energy barrier of vacancy migration at finite temperature and given stress state"
 
-  "property-description" "This quantity describes the long-range elastic distortion caused by the migration of the vacancy. Quantitatively, it is the negative of the derivative of the free energy with respect to the bulk strain (Gillan, 1983) at the top of the energy barrier during the vacancy migration."
+  "property-description" "This quantity describes the long-range elastic distortion caused by the vacancy at the migration saddle point. Quantitatively, it is the negative of the derivative of the free energy with respect to the bulk strain (Gillan, 1983) at the top of the energy barrier during the vacancy migration. Note that, unlike the energy barrier that is the difference in energy between the saddlepoint and the ground state, this does not subtract the elastic dipole of the ground state vacancy."
 
   "saddle-point-elastic-dipole-tensor" {
     "type"         "float"
@@ -11,13 +11,6 @@
     "extent"       [6]
     "required"     true
     "description"  "The [xx,yy,zz,yz,xz,xy] (i.e. [11,22,33,23,13,12]) components of the elastic dipole tensor at the top of the energy barrier during the vacancy migration. The orthonormal basis (<e_1>,<e_2>,<e_3>) used to express the tensor should be such that e_1 is in the direction of <a>, e_2 is in the direction of (<c> x <a>), and e_3 is in the direction of (<e_1> x <e_2>). The expected form should be [a b c d e f]."
-  }
-  "vacancy-migration-direction" {
-    "type"         "float"
-    "has-unit"     false
-    "extent"       [3]
-    "required"     true
-    "description"  "This quantity describes the direction of from the starting position of the vacancy to the ending position of the vacancy. It shall be expressed in fractional coordinates relative to the conventional unit cell and corresponds to 'vacancy-position-start', with the absolute value of the fractional coordinates add up to one. If there are several equivalent migration directions, the largest fractional x, y and z coordinates are taken."
   }
   "missing-atom-species" {
     "type"         "string"
