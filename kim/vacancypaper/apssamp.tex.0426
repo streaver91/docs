@@ -27,7 +27,7 @@
 %frontmatterverbose,
 %preprint,
 %showpacs,preprintnumbers,
- nofootinbib,
+%nofootinbib,
 %nobibnotes,
 %bibnotes,
  amsmath,amssymb,
@@ -91,11 +91,6 @@ breakindent=0pt
 \affiliation{
   Department of Physics and Laboratory of Atomic and Solid State Physics\\
   Cornell University, Ithaca, NY 14853, USA
-}
-\author{Noam Bernstein}
-\affiliation{
-  Center for Computational Materials Science\\
-  Naval Research Laboratory, Washington, DC 20375, USA
 }
 \author{Ryan Elliott}
 \author{Ellad Tadmor}
@@ -189,37 +184,11 @@ They are also the dominant flow mechanism under external fields, such as gravity
 And in metrology, some scientists propose to use \ce{^{28}Si} for a new definition of kilogram, and obtaining the equilibrium vacancy concentration is a crucial part of this work \cite{andreas2011counting}.
 % As mentioned in their report, they have achieved an accuracy below $5~\mu\gram$ in the $1~\kilogram$ mass determination, and the point defect correction is as large as $24.3(3.3)~\mu\gram$ \cite{andreas2011counting}.
 
-% FROM JIM EMAIL
-
-Defects in crystals not only have a free energy, describing the cost of formation, but they also have an environmental impact through the generation of long-range fields.
-Cracks have mode~I, mode~II, and mode~III stress and strain fields; dislocations have strain fields determined by their orientation and Burger's vector, and so on.
-The long-range electrical impact of a point defect is described at lowest order by its charge, and to higher order by by a charge multipole series;
-the long-range magnetic impact is partly the direct dipolar interaction between local moments and mostly the RKKY-type interactions mediated by conduction electrons.
-Neither of these are part of the current KIM potentials, although there are plans to incorporate charge states of atomic species in the next release.
-The long-range elastic environmental impact of our vacancies will thus be described at lowest order by the {\em elastic dipole} field -- a strain field induced by the vacancy that dies $1/R^3$ like the electrical dipole field.%
-\footnote{
-There is a nomenclature problem in the field.
-The anisotropic part of the $1/R^3$ elastic field around a defect in an isotropic medium has the $L=2$ symmetry of an electrical quadrupole, and is often described as the elastic quadrupole field.
-But calling the isotropic part a monopole field would be strange since it also decays as $1/R^3$.
-We believe neither choice is very satisfactory, but the alternative of naming it after Eshelby seems strange as well.
-}
-We thus calculate these elastic dipole fields, as well as the vacancy creation energy.
-
-Each defect will have an environmental dependence as well.
-Vacancies in electric fields have a direct Coulomb force in insulators, and an important electromigration forces from the `electron wind' in metals (which may be in the opposite direction from the electrical current); neither is accessible in the current KIM potentials.
-The pressure dependence of the vacancy creation energy, and the energy change due to external stresses, will be given by its elastic dipole field (discussed above).
-Our vacancy will diffuse due to pressure gradients and concentration gradients, with a rate given by the free energy barrier to motion (which we also calculate).
-In turn, the pressure or stress dependence of the free energy will be determined by the difference between the vacancy's elastic dipole in the ground state and at the saddlepoint for the motion, which we also calculate.
-The entropic effects of vibrations at the ground state and saddlepoint, needed for the complete transition-state estimate for the prefactor of the diffusion constant~\cite{burada2009diffusion}, will in general depend upon whether the system described is a classical simulation or a quantum solid, and goes beyond the purview of our work here.
-
-% END FROM JIM
-
-
 In order to assess how each interatomic potential model performs in vacancy-related simulations, we calculate the most important monovacancy properties for all the elements and all the simple crystal structures predicted by the interatomic potential models available on OpenKIM at this time.
 The properties we calculate include the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), and the saddle point elastic dipole tensor (SPEDT) and defect strain tensor (SPDST).
 VFE and VME give us the local energy change.
 VRV and the four tensors describe the long-range environmental impact.
-The OpenKIM website properties page\footnote{OpenKIM website properties page url: \url{https://openkim.org/properties}} provides a brief description to these quantities.
+The OpenKIM website properties page \url{https://openkim.org/properties} provides a brief description to these quantities.
 Sec.~\ref{sec:method} describes the method we used to obtain these quantities.
 The structures we calculate include sc, fcc, bcc, diamond, and hcp.
 The results can be compared with data from other sources, such as the density function theory (DFT), the quantum Monte Carlo (QMC), and the experiments, and provide use information when selecting interatomic models for vacancy-related simulations.
@@ -241,7 +210,7 @@ And Sec.~\ref{sec:conclusion} concludes this paper.
 \section{\label{sec:method}Methodology}
 
 In this section, we explain how we calculate the monovacancy properties, including the vacancy formation energy (VFE), the vacancy migration energy (VME), the vacancy relaxation volume (VRV), the elastic dipole tensor (EDT), the defect strain tensor (DST), and the saddle point elastic dipole tensor (SPEDT) and defect strain tensor (SPDST).
-For a brief description of these quantities, you can check the OpenKIM website properties page.
+For a brief description of these quantities, you can check the OpenKIM website properties page \url{https://openkim.org/properties}.
 
 The calculation is based on OpenKIM \cite{openkim2016} and the Atomic Simulation Environment (ASE) \cite{bahn2002object}.
 The code can be found in the OpenKIM repository with ID \lstinline{TD_000000000000} (TODO).
@@ -254,36 +223,7 @@ f = f_0 + n_dE_d + \frac{1}{2}n_d^2E_{dd} + \frac{1}{2}C_{ijkl}\epsilon_{ij}\eps
 where $n_d$ is the defect concentration, $\epsilon_{ij}$ is the bulk strain, $E_d$ is the vacancy formation energy, $E_{dd}$ describes the energy from defect interaction, $C_{ijkl}$ is the elastic stiffness tensor, and $G_{ij}$ is the elastic dipole tensor.
 $f_0$ is the chemical potential. If $n$ is the number of atoms per unit volume and $E_0$ is the cohesive energy per atom corresponding to a perfect crystal (what we defined as the reservoir), then $f_0 = (n - n_d) E_{0}$.
 
-It is worthwhile to examine the physical meaning behind each terms.
-We assume the vacancies only interact with each other through the strain field and that the nonlinear behavior of the elasticity is negligible.
-Then for a unit volume, the total cohesive energy can be described by
-\begin{equation}
-\label{eq:f_explain}
-f =  \int_V E_{\mathrm{chemical}} + \frac{1}{2}C_{ijkl}\widetilde{\epsilon}_{ij}\widetilde{\epsilon}_{kl} dV
-\end{equation}
-Here $\widetilde{\epsilon}$ is the strain corresponds to each $dV$, which consists of the bulk strain $\epsilon$, the strain caused by the nearest vacancy $\widetilde{\epsilon}_V$ and other vacancies $\widetilde{\epsilon}_I$.
-\begin{equation}
-  \widetilde{\epsilon}_{ij} = \epsilon_{ij} + \widetilde{\epsilon}_{V,ij} + \widetilde{\epsilon}_{I,ij}
-\end{equation}
-Thus
-\begin{align}
-  \widetilde{\epsilon}_{ij}\widetilde{\epsilon}_{kl}
-  = & \epsilon_{ij}\epsilon_{kl} + \widetilde{\epsilon}_{V,ij}\widetilde{\epsilon}_{V,kl}
-  + 2\epsilon_{ij}\widetilde{\epsilon}_{V,kl}
-  + I(\epsilon, \widetilde{\epsilon}_{V}, \widetilde{\epsilon}_{I})
-\end{align}
-The first term is the energy due to the bulk strain.
-The second term together with the change in $E_\mathrm{chemical}$ give $E_d$.
-Since both of them peak at the vacant sites and drop rapidly when moving away, $\partial f /\partial E_d \propto n_d$.
-The third term gives how the formation energy change with respect to the bulk strain, and thus represents $G$.
-For the similar reason as mentioned above, $\partial f/\partial G \propto n_d$.
-And the last term, which includes all the remaining terms in the expansion, represents the interaction $E_{dd}$.
-To see how the total interaction energy changes, we first notice the strength of $\widetilde{\epsilon}_I$ is proportional $n_d$ because of the superposition in linear elasticity.
-In addition, note that if the vacant sites form a Bravais lattice, which is the configuration we are using in our calculation, the peak of these $\widetilde{\epsilon}_I$ will also occur on these lattice points.
-Therefore the number of peaks is proportional to $n_d$ as well.
-So the overall interaction energy, to the lowest order approximation, is related to $f$ by $\partial f/\partial E_{dd} \propto n_d^2$.
-
-From Eq.~(\ref{eq:f}), the negative derivative of $f$ with respect to $n_d$ under zero strain gives the vacancy formation energy
+The negative derivative of $f$ with respect to $n_d$ under zero strain gives vacancy formation energy
 \begin{equation}
   \label{eq:VFE0}
   \mathit{VFE} = E_d = \left.\frac{\partial f}{\partial n_d}\right|_{\epsilon = 0} + E_{0} - n_d E_{dd}
@@ -297,7 +237,6 @@ Here $E_{V_0, d}$ and $E_{V_0}$ are the free energy of the supercell with and wi
 And we define the expression in the middle as $g(V_0)$, thus $\mathit{VFE} = g(\infty)$.
 We obtain this $g(\infty)$ through extrapolation.
 The uncertainty of this value is the root sum square of the uncertainty from the extrapolation and the uncertainty from the atomistic relaxation.
-
 
 The negative derivative of $f$ with respect to strain gives the stress
 \begin{equation}
@@ -369,6 +308,118 @@ The position of the vacancy (or any point defect) is the point, where, if we cha
 Appendix~\ref{app:position} provides a more detailed explanation.
 This has been adopted as the KIM property definition for vacancy position.
 
+% Fig.~\ref{fig:VFEFitting} is a plot of VFE versus $1/n$, calculated with the EAM model of aluminum from Mishin and Farkas \cite{mishin1999interatomic}.
+% In this case, $A_0 = \unit{0.67515(1)}{\electronvolt}$ and $A_3 = \unit{-0.3644(27)}{\electronvolt}$, which implies that the monovacancy formation energy is \unit{0.67515(1)}{\electronvolt}.
+% The linear relationship shown in this figure and the adjusted R-square of 0.99978 in the fitting validate our extrapolation.
+
+%
+%
+% We first obtain the lattice constants through energy minimization, and then use this value to build several periodically repeated supercells of different sizes.
+% For each supercell, we use the following algorithm to obtain the desired properties:
+%
+% \begin{enumerate}
+%  \item Obtain the potential energy and volume of this supercell, $E_0$ and $V_0$.
+%  \item Remove an atom, relax the positions of the other atoms (keep the size of the supercell fixed) and obtain the new potential energy, $E_1$.
+%  \item Calculate the vacancy formation energy by:
+%  \begin{equation}
+%  \label{eq:vfecalc}
+%  \mathit{VFE} = E_1 - E_0 \times \frac{n - 1}{n}
+%  \end{equation}
+%  where $n$ is the number of atoms in the original supercell.
+%  \item Move one atom to the vacant site from the nearest neighbors and use the nudged elastic band (NEB) method to obtain the saddle point energy, $E_2$.
+%  \item Calculate the vacancy migration energy by:
+%  \begin{equation}
+%  \label{eq:vmecalc}
+%  \mathit{VME} = E_2 - E_1
+%  \end{equation}
+%  \item Relax the size of the supercell and obtain the relaxation volume.
+% \end{enumerate}
+%
+% Finally, we extrapolate these results to get the dilute limit.
+% The extrapolation is based on the elastic theory \cite{landau2013course}, according to which all the quantities that we are interested in scale approximately as
+% \begin{equation}
+% \label{eq:extrapolation}
+% A_0 + \frac{A_3}{n}
+% \end{equation}
+% where $n$ is the number of atoms in a supercell \cite{freysoldt2014first}, and $A_0$ and $A_3$ are the constants to be determined.
+% $A_0$ is the dilute limit we want.
+%
+% We can prove this scaling relationship as follows:
+% first of all, $n\propto R^3$, where $R$ is the size of the supercell, so Eq.~(\ref{eq:extrapolation}) is equivalent to $A_0+A_3/R^3$.
+% For simplicity, we ignore anisotropy and nonlinearity, and consider the supercell with a vacancy as a hollow sphere.
+% According to the elastic theory, the displacement vector of a hollow sphere of external and internal radii $R_1$ and $R_2$ with a pressure $p_1$ inside and $p_2$ outside is $\vec{u} = \left(ar + b / r^2\right)\hat{r}$, where
+% \begin{align}
+% a &= \frac{p_1R_1^3-p_2R_2^3}{R_2^3-R_1^3}\cdot\frac{1-2\sigma}{E}\\
+% b &= \frac{R_1^3R_2^3(p_1-p_2)}{R_2^3-R_1^3}\cdot\frac{1+\sigma}{2E}
+% \end{align}
+% Here $\sigma$ is the Poisson's ratio, $E$ is the Young's modulus, $p_2=0$, and, for VRV, $r=R_2$. Hence, we can get the $r$ component of $\vec{u}$
+% \begin{equation}
+% \label{eq:ur}
+% u_r = \frac{p_1R_1^3}{R_2^2}\cdot\frac{3\left(1-\sigma\right)}{2E}\left(1+\frac{R_1^3}{R_2^3}+O\left(\frac{1}{R_2^6}\right)\right)
+% \end{equation}
+% Therefore, the vacancy relaxation volume
+% \begin{equation}
+% \label{eq:VRVProof}
+% \begin{split}
+% \mathit{VRV} & = \frac{4}{3}\pi\left(R_2^3-(R_2-u_r)^3\right)\\
+%  & = 4\pi C_0\left(1 + \frac{R_1^3-C_0}{R_2^3} + O\left(\frac{1}{R_2^6}\right)\right)
+% \end{split}
+% \end{equation}
+% Here $C_0 = 3p_1R_1^3(1-\sigma)/2E$ is a constant.
+% Eq.~(\ref{eq:VRVProof}) indicates that VRV satisfies Eq.~(\ref{eq:extrapolation}).
+%
+% The strain and the stress of the hollow sphere are
+% \begin{align}
+% u_{rr} &= a - 2b/r^3\\
+% u_{\theta\theta} = u_{\phi\phi} &= a + b/r^3\\
+% \sigma_{rr} &= \frac{pR_1^3}{R_2^3-R_1^3}\cdot \left(1-\frac{R_2^3}{r^3}\right)\\
+% \sigma_{\theta\theta}=\sigma_{\phi\phi} &= \frac{p_1R_1^3}{R_2^3-R_1^3}\cdot\left(1+\frac{R_2^3}{r^3}\right)
+% \end{align}
+% From these we can obtain the vacancy formation energy
+% \begin{equation}
+% \label{eq:VFEProof}
+% \begin{split}
+% \mathit{VFE} & = \iiint_V \frac{1}{2} \left(u_{rr}\sigma_{rr} + u_{\theta\theta}\sigma_{\theta\theta} + u_{\phi\phi}\sigma_{\phi\phi}\right) dV\\
+%  & = 4C_1(1+\sigma)
+%  + 2C_1 C_2 \cdot\frac{R_1^3}{R_2^3}
+%  + O\left(\frac{1}{R_2^6}\right)
+% \end{split}
+% \end{equation}
+% where $C_1=p_1^2\pi R_1^3/(3E)$ and $C_2 = 5-4\sigma+(6\sigma-3) \log\left(R_1/R_2\right)$.
+% This proves that VFE scales approximately as Eq.~(\ref{eq:extrapolation}).
+%
+% Note that, for efficiency, our calculation of VFE is performed with a fixed-size supercell, not a stress-free one.
+% This will not affect the results, because the difference between the results from the two different boundary conditions is
+% \begin{equation}
+% \Delta E=\int pdV=\int B \frac{V-V_0}{V_0}dV\propto\frac{(V-V_0)^2}{V_0}
+% \end{equation}
+% where the numerator is $\mathit{VRV}^2=16\pi C_0^2+O(R_2^{-3})$, and the denominator is proportional to $R_2^3$.
+% This means $\Delta E$ also scales as $1/R_2^3$.
+%
+% VME is the energy difference between two configurations:
+% a crystal with a monovacancy, and a crystal with two monovacancies adjacent to each other and an extra atom somewhere between the two vacant sites.
+% The energy of the first configuration has just been proved to scale as Eq.~(\ref{eq:extrapolation}).
+% The second configuration can be considered as a superposition of three states:
+% two states correspond to the initial and final states of the migration, and the third one corresponds to the saddle point but with the two vacant sites filled up.
+% The proof of VFE can be applied directly to each of these states and give similar $R_2$ dependencies.
+% Therefore, VME also satisfies Eq.~(\ref{eq:extrapolation}).
+%
+% Fig.~\ref{fig:VFEFitting} is a plot of VFE versus $1/n$, calculated with the EAM model of aluminum from Mishin and Farkas \cite{mishin1999interatomic}.
+% In this case, $A_0 = \unit{0.67515(1)}{\electronvolt}$ and $A_3 = \unit{-0.3644(27)}{\electronvolt}$, which implies that the monovacancy formation energy is \unit{0.67515(1)}{\electronvolt}.
+% The linear relationship shown in this figure and the adjusted R-square of 0.99978 in the fitting validate our extrapolation.
+
+% \begin{figure}
+% \includegraphics[width=0.5\textwidth]{AlMishinVFEFitting}% Here is how to import EPS art
+% \caption{\label{fig:VFEFitting}
+%   Monovacancy formation energy (VFE) versus the inverse of the number of atoms ($n$) in a supercell, calculated with the embedded atom model (EAM) of aluminum from Mishin and Farkas \cite{mishin1999interatomic}.
+%   As we can see from this plot, there is a strong linear correlation between VFE and $1/n$.
+%   The adjusted R-square of the linear fitting is 0.99978.
+%   The intercept of the fitted line corresponds to VFE of the dilute limit $\unit{0.67515(1)}{\electronvolt}$.
+% }
+% \end{figure}
+%
+% The code that implements the whole algorithm is available in the OpenKIM repository \cite{openkim2016}, id: 554849987965.
+
 \section{\label{sec:results}Results and Discussion}
 
 All the results calculated in this work are available in the OpenKIM repository \cite{openkim2016} and can be either viewed directly on the website or downloaded through OpenKIM Query with the scripts provided in Appendix~\ref{app:data}.
@@ -379,7 +430,9 @@ We then explore how these quantities related to each other and to other elementa
 \subsection{\label{sec:calcvsref}Calculated Results Versus Reference Data}
 
 Fig.~\ref{fig:compare} compares our results and with the reference data from DFT calculations and experiments.
-
+% The red dots and the blue dots in these figures represent the reference data from DFT calculations and experiments, respectively.
+% The black symbols represent the results from atomistic simulations.
+% The type of the interatomic model is indicated by the shape of the symbol: the circles represent the embedded-atom method (EAM), the triangles represent the pairwise models, and the cross signs represent all the other types of models, such as the three-body models.
 \noindent\begin{figure*}
 \centering
 \noindent\ignorespaces
@@ -391,11 +444,11 @@ Fig.~\ref{fig:compare} compares our results and with the reference data from DFT
 \newline
 \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=1.0\textwidth]{hcp_vme_new}}
 \caption{\label{fig:compare}
- Comparison with the reference data.
+ Comparison of the results from our atomistic simulations and the reference data.
  % where Fig.~(a) and (b) are the results for fcc structures, and Fig.~(c) and (d) are the results for hcp structures.
  The `\#' sign next to the symbol of each element indicates whether the structure presented in the figure is the element's natural state.
  The error bars are smaller than the size of the symbols.
- See the OpenKIM model page for an interactive interface allowing investigation of the individual potentials for each symbol shown.
+ See the OpenKIM model page for an interactive interface allowing investigation of the individual potentials for each symbol shown at \url{openkim.org/intro-models/}.
 }
 \end{figure*}
 
@@ -414,6 +467,123 @@ For example, the three-body potentials give decent results for diamond silicon.
 
 In addition, several new models are also under active development and will be added into the OpenKIM repository soon, such as ... (TODO)
 The results for new models will be calculated automatically by the system once they are added.
+
+%
+%
+% the reason for the overestimation of VFE is likely to be that pairwise potentials could not give correct cohesive energy when there are changes in bond structures.
+%
+% tested that for Al, with Pair Morse potential, the cohesive energy is 2.70 eV, equals exactly to the unrelaxed formation energy, the relaxed formation energy is 2.43 eV, so the relaxation energy is 2.70 - 2.43 = 0.27 eV; With an EAM potential, the cohesive energy is 3.36 eV, while the unrelaxed formation energy is only 0.77 eV, different from cohesive energy. The relaxed formation energy is 0.68 eV, so the relaxation energy is 0.09 eV, smaller than the Pair Morse counterparts
+%
+% One explanation for the pairwise models to get larger VFE could be that pairwise models assume the strength of the bonds only depend on the distance between the two atoms and unable to account for the fact that the change in the number of bonds can also affect the strength of the bonds, and thus the energy.
+%
+% To see this in detail, we exam the unrelaxed vacancy formation energy, $\mathit{UnrelaxedVFE}$, which the vacancy formation energy without position relaxation.
+% It consists of three parts, which can be expressed by
+% \begin{equation}
+% \label{eq:vfedecomp}
+% \mathit{UnrelaxedVFE} = N\cdot E_{bond} + \sum\Delta E_{bond} - E_{coh}
+% \end{equation}
+% where $N$ is the number of bonds surrounding each atom.
+% The first term corresponds to the breaking of the bonds between the vacant site and its nearest neighbors.
+% We ignore the contribution from breaking the bonds between the vacant site and its second nearest neighbors because it is much smaller than the first term.
+% The second term corresponds to the energy change in the remaining bonds.
+% And the third term is the cohesive energy, corresponding to the $n-1$ in Eq.~(\ref{eq:vfecalc}), which also equals to $N\cdot E_{bond}/2$, as the energy of each bond is shared between the two atoms it connects.
+% For all the pairwise models, we shall have $\mathit{UnrelaxedVFE}\approx E_{coh}$, as $\sum\Delta E_{bond}$ is zero; while for all the models that do take changes in the surrounding environment into consideration besides the distance between two atoms, we shall have $\mathit{UnrelaxedVFE}$ significantly different from $E_{coh}$.
+% In Table~\ref{tab:cohvfe} we show our verification: the pairwise models do get similar values for $\mathit{UnrelaxedVFE}$ and $E_{coh}$, while other types of models get significantly different values.
+% \begin{table}[!b]
+% \caption{\label{tab:cohvfe}
+%  Relationship between the cohesive energy, $E_{coh}$, and the unrelaxed vacancy formation energy, $\mathit{UnrelaxedVFE}$, calculated for fcc structures with different types of models.
+%  We can see that the pairwise models do get similar values for these two items while other types of models do get significantly different values.
+%  All the models can be found in the OpenKIM repository by the ID numbers shown in the footnotes.
+% }
+% \begin{ruledtabular}
+% \begin{tabular}{l c c}
+%  Model & $E_{coh}/\electronvolt$ & $\mathit{UnrelaxedVFE}/\electronvolt$\\
+% \hline
+% Pairwise Al\footnotemark[1] & 2.7004 & 2.7004\\
+% Pairwise Cu\footnotemark[1] & 3.2741 & 3.2741\\
+% EAM Al\footnotemark[2] & 3.3599 & 0.7691\\
+% EAM Cu\footnotemark[3] & 3.5193 & 1.2196\\
+% EMT Al\footnotemark[4] & 3.2788 & 0.9806\\
+% EMT Cu\footnotemark[4] & 3.2213 & 1.2788\\
+% \end{tabular}
+% \end{ruledtabular}
+% \footnotetext[1]{(ID: 411898953661\_001(Al) and 673777079812\_001(Cu)) Morse pair potential with parameters from Girifalco and Weizer, 1959.}
+% \footnotetext[2]{(ID: 651801486679\_001) EAM Al potential with parameters from Mishin et al., 1999.}
+% \footnotetext[3]{(ID: 179025990738\_001) EAM Cu potential with parameters from Ackland et al., 1987.}
+% \footnotetext[4]{(ID: 118428466217\_002) EMT implementation in ASAP by Jacobsen et al.}
+% \end{table}
+%
+% ===(Draft of draft below this line)===
+%
+% In Table~\ref{tab:cohvfe}, we show an example of fcc copper: as we move the atom next to the vacant slight away from the original position, the change in the cohesive energy according to the EAM potential is about 40\% smaller than the value according to the pairwise potential.
+% This implies that as we create vacancy and remove bonds, the strength of the remaining bonds may decrease.
+% We propose that the vacancy formation energy can be expressed as
+% \begin{equation}
+% \label{eq:vfedecomp}
+% \mathit{VFE} = E_{cohesive} + \Delta E_{bonds, all} + \Delta E_{relaxation}
+% \end{equation}
+% Where $\Delta E_{bonds, all}$ is the change in the bond energy and the $\Delta E_{relaxation}$ is the change in energy due to position relaxation.
+% When we remove an atom, all the bonds associated with that atom are also removed, which means the energy change is $n \times E_{bond}$, where $n$ is the number of bonds surround each atom and $E_{bond}$ is the energy of a single bond.
+% Since each bond is associated with two atoms, thus the cohesive energy, $E_{cohesive}$, of an atom shall be the energy of half of the bonds associated with the atom, that is $n \times E_{bond}/2$.
+% Compare with Eq.~(\ref{eq:vfecalc}), we can get the first $E_{cohesive}$ term in Eq.~\ref{eq:vfedecomp}.
+% For pairwise potentials, $\Delta E_{bonds, all}$ is zero and $\Delta E_{relaxation}$ is usually much smaller than $E_{cohesive}$, so the vacancy formation energy according to them will be very close to the cohesive energy.
+% This can be verified with our data.
+% For example, with a pairwise potential for fcc copper, we will get the cohesive energy is 3.27 eV and the vacancy formation energy is 3.02 eV. We have also verified that without relaxation (no $\Delta E_{relaxation}$), the unrelaxed vacancy formation energy is also 3.27 eV, same as $E_{cohesive}$.
+%
+% \begin{table}
+% \caption{\label{tab:cu}
+%  Change in the cohesive energy of fcc copper as we move the atom next to the vacant slight slightly along the $x$ direction away from the original position.
+% }
+% \begin{ruledtabular}
+% \begin{tabular}{c c c}
+%  Displacement (\AA) & EAM\footnotemark[1] (eV) & Pairwise\footnotemark[2] (eV)\\
+% \hline
+% 0.01 & 0.000 & 0.000 \\
+% 0.02 & 0.001 & 0.002 \\
+% 0.04 & 0.005 & 0.009 \\
+% 0.08 & 0.021 & 0.037 \\
+% 0.16 & 0.092 & 0.148 \\
+% 0.32 & 0.407 & 0.596 \\
+% 0.64 & 1.649 & 2.440 \\
+% 1.28 & 5.383 & 9.306 \\
+% 2.56 & 13.37 & 41.91 \\
+% 5.12 & 10.31 & 22.04 \\
+% \end{tabular}
+% \end{ruledtabular}
+% \footnotetext[1]{EAM\_Dynamo\_Ackland\_Tichy\_Cu.}
+% \footnotetext[2]{Pair\_Morse\_Shifted\_GirifalcoWeizer\_LowCutoff\_Cu.}
+% \end{table}
+%
+% For pairwise potentials, the bond energy per atom increase linearly with the number of bonds.
+% However, experiments show there is a quadratic relationship between them.
+% This implies that when we remove a bond, the strength of the remaining bonds will be weakened.
+% Therefore, the change in energy during position relaxation will be smaller than if the bond strength remains the same.
+% And this change in energy is exactly the main component of the vacancy formation energy.
+%
+% Other types of potentials sometimes also produce accurate results but are only available to a few elements.
+% This suggests that right now in general EAM is the most promising method for describing vacancy effects.
+% We believe there are several reasons why EAM outperforms other methods:
+% \begin{enumerate}
+% \item EAM incorporates the multibody effects, which is crucial for describing the interaction between atoms.
+% \item The training data for the EAM potentials usually includes both experimental data and DFT calculation results.
+% \item For the EAM potentials, most of the information contained in the training data is kept into the potential models, while for other fixed-form potentials, lots of information is lost during the fitting process.
+% \end{enumerate}
+%
+% In Table~\ref{tab:bestmodels}, we list the models currently available on OpenKIM that are most consistent with DFT and experiments.
+% They are selected based on the mean absolute percentage error (MAPE), a measure of prediction accuracy of models used in statistics, which in this case is defined as the average relative error to our reference data
+% \begin{equation}
+% \label{eq:mape}
+% \mathit{MAPE} = \frac{1}{n}\sum_i\left|\frac{C_i-R_i}{R_i}\right|
+% \end{equation}
+% Here $n$ is the number of reference data available for the items we successfully calculate, $C_i$ is the calculated value, and $R_i$ is the reference value.
+% The value of $\mathit{MAPE}$ for each model in this table is shown in column 4.
+% Note that in our reference data, the mean absolute percentage error between the DFT results and experimental results is 27.87\%.
+% Comparing to this, we can see that for most of the elements in this table, there exists a potential that can produce reasonably accurate results.
+% These potentials are all good candidates for atomistic simulation when vacancy effects are significant.
+%
+% We can also see from these two tables that for nearly all the elements that have EAM potentials, the EAM potentials are selected as the best models in Table~\ref{tab:bestmodels} according to the criteria above.
+% Only in very few cases, other types of potentials perform better than the EAM potentials.
+% This is consistent with our previous analysis.
 
 \subsection{\label{sec:calcvsprop}Relationships Between Properties}
 
@@ -491,6 +661,62 @@ This downward trend is also consistent with the intuition that the energy needed
 The results above are from fcc structures and the models available on OpenKIM at this time.
 Appendix~\ref{app:data} provides Python scripts for retrieving the data from the OpenKIM repository, which can be used to obtain the relationships for all the structures with the latest data.
 
+% \begin{table}
+% \caption{\label{tab:relation}
+%  Relationships between vacancy properties and other elemental properties.
+% }
+% \begin{ruledtabular}
+% \begin{tabular}{c | c | c}
+%   \multicolumn{3}{c}{Formation Energy versus Cohesive Energy} \\
+%   structure & slope & intercept \\
+%   % \multirow{5}{*}{Vacancy Formation Energy} & \multirow{5}{*}{Cohesive Energy} & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & sc & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & bcc & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & fcc & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & diamond & (0.00\pm0.00) & (0.00\pm0.00) \\
+%   % & & hcp & (0.00\pm0.00) & (0.00\pm0.00) \\
+%  sc & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  fcc & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  bcc & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  diamond & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  hcp(1,0,0) & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+%  hcp(0,0,1) & $(0.00\pm0.00)$ & $(0.00\pm0.00)$ \\
+% \end{tabular}
+% \end{ruledtabular}
+% \end{table}
+
+%
+% We plot the vacancy property results from our atomistic simulation against cohesive energy and bulk modulus in Fig.~\ref{fig:vsenergy}.
+% Both the cohesive energy and bulk modulus are obtained from the Materials Project \cite{jain2013commentary,de2015charting}.
+% Here we use the same symbol as in Fig.~\ref{fig:compare}: the circles represent embedded-atom method (EAM), the triangles represent pairwise potentials, and the cross signs represent all the other types of potentials, such as three-body potentials.
+%
+% We can see from these plots that as cohesive energy increases, vacancy formation energy and migration energy also increase.
+% This is consistent with previous results from DFT \cite{angsten2014elemental}.
+% %
+%
+% \begin{figure*}
+% \centering
+% \noindent\ignorespaces
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_energy_fcc}}\hfill
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_energy_fcc}}
+% \newline
+% \noindent\ignorespaces
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_energy_hcp}}\hfill
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_energy_hcp}}
+% \newline
+% \noindent\ignorespaces
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_bulk_fcc}}\hfill
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_bulk_fcc}}
+% \newline
+% \noindent\ignorespaces
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vfe_bulk_hcp}}\hfill
+% \subfloat[][]{\includegraphics[trim=0 0 0 0,clip,width=0.48\textwidth]{vme_bulk_hcp}}
+% \caption{\label{fig:vsenergy}
+%  VFE and VME versus cohesive energy and bulk modulus.
+% }
+% \end{figure*}
+
+
 \section{\label{sec:conclusion}Conclusion}
 
 In this study, we try to solve the problem of assessing the quality of interatomic models in terms of their ability to describe vacancy-related properties.
@@ -507,6 +733,17 @@ And finally, we looked into how these properties related to each other and to ot
 We got consistent results with physics intuition and previous studies, which further support the reliability of our results and these relationships.
 These relationships can provide additional information for choosing models and screening structures.
 
+% \section{\label{sec:conclusion}Future Works}
+%
+% First of all, more accurate reference data will be extremely beneficial for improving the accuracy of our assessment.
+% This may be done by improvements in the algorithm used in DFT calculations or the procedure used in experiments.
+% The usage of other computational methods, such as quantum chemistry methods or quantum Monte Carlo may also help.
+%
+% In addition, the way we select the best models also worth further exploration.
+% The measure used in this study is the mean absolute percentage error, which is widely used but has some biases \cite{mayer1993statistical}.
+% It is possible that through some statistical analysis we can get a more suitable measure for this specific situation, and select the best model to perform the calculation we need accordingly, or select multiple models to perform the same calculation and assigning different weight to the result produced by each model accordingly and calculate the weighted average as the final result \cite{frederiksen2004bayesian}.
+%
+% Finally, for models with tunable parameters, it would be beneficial to have a unified system that can give the best parameter set (or sets) based on the reference data and the requirement of the user.
 %
 % \begin{acknowledgments}
 % We wish to acknowledge the support of the author community in using
@@ -538,18 +775,18 @@ Here $\bm{P}^{(k)}$ are the multipoles corresponds to $\bm{x'}$,
   P_j^{(0)} = \sum_{v=1}^N F_j^v = 0
 \end{equation}
 \begin{equation}
-  P_{kj}^{(1)} = \sum_{v=1}^N (x'_k-l_k^v) F_j^v = \sum_{v=1}^N -l_k^v F_j^v
+  P_{kj}^{(1)} = \sum_{v=1}^N (l_k^v-x'_k) F_j^v = \sum_{v=1}^N l_k^v F_j^v
 \end{equation}
 \begin{align}
-  P_{klj}^{(2)} & = \sum_{v=1}^N (x'_k-l_k^v) (x'_l-l_l^v) F_j^v \nonumber \\
-  & = \sum_{v=1}^N l_k^vl_l^v F_j^v + x'_k P_{lj}^{(1)} + x'_l P_{kj}^{(1)}
+  P_{klj}^{(2)} & = \sum_{v=1}^N (l_k^v-x'_k) (l_l^v-x'_l) F_j^v \nonumber \\
+  & = \sum_{v=1}^N l_k^vl_l^v F_j^v - x'_k P_{lj}^{(1)} - x'_l P_{kj}^{(1)}
 \end{align}
 
 $\bm{P}^{(1)}$ is the force dipole.
 It is independent of the $\bm{x'}$ we choose.
 Also, it is symmetric, because the torque on the system
 \begin{equation}
-  \tau_i = \sum_{v=1}^N l_j^v F_k^v - l_k^v F_j^v = -P_{jk}^{(1)} + P_{kj}^{(1)} = 0
+  \tau_i = \sum_{v=1}^N l_j^v F_k^v - l_k^v F_j^v = P_{jk}^{(1)} - P_{kj}^{(1)} = 0
 \end{equation}
 Therefore, $\bm{P}^{(1)}$ is diagonalizable.
 
@@ -558,10 +795,18 @@ Although we can perform multipole expansion with respect to any $\bm{x'}$, we ho
 Therefore, we propose using the following criteria:
 choose $\bm{x'}$ such that, in the basis where $\bm{P}^{(1)}$ is a diagonal matrix,
 \begin{equation}
-  P_{iii}^{(2)} = \sum_{v=1}^N (x'_i-l_i^v)^2 F_i^v = 0
+  P_{iii}^{(2)} = \sum_{v=1}^N (l_i^v-x'_i)^2 F_i^v = 0
 \end{equation}
 This gives an unambiguous definition for $\bm{x'}$ and also makes $\bm{x'}$ the center of the forces.
 And it is consistent with the case where the symmetry is preserved.
+
+% \section{Property Description}
+% \label{app:definition}
+% In this section, we provide a brief description to some of the quantities in our results.
+% For formal property definitions, please check the OpenKIM website \url{https://openkim.org/properties}.
+%
+% The formation of a vacancy
+
 
 \section{Obtaining Results From OpenKIM}
 \label{app:data}
@@ -633,7 +878,7 @@ The code above has been tested in the Python 2.7 version of Anaconda 4.0.0.
 % most likely will not want to use it.
 \nocite{*}
 
-\bibliography{vacancy}% Produces the bibliography via BibTeX.
+\bibliography{apssamp}% Produces the bibliography via BibTeX.
 
 \end{document}
 %
