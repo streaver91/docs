@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 APR 2016 17:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 APR 2016 21:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1092,7 +1092,7 @@ Underfull \hbox (badness 1264) in paragraph at lines 504--508
 Here is how much of TeX's memory you used:
  16170 strings out of 493089
  285631 string characters out of 6134842
- 703323 words of memory out of 5000000
+ 703348 words of memory out of 5000000
  19424 multiletter control sequences out of 15000+600000
  20352 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1123,7 +1123,7 @@ texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texli
 ve/2015/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on vacancy.pdf (9 pages, 1993359 bytes).
+Output written on vacancy.pdf (9 pages, 1993405 bytes).
 PDF statistics:
  798 PDF objects out of 1000 (max. 8388607)
  188 compressed objects within 2 object streams
