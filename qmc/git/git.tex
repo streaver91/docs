@@ -9,7 +9,7 @@
 
 \begin{document}
 \mainmatter
-\title{Summary of Git Workflow for Champ Developers}
+\title{Short Summary of Git Workflow for Champ Developers}
 \titlerunning{Summary of Git Workflow for Champ Developers}
 
 \author{Junhao Li}
@@ -20,12 +20,14 @@
 
 \section*{Introduction}
 
-
-
+This short summary is for people with experience in version control system, may or may not be git.
+For people familar with git, the focus shall be on our workflow and convention.
+For people not familiar with git, this summary is meant to be a starting point for contributing to Champ, but to take the full advantage of git, an understanding of the materials listed at the end of this summary is recommended.
 
 \section{Setup}
 
-You can install git via some basic package-management tool.
+You can install git via the usual package-management tool on your system.
+
 If you are on fedora, CentOS, or RedHat, you can use yum
 \begin{verbatim}
 sudo yum install git-all
@@ -69,7 +71,7 @@ When working on a new feature, you shall always create a new branch based on mas
 You can create new branches by
 \begin{verbatim}
 git checkout master  # Switch to master branch
-git branch dev-newfeature # Create a new branch called dev-newfeature
+git branch dev-newfeature # Create a new branch based on master
 git checkout dev-newfeature  # Switch to that branch
 \end{verbatim}
 As a convention, we prefix feature branches with ``dev-'' and bug fixing branches with ``fix-''.
@@ -87,8 +89,8 @@ git commit -am 'Fix xxx'  # Commit your changes
 ...
 \end{verbatim}
 As a convention,
-write the commit as if you are command someone,
-commit each small change you make (even one line, and usually smaller than 100 lines),
+write the commit messages in a tone as if you are commanding someone,
+commit each small change you make (sometimes even one line, and usually smaller than 100 lines),
 capitalize the first character,
 and always start with ``Fix'' if you are fixing something.
 
@@ -98,7 +100,7 @@ git checkout master  # Switch back to master
 git pull  # Obtain newest master from remote
 git branch fix-somebug # Create a new branch based on master
 git checkout fix-somebug  # Switch to that branch
-vim oldfile3
+vim oldfile3  # Dealing with the bug
 git commit -am 'Fix xxx' # Commit your changes
 ...
 # Now you finished and ready to merge the fix
@@ -107,22 +109,23 @@ git pull
 git merge fix-somebug  # Merge fix to master
 \end{verbatim}
 
-Then you can continue working on your new feature and merge it to the master branch when finished.
+Then you can switch back and continue your work on the new feature and merge it to the master branch when finished.
 Here is some commands you may use
 \begin{verbatim}
-git check dev-newfeature  # Switch back to the dev- branch
+git checkout dev-newfeature  # Switch back to the dev- branch
 git pull  # If someone else are also working on that branch
-vim oldfile4
+vim oldfile4  # Make some new changes
 git commit -am 'Change xxx'  # Commit your changes
 ...
 # Now you finished the new feature
 git checkout master  # Switch back to master again
 git pull
 git merge dev-newfeature  # Merge fix to master
+git branch -d dev-newfeature  # Delete branch
 \end{verbatim}
 
-All the commits and merges are local until you push them explicitly.
-To push to the remote,
+All the commits and merges are local until you push them to the remote server explicitly.
+To push to the remote, do
 \begin{verbatim}
 git push origin some-branch
 \end{verbatim}
@@ -134,22 +137,20 @@ git config credential.helper 'store'
 
 \section{Generall Workflow}
 
-For generall developers, to contribute to Champ, you first need to fork our repo on github.
-
-You can work on your forked repo (which you have full control) following the guidelines and conventions in Section \ref{sec:basic}.
+For generall developers, please fork our repo on github, and work on your forked repo (which you have full control) following the guidelines and conventions in Section \ref{sec:basic}.
 You can also add collaborators (give them push permission) to your repo and work together.
 
-Once finished and merged to the master branch in your forked repo, send us a pull request via github and we will look into merging your changes into our main repo.
+Once finished and merged to the master branch in your forked repo, send us a pull request via github, and we will look into merging your changes into our main repo.
 
 \section{Core Developers Workflow}
 
-Core developers will have the permission to push directly into our git repo.
-You can work on this repo directly.
+Core developers will have the permission to push directly into our main git repo.
+Therefore, you can merge your contribution into our repo directly, instead of using pull requests.
 
 Note that even if you have the permission to make changes directly on the master branch, you shall never do that.
 Instead, create a new branch, commit and push your changes to that new branch and merge with master when finished.
 
-You will also get pull requests from other developers.
+You will also deal with pull requests from other developers.
 In the case that there is no conflict, github can merge them directly once you or any other core developers approved.
 When there are conflicts, you have to do it manually by creating a new branch, pulling from their repo, and then merging with the master branch as you would normally do when merging your own changes.
 Here is some commands you may use
@@ -168,5 +169,22 @@ git checkout master
 git merge merge-otherdeveloper
 git push origin master
 \end{verbatim}
+
+We will also maintain a separate ``stable'' branch.
+Changes in the master branch shall be incorporated into the stable branch regularly.
+If you are not maintaining the stable branch, do not merge your changes into the stable branch directly.
+
+\section{Further Readings}
+
+This short summary is meant to get people started.
+Here is a list of useful information online that introduce more features and provides more details of the data model and various shortcuts in git.
+
+1. Git documentation: a comprehensive introduction of git. \url{https://git-scm.com/doc}
+
+2. Bitbucket wiki: useful commands and shortcuts in git. \url{https://bitbucket.org/petsc/petsc/wiki/quick-dev-git}
+
+3. Visual Git Reference: visual reference for the most common commands in git. \url{https://marklodato.github.io/visual-git-guide/index-en.html}
+
+
 
 \end{document}
