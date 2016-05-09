@@ -20,7 +20,7 @@
 
 \section*{Introduction}
 
-This short summary is for people with experience in version control system, may or may not be git.
+This short summary is for people with experience in version control system, which may or may not be git.
 For people familar with git, the focus shall be on our workflow and convention.
 For people not familiar with git, this summary is meant to be a starting point for contributing to Champ, but to take the full advantage of git, an understanding of the materials listed at the end of this summary is recommended.
 
@@ -59,7 +59,7 @@ Core developers can clone from and commit to our repo directly.
 
 \section{Branching and Merging}
 \label{sec:basic}
-We illustrate this through an example of fixing a small bug while working on a new feature.
+We illustrate this through an example of fixing a small bug in the original code while working on a new feature.
 
 Before you start, always get the newest version of the master branch
 \begin{verbatim}
@@ -74,7 +74,7 @@ git checkout master  # Switch to master branch
 git branch dev-newfeature # Create a new branch based on master
 git checkout dev-newfeature  # Switch to that branch
 \end{verbatim}
-As a convention, we prefix feature branches with ``dev-'' and bug fixing branches with ``fix-''.
+{\it As a convention, we prefix feature branches with ``dev-'' and bug fixing branches with ``fix-''.}
 
 Then you can make changes to the files and commit your changes to the new branch.
 \begin{verbatim}
@@ -88,13 +88,13 @@ vim oldfile2  # Suppose you fix something wrong in oldfile2
 git commit -am 'Fix xxx'  # Commit your changes
 ...
 \end{verbatim}
-As a convention,
-write the commit messages in a tone as if you are commanding someone,
+{\it As a convention,
+write the commit messages in the imperative mood, such as ``Fix xxx'' or ``Set xxx in xxx'',
 commit each small change you make (sometimes even one line, and usually smaller than 100 lines),
 capitalize the first character,
-and always start with ``Fix'' if you are fixing something.
+and always start with ``Fix'' if you are fixing something.}
 
-Suppose while you are working on this new feature, someone reported a bug and you want to deal with it first, you may use the following commands
+Suppose while you are working on this new feature, you find a bug in the original code and you want to deal with it first, you may use the following commands
 \begin{verbatim}
 git checkout master  # Switch back to master
 git pull  # Obtain newest master from remote
@@ -120,9 +120,13 @@ git commit -am 'Change xxx'  # Commit your changes
 # Now you finished the new feature
 git checkout master  # Switch back to master again
 git pull
-git merge dev-newfeature  # Merge fix to master
+git merge dev-newfeature  # Merge dev-newfeature to master
 git branch -d dev-newfeature  # Delete branch
 \end{verbatim}
+
+Note that the fix is not available to the dev-feature branch.
+If you need the fix to continue the development of the new feature, you can either merge the master branch to the dev-feature or rebase the dev-feature branch on the new master.
+Rebase will change the commitment history, so if you are not sure about rebase, use merge.
 
 All the commits and merges are local until you push them to the remote server explicitly.
 To push to the remote, do
@@ -169,10 +173,6 @@ git checkout master
 git merge merge-otherdeveloper
 git push origin master
 \end{verbatim}
-
-We will also maintain a separate ``stable'' branch.
-Changes in the master branch shall be incorporated into the stable branch regularly.
-If you are not maintaining the stable branch, do not merge your changes into the stable branch directly.
 
 \section{Further Readings}
 
