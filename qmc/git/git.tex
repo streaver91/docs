@@ -1,0 +1,157 @@
+\documentclass[runningheads,letterpaper]{llncs}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{upquote}
+
+\begin{document}
+\mainmatter
+\title{Summary of Git Workflow for Champ Developers}
+\titlerunning{Summary of Git Workflow for Champ Developers}
+
+\author{Junhao Li}
+\institute{Department of Physics, Cornell University}
+\authorrunning{Junhao Li}
+
+\maketitle
+
+\section*{Introduction}
+% TODO: Terminology
+Vous trouverez des informations pertinentes concernant ce gabarit (en anglais)
+dans le reste de ce document.
+
+The \LaTeX{} source of this instruction file for \LaTeX{} users may be
+used as a template. This is
+located in the ``authors'' subdirectory in
+\url{ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/instruct/} and
+entitled \texttt{typeinst.tex}. There is a separate package for Word
+users. Kindly send the final and checked source
+and PDF files of your paper to the Contact Volume Editor. This is
+usually one of the organizers of the conference. You should make sure
+that the \LaTeX{} and the PDF files are identical and correct and that
+only one version of your paper is sent. It is not possible to update
+files at a later stage. Please note that we do not need the printed
+paper.
+
+
+
+\section{Setup}
+
+You can install git via some basic package-management tool.
+If you are on fedora, CentOS, or RedHat, you can use yum
+\begin{verbatim}
+sudo yum install git-all
+\end{verbatim}
+If you are on a Debian-based distribution like Ubuntu, you can use apt-get:
+\begin{verbatim}
+sudo apt-get install git-all
+\end{verbatim}
+If you are on OS X, you can either download the installer from git website or use Homebrew
+\begin{verbatim}
+brew install git # You will need to install homebrew first
+\end{verbatim}
+
+After installation, set your name and email
+\begin{verbatim}
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+\end{verbatim}
+
+We host our code on github, so you will also need a github account.
+You can sign up for one at \url{github.com} if you do not have.
+
+\section{Basis Branching and Merging}
+
+We illustrate this through an example of fixing a small bug while working on a new feature.
+
+Always get the newest version of the master branch before you start by
+\begin{verbatim}
+git checkout master  # Switch to master branch
+git pull
+\end{verbatim}
+
+When working on a new feature, you shall always create a new branch based on master branch and then merge to the master branch when finished.
+You can create new branches by
+\begin{verbatim}
+git checkout master  # Switch to master branch
+git branch dev-newfeature # Create a new branch called dev-newfeature
+git checkout dev-newfeature  # Switch to that branch
+\end{verbatim}
+As a convention, we prefix feature branches with ``dev-'' and bug fixing branches with ``fix-''.
+
+Then you can make changes to the files and commit your changes to the new branch.
+\begin{verbatim}
+vim oldfile1
+vim oldfile2
+vim newfile
+git add newfile  # Make git track the newfile
+git status  # If you want to see files changed
+git commit -am 'Add xxx'  # Commit your changes
+vim oldfile2  # Suppose you fix something wrong in oldfile2
+git commit -am 'Fix xxx'  # Commit your changes
+...
+\end{verbatim}
+As a convention,
+write the commit as if you are command someone,
+commit each small change you make (even one line, and usually smaller than 100 lines),
+capitalize the first character,
+and always start with ``Fix'' if you are fixing something.
+
+Suppose you while you are working on this new feature, someone reported a bug and you want to deal with it first.
+\begin{verbatim}
+git checkout master  # Switch back to master
+git pull  # Obtain newest master from remote
+git branch fix-somebug # Create a new branch based on master
+git checkout fix-somebug  # Switch to that branch
+vim oldfile3
+git commit -am 'Fix xxx' # Commit your changes
+...
+# Now you finished and ready to merge the fix
+git checkout master  # Switch back to master again
+git pull
+git merge fix-somebug  # Merge fix to master
+\end{verbatim}
+
+Then you can continue working on your new feature.
+And when you finish, merge it to the master branch.
+\begin{verbatim}
+vim oldfile4
+git commit -am 'Change xxx'  # Commit your changes
+...
+# Now you finished the new feature
+git checkout master  # Switch back to master again
+git pull
+git merge dev-newfeature  # Merge fix to master
+\end{verbatim}
+
+All the commits are local until you push them explicitly.
+To push to the remote,
+\begin{verbatim}
+git push origin some-branch
+\end{verbatim}
+It will ask for username and password.
+You can save your credential information by
+\begin{verbatim}
+git config credential.helper 'store'
+\end{verbatim}
+
+\section{Core Developers Workflow}
+
+Core developers will have the permission to push directly into our git repo.
+
+When start working on a new feature or fix a bug, you first want to checkout the master branch and do a pull to get the latest changes.
+\begin{verbatim}
+git
+
+\end{verbatim}
+
+
+\section{Première section}
+
+Vous trouverez des informations pertinentes concernant ce gabarit (en anglais)
+dans le reste de ce document.
+
+\end{document}

@@ -1,6 +1,6 @@
 *.pdf
-apssamp.aux
-apssamp.log
+*.aux
+*.log
 *.opj
 *.bbl
 *.blg
