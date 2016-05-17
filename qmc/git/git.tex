@@ -9,8 +9,8 @@
 
 \begin{document}
 \mainmatter
-\title{Summary of Git Workflow for Champ Developers}
-\titlerunning{Summary of Git Workflow for Champ Developers}
+\title{Short Summary of Git Workflow for CHAMP Developers}
+\titlerunning{Summary of Git Workflow for CHAMP Developers}
 
 \author{Junhao Li}
 \institute{Department of Physics, Cornell University}
@@ -19,29 +19,69 @@
 \maketitle
 
 \section*{Introduction}
-% TODO: Terminology
-Vous trouverez des informations pertinentes concernant ce gabarit (en anglais)
-dans le reste de ce document.
 
-The \LaTeX{} source of this instruction file for \LaTeX{} users may be
-used as a template. This is
-located in the ``authors'' subdirectory in
-\url{ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/instruct/} and
-entitled \texttt{typeinst.tex}. There is a separate package for Word
-users. Kindly send the final and checked source
-and PDF files of your paper to the Contact Volume Editor. This is
-usually one of the organizers of the conference. You should make sure
-that the \LaTeX{} and the PDF files are identical and correct and that
-only one version of your paper is sent. It is not possible to update
-files at a later stage. Please note that we do not need the printed
-paper.
+This short summary is for people with experience in some version control system (which might not be git).
+For people familiar with git, this summary is meant to establish a common workflow and conventions.
+For people not familiar with git, this summary provides a starting point for contributing to CHAMP.
+In order to take the full advantage of git, it would be extremely helpful to read the materials listed at the end of this summary as well.
 
+\section{Terminology}
 
+This section introduce several key terminologies\footnote{Reference: Github.com}.
+
+\subsection{Branch}
+When you're working on a project, you're going to have a bunch of different features or ideas in progress at any given time – some of which are ready to go, and others which are not.
+Branching exists to help you manage this workflow.
+
+When you create a branch in your project, you're creating an environment where you can try out new ideas.
+Changes you make on a branch don't affect the master branch, so you're free to experiment and commit changes, safe in the knowledge that your branch won't be merged until it's ready to be reviewed by someone you're collaborating with.
+
+{\it Branching is a core concept in Git, and the entire GitHub Flow is based upon it. There's only one rule: anything in the master branch is always ready to be used in production.
+Because of this, it's extremely important that your new branch is created off of master when working on a feature or a fix.
+Your branch name should be descriptive so that others can see what is being worked on.}
+
+\subsection{Commits}
+
+Once your branch has been created, it's time to start making changes.
+Whenever you add, edit, or delete a file, you're making a commit, and adding them to your branch.
+This process of adding commits keeps track of your progress as you work on a feature branch.
+
+Commits also create a transparent history of your work that others can follow to understand what you've done and why.
+Each commit has an associated commit message, which is a description explaining why a particular change was made.
+Furthermore, each commit is considered a separate unit of change.
+This lets you roll back changes if a bug is found, or if you decide to head in a different direction.
+
+{\it Commit messages are important, especially since Git tracks your changes and then displays them as commits once they're pushed to the server. By writing clear commit messages, you can make it easier for other people to follow along and provide feedback.}
+
+\subsection{Pull Requests}
+
+Pull Requests initiate discussion about your commits.
+Because they're tightly integrated with the underlying Git repository, anyone can see exactly what changes would be merged if they accept your request.
+
+You can open a Pull Request at any point during the development process: when you have little or no code but want to share some screenshots or general ideas, when you're stuck and need help or advice, or when you're ready for someone to review your work.
+By using GitHub's @mention system in your Pull Request message, you can ask for feedback from specific people or teams, whether they're down the hall or ten time zones away.
+
+{\it Pull Requests are useful for contributing to open source projects and for managing changes to shared repositories.
+If you're using a Fork \& Pull Model, Pull Requests provide a way to notify project maintainers about the changes you'd like them to consider (For General Developers).
+If you're using a Shared Repository Model, Pull Requests help start code review and conversation about proposed changes before they're merged into the master branch (For Core Developers).}
+
+Once a Pull Request has been opened, the person or team reviewing your changes may have questions or comments.
+Perhaps the coding style doesn't match project guidelines, the change is missing unit tests, or maybe everything looks great and props are in order.
+Pull Requests are designed to encourage and capture this type of conversation.
+
+You can also continue to push to your branch in light of discussion and feedback about your commits.
+If someone comments that you forgot to do something or if there is a bug in the code, you can fix it in your branch and push up the change.
+GitHub will show your new commits and any additional feedback you may receive in the unified Pull Request view.
+
+Pull Request comments are written in Markdown, so you can embed images and emoji, use pre-formatted text blocks, and other lightweight formatting.
+Once merged, Pull Requests preserve a record of the historical changes to your code.
+Because they're searchable, they let anyone go back in time to understand why and how a decision was made.
 
 \section{Setup}
 
-You can install git via some basic package-management tool.
-If you are on fedora, CentOS, or RedHat, you can use yum
+You can install git via the usual package-management tool on your system.
+
+If you are on Fedora, CentOS, or RedHat, you can use yum
 \begin{verbatim}
 sudo yum install git-all
 \end{verbatim}
@@ -49,7 +89,7 @@ If you are on a Debian-based distribution like Ubuntu, you can use apt-get:
 \begin{verbatim}
 sudo apt-get install git-all
 \end{verbatim}
-If you are on OS X, you can either download the installer from git website or use Homebrew
+If you are on OS X, you can either download the installer online and run it, or use Homebrew
 \begin{verbatim}
 brew install git # You will need to install homebrew first
 \end{verbatim}
@@ -60,53 +100,66 @@ git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 \end{verbatim}
 
-We host our code on github, so you will also need a github account.
-You can sign up for one at \url{github.com} if you do not have.
+We host our code and collaborate on github, so you will also need a github account.
+You can sign up for one at \url{github.com} if you do not have one already.
 
-\section{Basis Branching and Merging}
+Finally, you can pull the repo from the github server onto your local machine and get the latest version of our code by
+\begin{verbatim}
+git clone https://github.com/....
+\end{verbatim}
+General developers shall fork our repo to their own github account and clone from that repo.
+Core developers can clone from and commit to our repo directly.
 
-We illustrate this through an example of fixing a small bug while working on a new feature.
+\section{Branching and Merging}
+\label{sec:basic}
+We illustrate this through an example of fixing a small bug in the original code while working on a new feature \footnote{Reference: {\it Git Pro}. \url{https://git-scm.com/book/en/v2}}.
 
-Always get the newest version of the master branch before you start by
+Before you start, always get the newest version of the master branch
 \begin{verbatim}
 git checkout master  # Switch to master branch
 git pull
 \end{verbatim}
 
-When working on a new feature, you shall always create a new branch based on master branch and then merge to the master branch when finished.
+When working on a new feature, you should always create a new branch based on master branch and then merge to the master branch when finished.
 You can create new branches by
 \begin{verbatim}
 git checkout master  # Switch to master branch
-git branch dev-newfeature # Create a new branch called dev-newfeature
+git branch dev-newfeature # Create a new branch based on master
 git checkout dev-newfeature  # Switch to that branch
 \end{verbatim}
-As a convention, we prefix feature branches with ``dev-'' and bug fixing branches with ``fix-''.
+{\it As a convention, we prefix feature branches with ``dev-'' and bug fix branches with ``fix-''.}
 
-Then you can make changes to the files and commit your changes to the new branch.
+Then, you can make changes to the files and commit your changes to the new branch.
 \begin{verbatim}
 vim oldfile1
 vim oldfile2
 vim newfile
 git add newfile  # Make git track the newfile
-git status  # If you want to see files changed
+git status  # If you want to check which files are changed
 git commit -am 'Add xxx'  # Commit your changes
 vim oldfile2  # Suppose you fix something wrong in oldfile2
 git commit -am 'Fix xxx'  # Commit your changes
 ...
 \end{verbatim}
-As a convention,
-write the commit as if you are command someone,
-commit each small change you make (even one line, and usually smaller than 100 lines),
+{\it As a convention,
+write the commit messages in the imperative mood (such as ``Fix xxx'' or ``Set xxx in xxx''),
+commit each small change you make (sometimes even one line, and usually smaller than 100 lines),
 capitalize the first character,
-and always start with ``Fix'' if you are fixing something.
+and always start with ``Fix'' if you are fixing something.}
 
-Suppose you while you are working on this new feature, someone reported a bug and you want to deal with it first.
+Suppose while you are working on this new feature, you find a bug in the original code and
+you want to deal with it immediately. You should use the following commands
 \begin{verbatim}
+git commit -am "Add xxx " # Commit your current changes
+or
+git stash # Stash your changes - this is necessary because git will not
+          # let you switch branches with uncommitted work
+
 git checkout master  # Switch back to master
 git pull  # Obtain newest master from remote
 git branch fix-somebug # Create a new branch based on master
 git checkout fix-somebug  # Switch to that branch
-vim oldfile3
+vim oldfile3  # Dealing with the bug
 git commit -am 'Fix xxx' # Commit your changes
 ...
 # Now you finished and ready to merge the fix
@@ -115,43 +168,87 @@ git pull
 git merge fix-somebug  # Merge fix to master
 \end{verbatim}
 
-Then you can continue working on your new feature.
-And when you finish, merge it to the master branch.
+Then you can switch back and continue your work on the new feature and merge it to the master branch when finished.
+Here is some commands you may use
 \begin{verbatim}
-vim oldfile4
+git checkout dev-newfeature  # Switch back to the dev- branch
+git pull  # If someone else are also working on that branch
+git stash apply # If git stash was used before the bug fix
+vim oldfile4  # Make some new changes
 git commit -am 'Change xxx'  # Commit your changes
 ...
 # Now you finished the new feature
 git checkout master  # Switch back to master again
 git pull
-git merge dev-newfeature  # Merge fix to master
+git merge dev-newfeature  # Merge dev-newfeature to master
+git branch -d dev-newfeature  # Delete branch
 \end{verbatim}
 
-All the commits are local until you push them explicitly.
-To push to the remote,
+Note that the fix is not available to the dev-feature branch.
+If you need the fix to continue the development of the new feature, you can either merge the master branch to the dev-feature or rebase the dev-feature branch on the new master.
+Rebase will change the commit history, so if you are not sure about rebase, use merge.
+
+All the commits and merges are local until you push them to the remote server explicitly.
+To push to the remote, do
 \begin{verbatim}
 git push origin some-branch
 \end{verbatim}
 It will ask for username and password.
-You can save your credential information by
+You can save your credential information so that you do not have to enter it every time by
 \begin{verbatim}
-git config credential.helper 'store'
+git config credential.helper store
 \end{verbatim}
+
+\section{General Workflow}
+
+For general developers, please fork our repo on github, and work on the forked repo (of which you have full control) following the guidelines and conventions in Section \ref{sec:basic}.
+You can also add collaborators (give them push permission) to your forked repo and work together.
+
+Once finished and merged to the master branch in your forked repo, please send us a pull request via github, and we will look into merging your changes into our main repo.
 
 \section{Core Developers Workflow}
 
-Core developers will have the permission to push directly into our git repo.
+Core developers will have the permission to push directly into our main git repo.
+Therefore, you can merge your contribution into our repo directly.
+You can still use pull requests via github if you think it is beneficial to discuss or have someone review your code before you merge it to the master branch.
+We leave the decision of whether merging your changes to the master branch directly or opening a pull request to you.
 
-When start working on a new feature or fix a bug, you first want to checkout the master branch and do a pull to get the latest changes.
+We enforce a ``{\it no committing to master directly}'' rule, so NO COMMITTING DIRECTLY TO MASTER, please.
+When you want to work on something, please make a new branch for your feature.
+Once you've implemented your ideas or fixes, commit it to that branch.
+Then, you could either merge it to the master or make a pull request.
+
+You will also deal with pull requests from other developers.
+In the case that there is no conflict, github can merge them directly once you or any other core developers approved.
+When there are conflicts, you have to do it manually by creating a new branch, pulling from their repo, and then merging with the master branch as you would normally do when merging your own changes.
+Here are some commands you might use
 \begin{verbatim}
-git
+# Obtain newest master
+git checkout master
+git pull
 
+# Obtain their changes
+git branch merge-otherdeveloper
+git checkout merge-otherdeveloper
+git pull https://github.com/otherdeveloper/... master
+
+# Merge the changes to your master branch
+git checkout master
+git merge merge-otherdeveloper
+git push origin master
 \end{verbatim}
 
+\section{Further Readings}
 
-\section{Première section}
+Here is a list of references that I think would be really helpful for people just started using git.
+They introduce more features and provide more details of the data model and various shortcuts in git.
 
-Vous trouverez des informations pertinentes concernant ce gabarit (en anglais)
-dans le reste de ce document.
+1. Pro Git: a comprehensive introduction of git. \url{https://git-scm.com/book/en/v2}
+
+2. Bitbucket wiki: useful commands and shortcuts in git. \url{https://bitbucket.org/petsc/petsc/wiki/quick-dev-git}
+
+3. Visual Git Reference: visual reference for the most common commands in git. \url{https://marklodato.github.io/visual-git-guide/index-en.html}
+
+
 
 \end{document}
