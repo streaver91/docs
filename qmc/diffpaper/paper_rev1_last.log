@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.4.14)  17 MAY 2016 10:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.4.14)  17 MAY 2016 14:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -314,62 +314,77 @@ e
 \openout3 = `paper_rev1_lastNotes.bib'.
 
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
-[7] <afor.pdf, id=45, 794.97pt x 614.295pt>
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5]
+Overfull \hbox (15.92935pt too wide) in paragraph at lines 415--421
+\OT1/cmr/m/it/10 the deriva-tives are eva-l-u-tated at $\OML/cmm/m/it/10 ^^U \O
+T1/cmr/m/n/10 = 0$\OT1/cmr/m/it/10 . The sec-ond one $[] [] []\OT1/cmr/m/n/10 (
+\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A \OT1/cmr/m/n/10 + \OML/
+cmm/m/it/10 ^^UB\OT1/cmr/m/n/10 )[]([] + \OML/cmm/m/it/10 ^^U[]\OT1/cmr/m/n/10 
+)\OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 ) = []((\OML/cmm/m/it/10 P[]A[][]Q\OT1/cmr/m
+/n/10 )[]\OML/cmm/m/it/10 @[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/
+10 (\OML/cmm/m/it/10 A \OT1/cmr/m/n/10 +
+ []
+
+[6] [7] <afor.pdf, id=45, 794.97pt x 614.295pt>
 File: afor.pdf Graphic file (type pdf)
  <use afor.pdf>
-Package pdftex.def Info: afor.pdf used on input line 517.
+Package pdftex.def Info: afor.pdf used on input line 553.
 (pdftex.def)             Requested size: 510.0pt x 394.10353pt.
- [8 <./afor.pdf, page is rotated 90 degrees>] <aorb.pdf, id=54, 845.1575pt x 59
-7.23125pt>
-File: aorb.pdf Graphic file (type pdf)
 
-<use aorb.pdf>
-Package pdftex.def Info: aorb.pdf used on input line 543.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<aorb.pdf, id=46, 845.1575pt x 597.23125pt>
+File: aorb.pdf Graphic file (type pdf)
+ <use aorb.pdf>
+Package pdftex.def Info: aorb.pdf used on input line 579.
 (pdftex.def)             Requested size: 510.0pt x 360.40105pt.
- [9 <./aorb.pdf, page is rotated 90 degrees>]
-<mdet.pdf, id=61, 794.97pt x 614.295pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8] <mdet.pdf, id=50, 794.97pt x 614.295pt>
 File: mdet.pdf Graphic file (type pdf)
  <use mdet.pdf>
-Package pdftex.def Info: mdet.pdf used on input line 593.
+Package pdftex.def Info: mdet.pdf used on input line 629.
 (pdftex.def)             Requested size: 510.0pt x 394.10353pt.
- [10] [11 <./mdet.pdf, page is rotated 90 degrees>] [12] [13] [14] [15] (./pape
-r_rev1_last.bbl) [16]
-(./paper_rev1_last.aux) ) 
+ [9 <./afor.pdf, page is rotated 90 degrees>] [10 <./aorb.pdf, page is rotated 
+90 degrees>] [11 <./mdet.pdf, page is rotated 90 degrees>] [12] [13] [14] [15]
+(./paper_rev1_last.bbl) [16] (./paper_rev1_last.aux) ) 
 Here is how much of TeX's memory you used:
- 4499 strings out of 493304
- 58903 string characters out of 6139871
- 149521 words of memory out of 5000000
- 7882 multiletter control sequences out of 15000+600000
+ 4498 strings out of 493304
+ 58895 string characters out of 6139871
+ 151522 words of memory out of 5000000
+ 7881 multiletter control sequences out of 15000+600000
  16983 words of font info for 59 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,10n,25p,851b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
-9.pfb>
-Output written on paper_rev1_last.pdf (16 pages, 389782 bytes).
+</usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmti9.pfb>
+Output written on paper_rev1_last.pdf (16 pages, 392800 bytes).
 PDF statistics:
  173 PDF objects out of 1000 (max. 8388607)
  124 compressed objects within 2 object streams

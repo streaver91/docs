@@ -206,7 +206,14 @@ To prove the first identity in  Eq.~(\ref{dettrace0}), we just have to perform t
 \begin{equation}
 \det(A+\lambda B) = |(\phi_1 + \lambda O \phi_1) (\phi_2 + \lambda O \phi_2) \dots |
 \end{equation}
-with respect to $\lambda$ and use the multi-linearity of the determinant. The second identity follows from Eq.~(\ref{derivtrace}).
+with respect to $\lambda$ and use the multi-linearity of the determinant.
+
+\begin{note}
+The expansion of $\det (A+\lambda B)$ is $|\phi_1\phi_2\cdots| + \lambda \cdot \hat{O}D + O(\lambda^2)$.
+Take derivative with respect to $\lambda$ and evaluates at $\lambda=0$ gives $\hat{O}D$.
+\end{note}
+
+The second identity follows from Eq.~(\ref{derivtrace}).
 A very important example is the kinetic energy operator $\hat{O}=\hat{T}$ with
 \begin{equation}
 O({\bf r}_i)  = -\frac{1}{2}\Delta_i   \equiv -\frac{1}{2} \left(\frac{\partial^2}{\partial x_i^2}+
@@ -240,6 +247,10 @@ X=A^{-1}{B}A^{-1}\,.
 \end{eqnarray}
 This can easily be shown by using $d(A^{-1})=-A^{-1}dA\,A^{-1}$ and the cyclic property of the trace.
 
+\begin{note}
+$\tr(\partial_\mu (A^{-1}) B) = - \tr(A^{-1}\partial_\mu A A^{-1} B) = - \tr(X\partial_\mu A)$
+\end{note}
+
 Therefore, to compute the derivatives of $O_{\rm L}$ with respect to many parameters,
 one evaluates and stores the matrix $X$ at a cost
 proportional to $N^3$, and then completes the derivative for each parameter,
@@ -264,6 +275,11 @@ where the derivative is taken at $\mu = 0$ and the rectangular matrix
 \label{deftildeM}
 \end{equation}
 is computed from the $\tilde{A}$ and $\tilde{B}$ rectangular extensions of $A$ and $B$ to the $N_{\rm virt}$ virtual orbitals (defined here as the orbitals which are unoccupied in the reference determinant).
+
+\begin{note}
+Extend the excited states to the right of the ground state functions: $\widetilde{A} = |\phi_1\phi_2\cdots\phi_{e_1}\phi_{e_2}\cdots|$, where $\phi_{e_i}$ are the excited state functions.
+\end{note}
+
 To show this, we simply note that all elements of the matrices $\partial_\mu A$ and $\partial_\mu B$ are zero with
 the exception of the $i^{\rm th}$ row which contains $\phi_j$ and $\hat{H}\psi_j$, respectively. Then,
 if the number of orbital variations is $N_s$ (which equals the number of determinants $\bar{D}$ created via single excitations $D\to D+\mu\bar{D}$), the cost of evaluating
@@ -279,6 +295,11 @@ Thanks to Eq.~(\ref{derivtrace}), the same formula~(\ref{dm_dettrace0}) also app
 ={\rm tr}(A^{-1}\partial_\mu\partial_\lambda A-(A^{-1}\partial_\lambda A)(A^{-1}\partial_\mu A))\,,
 \label{2deriv_sym}
 \end{eqnarray}
+
+\begin{note}
+Here again uses $d(A^{-1})=-A^{-1}dA A^{-1}$ and the cyclic property of the trace.
+\end{note}
+
 {\bf Also in this case, however, if $\{\lambda\}$ and $\{\mu\}$ denote} two sets of variables and one set, for instance $\{\lambda\}$, is significantly smaller than the other, it is computationally convenient to group the matrices differently and precompute the matrices $X_\lambda =A^{-1}\partial_\lambda A A^{-1}$, followed by the evaluation of the trace with the more numerous $\partial_\mu A$.
 
 \section{Multiple excitations}
@@ -326,6 +347,11 @@ Using that $P^T P$ is the $k\times k$ identity matrix, we obtain
 This formula was also obtained in Ref.~\onlinecite{Clark11}.
 
 Note that since $\bar{A}P$  are also  columns of $\tilde{A}$, we can define the $(N+ N_{\rm virt})\times k$ matrix $Q$ such that $\bar{A}P = \tilde{A} Q$.
+
+\begin{note}
+  $A$ is the original matrix, $\bar A$ is the modified matrix, and $\widetilde{A}$ is the extension of the original matrix with the addition of excited state functions to the right of $A$.
+\end{note}
+
 {\bf For example, if $4$ and $6$ are the indices of the excited orbitals (e.g. $1 \to 4$ and $3 \to 6$ are the list of excitations)}, the matrix $Q$ is
 \begin{equation}
 Q = \left( \begin{array}{cccccc}
@@ -384,6 +410,19 @@ where we used again Eq.~(\ref{tr_deriv_det}) and introduced the same matrix as  
 \begin{eqnarray}
 \tilde{M} & = & \A^{-1} \tilde{\Al}-A^{-1}B A^{-1}  \tilde{\A} \,. \nonumber
 \end{eqnarray}
+
+\begin{note}
+From the equations above, we have
+$\tr (\bar{A}^{-1} \bar{B})
+= \frac{d}{d\lambda} \ln \det(A+\lambda B) + \frac{d}{d\lambda} \ln \det (P^T(A+\lambda B)^{-1}(\widetilde{A} + \lambda \widetilde{B})Q)$, where the derivatives are evalutated at $\lambda = 0$.
+The second term
+$\frac{d}{d\lambda} \ln \det (P^T(A+\lambda B)^{-1}(\widetilde{A} + \lambda \widetilde{B})Q)
+= \tr ( (P^T \A^{-1} \tilde{\A}Q)^{-1} \partial_\lambda(P^T(A+\lambda B)^{-1}(\widetilde{A} + \lambda \widetilde{B})Q))$.
+Applying $d(A^{-1})=-A^{-1}dA\,A^{-1}$ and the product rule, we have
+$\partial_\lambda(P^T(A+\lambda B)^{-1}(\widetilde{A} + \lambda \widetilde{B})Q))
+= P^T (\partial_\mu ((A+\lambda B)^{-1}) \widetilde{A} + \lambda \widetilde{B} + ) Q
+\end{note}
+
 Note that the  expression~(\ref{multiplex})  applies to any logarithmic derivative $\partial_\lambda (\ln \bar{D})$ with $B=\partial_\lambda A$
 and $\tilde{B}=\partial_\lambda \tilde{A}$.
 
