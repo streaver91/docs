@@ -1,0 +1,72 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper_rev1_last.aux
+The style file: aipnum4-1.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: paper_rev1_lastNotes.bib
+Database file #2: paper_rev1_last.bib.bib
+control{REVTEX41Control}, control.key{N/A}, control.author{N/A}, control.editor{N/A}, control.title{N/A}, control.pages{N/A}, control.year{N/A}, control.eprint{N/A}, 
+control{aip41Control}, control.key{N/A}, control.author{N/A}, control.editor{N/A}, control.title{}, control.pages{0}, control.year{N/A}, control.eprint{N/A}, 
+Warning--jnrlst (dependency: not reversed) set 1
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+merlin.mbs aipnum4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
+Control: key (0) 
+Control: author (8) initials jnrlst
+Control: editor formatted (1) identically to author
+Control: production of article title (-1) disabled
+Control: page (0) single
+Control: year (1) truncated
+Control: production of eprint (0) enabled
+Warning--empty year in Scemama15
+Warning--empty year in opt_orb
+Warning--empty year in Champ
+Warning--empty year in Hpseudo
+Warning--empty year in act_virt
+You've used 20 entries,
+            5918 wiz_defined-function locations,
+            1708 strings with 17956 characters,
+and the built_in function-call counts, 13472 in all, are:
+= -- 950
+> -- 313
+< -- 86
++ -- 114
+- -- 91
+* -- 1916
+:= -- 1417
+add.period$ -- 18
+call.type$ -- 20
+change.case$ -- 80
+chr.to.int$ -- 20
+cite$ -- 35
+duplicate$ -- 1238
+empty$ -- 931
+format.name$ -- 159
+if$ -- 2578
+int.to.chr$ -- 1
+int.to.str$ -- 27
+missing$ -- 169
+newline$ -- 106
+num.names$ -- 30
+pop$ -- 639
+preamble$ -- 1
+purify$ -- 82
+quote$ -- 0
+skip$ -- 489
+stack$ -- 0
+substring$ -- 382
+swap$ -- 1089
+text.length$ -- 28
+text.prefix$ -- 0
+top$ -- 10
+type$ -- 238
+warning$ -- 6
+while$ -- 40
+width$ -- 0
+write$ -- 169
+(There were 6 warnings)

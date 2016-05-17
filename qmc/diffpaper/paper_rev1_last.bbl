@@ -1,0 +1,189 @@
+%merlin.mbs aipnum4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
+%Control: key (0)
+%Control: author (8) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (-1) disabled
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{18}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{http://dx.doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Foulkes}\ \emph {et~al.}(2001)\citenamefont
+  {Foulkes}, \citenamefont {Mitas}, \citenamefont {Needs},\ and\ \citenamefont
+  {Rajagopal}}]{Foulkes01}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.~M.~C.}\
+  \bibnamefont {Foulkes}}, \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Mitas}}, \bibinfo {author} {\bibfnamefont {R.~J.}\ \bibnamefont {Needs}}, \
+  and\ \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Rajagopal}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Rev. Mod. Phys.}\
+  }\textbf {\bibinfo {volume} {73}},\ \bibinfo {pages} {33} (\bibinfo {year}
+  {2001})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Koloren\v{c}}\ and\ \citenamefont
+  {Mitas}(2011)}]{Kolorenc11}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Koloren\v{c}}}\ and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Mitas}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Rep.
+  Prog. Phys.}\ }\textbf {\bibinfo {volume} {74}},\ \bibinfo {pages} {026502}
+  (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{Note1()}]{Note1}%
+  \BibitemOpen
+  \bibinfo {note} {Generalization to more general cases such as determinants
+  with (short range) backflow, geminals or pfaffians will be presented
+  elsewhere}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Assaraf}\ and\ \citenamefont
+  {Caffarel}(2003)}]{assaraf03}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Assaraf}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Caffarel}},\ }\href {\doibase DOI:10.1063/1.1621615} {\bibfield  {journal}
+  {\bibinfo  {journal} {J. Chem. Phys.}\ }\textbf {\bibinfo {volume} {119}},\
+  \bibinfo {pages} {10536} (\bibinfo {year} {2003})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Umrigar}(1989)}]{Umrigar89}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~J.}\ \bibnamefont
+  {Umrigar}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Int.
+  J. Quantum Chem.}\ }\textbf {\bibinfo {volume} {23}},\ \bibinfo {pages} {217}
+  (\bibinfo {year} {1989})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Filippi}\ and\ \citenamefont
+  {Umrigar}(2000)}]{Filippi00}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Filippi}}\ and\ \bibinfo {author} {\bibfnamefont {C.~J.}\ \bibnamefont
+  {Umrigar}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys.
+  Rev. B}\ }\textbf {\bibinfo {volume} {61}},\ \bibinfo {pages} {R16291}
+  (\bibinfo {year} {2000})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Sorella}\ and\ \citenamefont
+  {Capriotti}(2010)}]{Sorella10}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Sorella}}\ and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Capriotti}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {J.
+  Comp. Phys.}\ }\textbf {\bibinfo {volume} {133}},\ \bibinfo {pages} {234111}
+  (\bibinfo {year} {2010})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Clark}\ \emph {et~al.}(2011)\citenamefont {Clark},
+  \citenamefont {Morales}, \citenamefont {McMinis}, \citenamefont {Kim},\ and\
+  \citenamefont {Scuseria}}]{Clark11}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.~K.}\ \bibnamefont
+  {Clark}}, \bibinfo {author} {\bibfnamefont {M.~A.}\ \bibnamefont {Morales}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {McMinis}}, \bibinfo
+  {author} {\bibfnamefont {J.}~\bibnamefont {Kim}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {G.~E.}\ \bibnamefont {Scuseria}},\ }\href
+  {http://scitation.aip.org/content/aip/journal/jcp/135/24/10.1063/1.3665391}
+  {\bibfield  {journal} {\bibinfo  {journal} {J. Chem. Phys.}\ }\textbf
+  {\bibinfo {volume} {135}},\ \bibinfo {eid} {244105} (\bibinfo {year}
+  {2011})}\BibitemShut {NoStop}%
+\bibitem [{Sce()}]{Scemama15}%
+  \BibitemOpen
+  \href@noop {} {}\bibinfo {note} {A. Scemama, T. Applencourt, E. Giner, and M.
+  Caffarel, http://arxiv.org/abs/1510.00730}\BibitemShut {NoStop}%
+\bibitem [{Note2()}]{Note2}%
+  \BibitemOpen
+  \bibinfo {note} {The local energy contains one-body operators (the kinetic
+  energy and the possibly non-local electron-nucleus potential), and the
+  two-body electron-electron potential; the latter is diagonal in $R$ and the
+  calculation of both its value and its derivatives is trivial.}\BibitemShut
+  {Stop}%
+\bibitem [{opt()}]{opt_orb}%
+  \BibitemOpen
+  \href@noop {} {}\bibinfo {note} {Given a set of $M_b$ basis functions, one
+  can construct $M_b$ orbitals (e.g. the occupied and virtual Hartree-Fock
+  orbitals) which span the same space. Performing orbital variations by mixing
+  orbitals recovers the same variational freedom as varying individual orbital
+  coefficients and offers several advantages. One can for instance easily
+  preserve the orbital symmetry or omit redundant rotations.}\BibitemShut
+  {Stop}%
+\bibitem [{Cha()}]{Champ}%
+  \BibitemOpen
+  \href@noop {} {}\bibinfo {note} {CHAMP is a quantum Monte Carlo program
+  package written by C. J. Umrigar, C. Filippi, S. Moroni and
+  collaborators}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Burkatzki}, \citenamefont {Filippi},\ and\
+  \citenamefont {Dolg}(2007)}]{Burkatzki07}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Burkatzki}}, \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Filippi}},
+  \ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Dolg}},\ }\href
+  {\doibase 10.1063/1.2741534} {\bibfield  {journal} {\bibinfo  {journal} {J.
+  Chem. Phys.}\ }\textbf {\bibinfo {volume} {126}},\ \bibinfo {eid} {234105}
+  (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
+\bibitem [{Hps()}]{Hpseudo}%
+  \BibitemOpen
+  \href@noop {} {}\bibinfo {note} {For the hydrogen atom, we use a more
+  accurate BFD pseudopotential and basis set. Dolg, M.; Filippi, C., private
+  communication}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Umrigar}\ \emph {et~al.}(2007)\citenamefont
+  {Umrigar}, \citenamefont {Toulouse}, \citenamefont {Filippi}, \citenamefont
+  {Sorella},\ and\ \citenamefont {Hennig}}]{Umrigar07}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~J.}\ \bibnamefont
+  {Umrigar}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Toulouse}},
+  \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Filippi}}, \bibinfo
+  {author} {\bibfnamefont {S.}~\bibnamefont {Sorella}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {R.~G.}\ \bibnamefont {Hennig}},\ }\href {\doibase
+  10.1103/PhysRevLett.98.110201} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {98}},\ \bibinfo {pages}
+  {110201} (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
+\bibitem [{act()}]{act_virt}%
+  \BibitemOpen
+  \href@noop {} {}\bibinfo {note} {If the products are carried out from the
+  left to the right, the factor $N_{\rm virt}$ appearing in the scaling must be
+  substituted with $N_{\rm act}$}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Badinski}\ and\ \citenamefont
+  {Needs}(2007)}]{Badinski07}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Badinski}}\ and\ \bibinfo {author} {\bibfnamefont {R.~J.}\ \bibnamefont
+  {Needs}},\ }\href {\doibase 10.1103/PhysRevE.76.036707} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. E}\ }\textbf {\bibinfo {volume} {76}},\
+  \bibinfo {pages} {036707} (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
+\bibitem [{Note3()}]{Note3}%
+  \BibitemOpen
+  \bibinfo {note} {In Ref.~\protect \rev@citealpnum {Scemama15}, a tree from
+  the set of excited determinants is built such that a child Slater determinant
+  differs from his parent in only one column.}\BibitemShut {Stop}%
+\end{thebibliography}%
