@@ -1,7 +1,7 @@
 {
   "property-id" "tag:staff@noreply.openkim.org,2016-04-06:property/monovacancy-neutral-migration-saddle-point-elastic-dipole-tensor-crystal-npt"
 
-  "property-title" "The elastic dipole tensor at the top of the energy barrier of vacancy migration at finite temperature and given stress state"
+  "property-title" "The Elastic Dipole Tensor at The Top of The Energy Barrier of Vacancy Migration at Finite Temperature and Given Stress State"
 
   "property-description" "This quantity describes the long-range elastic distortion caused by the vacancy at the migration saddle point. Quantitatively, it is the negative of the derivative of the free energy with respect to the bulk strain (Gillan, 1983) at the top of the energy barrier during the vacancy migration. Note that, unlike the energy barrier that is the difference in energy between the saddlepoint and the ground state, this does not subtract the elastic dipole of the ground state vacancy."
 
@@ -18,6 +18,13 @@
     "extent"       []
     "required"     true
     "description"  "The element symbol of the atomic species corresponding to the atom being removed from the lattice."
+  }
+  "vacancy-migration-direction" {
+    "type"         "float"
+    "has-unit"     false
+    "extent"       [3]
+    "required"     false
+    "description"  "This quantity describes the direction of from the starting position of the vacancy to the ending position of the vacancy. It shall be expressed in fractional coordinates relative to the conventional unit cell and corresponds to 'vacancy-position-start', with the absolute value of the fractional coordinates add up to one. If there are several equivalent migration directions, the largest fractional x, y and z coordinates are taken."
   }
   "vacancy-position-start" {
     "type"         "float"

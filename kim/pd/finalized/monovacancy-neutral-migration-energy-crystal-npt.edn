@@ -1,7 +1,7 @@
 {
   "property-id" "tag:staff@noreply.openkim.org,2016-04-06:property/monovacancy-neutral-migration-energy-crystal-npt"
 
-  "property-title" "Migration energy Barrier of neutral monovacancy at finite temperature and given stress state"
+  "property-title" "Migration Energy Barrier of Neutral Monovacancy at Finite Temperature and Given Stress State"
 
   "property-description" "The energy barrier that must be overcome to transition (at finite temperature and a given stress state) from the initial configuration, a relaxed infinite crystal lattice with a neutral monovacancy at the position described by 'vacancy-position-start', to the final relaxed configuration, where the monovacancy has moved to a new position described by 'vacancy-migration-direction' and 'vacancy-position-end'."
 
@@ -16,7 +16,7 @@
     "type"         "float"
     "has-unit"     false
     "extent"       [3]
-    "required"     true
+    "required"     false
     "description"  "This quantity describes the direction of from the starting position of the vacancy to the ending position of the vacancy. It shall be expressed in fractional coordinates relative to the conventional unit cell and corresponds to 'vacancy-position-start', with the absolute value of the fractional coordinates add up to one. If there are several equivalent migration directions, the largest fractional x, y and z coordinates are taken."
   }
   "missing-atom-species" {
