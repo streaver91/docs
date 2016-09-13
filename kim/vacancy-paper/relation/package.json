@@ -1,0 +1,15 @@
+{
+  "name": "relation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getData.node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Junhao",
+  "license": "ISC",
+  "dependencies": {
+    "needle": "^1.1.0",
+    "underscore": "^1.8.3"
+  }
+}
