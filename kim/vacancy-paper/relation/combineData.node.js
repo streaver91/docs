@@ -4,8 +4,8 @@ const path = require('path');
 const _ = require('underscore');
 
 const SURFACE_JSON_FILE = 'surfaceData.json';
-const ORIGINAL_CSV_FILE = 'dataFccVacancy.csv';
-const OUTPUT_CSV_FILE = 'dataFccVacancySurface.csv';
+const ORIGINAL_CSV_FILE = 'fccEAMVacancyData_0919.csv';
+const OUTPUT_CSV_FILE = 'fccVacancySurfaceData_0919.csv';
 
 var surfaceData = (() => {
   var raw = fs.readFileSync(SURFACE_JSON_FILE, 'utf-8');
@@ -18,6 +18,7 @@ var surfaceData = (() => {
     }
     var model = record['meta.subject.kimcode'];
     var element = record['species.source-value'][0];
+    // Using [modelName]#[elementName] as a key hash for data join.
     var hash = [model, element].join('#');
     var miller = record['miller-indices.source-value'].join('');
     var surfaceEnergy = record['surface-energy.source-value'];
@@ -57,6 +58,12 @@ console.log(originalData);
   for (var hash in originalData) {
     var surfaceInfo = surfaceData[hash];
     var originalInfo = originalData[hash];
+    
+    if (surfaceInfo == undefined) {
+      console.log("Not found: " + hash);
+      continue;
+    }
+
     if (output.length == 0) {
       items = _.keys(originalInfo).concat(_.keys(surfaceInfo));
       output.push(items.join(','));
@@ -64,9 +71,11 @@ console.log(originalData);
     var row = [];
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
-      row.push(surfaceInfo[item] == undefined ? originalInfo[item] : surfaceInfo[item]);
+      var value = surfaceInfo[item] == undefined ? originalInfo[item] : surfaceInfo[item];
+      row.push(value);
     }
     output.push(row.join(','));
   }
   fs.writeFileSync(OUTPUT_CSV_FILE, output.join('\n'));
+  console.log("Data saved to: " + OUTPUT_CSV_FILE);
 })();
