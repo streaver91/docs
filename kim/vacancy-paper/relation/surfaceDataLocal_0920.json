@@ -1,0 +1,641 @@
+[
+  {
+    "surface100": 0.128820717052,
+    "surface121": 0.138724338235,
+    "surface111": 0.12541527002,
+    "surface110": 0.140743946968,
+    "element": "Pd",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Hale_Wong_pairMorse_PdAgH__MO_108983864770_002"
+  },
+  {
+    "surface100": 0.120837836579,
+    "surface121": 0.127329088065,
+    "surface111": 0.109794147038,
+    "surface110": 0.130265087362,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mishin_NiAl__MO_101214310689_002"
+  },
+  {
+    "surface100": 0.0586968327704,
+    "surface121": 0.0618461573325,
+    "surface111": 0.0538151487431,
+    "surface110": 0.0634650730518,
+    "element": "Ag",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Williams_Mishin_Ag__MO_131620013077_002"
+  },
+  {
+    "surface100": 0.0803809418251,
+    "surface121": 0.0854018306669,
+    "surface111": 0.0736962872664,
+    "surface110": 0.0881455088719,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Foiles_Baskes_Universal3_Cu__MO_666348409573_001"
+  },
+  {
+    "surface100": 0.012308961377,
+    "surface121": 0.0159384762122,
+    "surface111": 0.00873120441403,
+    "surface110": 0.0205203345612,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_Srolovitz_AlFe__MO_577453891941_002"
+  },
+  {
+    "surface100": 0.067588513481,
+    "surface121": 0.0680344667171,
+    "surface111": 0.0563360529203,
+    "surface110": 0.0720161638596,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_Kramer_Cu__MO_945691923444_002"
+  },
+  {
+    "surface100": 0.0776076925372,
+    "surface121": 0.0826811571552,
+    "surface111": 0.0736077908754,
+    "surface110": 0.0834186799997,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_QuinticClampedSpline_Cai_Ye_AlCu__MO_246347493730_000"
+  },
+  {
+    "surface100": 0.0424544341706,
+    "surface121": 0.0446147782737,
+    "surface111": 0.0385517329428,
+    "surface110": 0.0460739500968,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Sturgeon_Laird_Al__MO_120808805541_002"
+  },
+  {
+    "surface100": 0.0362055419271,
+    "surface121": 0.0378293917887,
+    "surface111": 0.0327517809177,
+    "surface110": 0.0391409287924,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Cai_Ye_AlCu__MO_942551040047_002"
+  },
+  {
+    "surface100": 0.139987481247,
+    "surface121": 0.143730883405,
+    "surface111": 0.135323909205,
+    "surface110": 0.139261126362,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "IMD_EAM_Schopf_AlNiCo_A__MO_122703700223_002"
+  },
+  {
+    "surface100": 0.0378897480148,
+    "surface121": 0.0471448336076,
+    "surface111": 0.0375240282133,
+    "surface110": 0.0494719464519,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zope_Mishin_TiAl__MO_117656786760_002"
+  },
+  {
+    "surface100": 0.0839638761456,
+    "surface121": 0.0894982705852,
+    "surface111": 0.0773611778783,
+    "surface110": 0.0920866830115,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Williams_Mishin_CuAg__MO_128703483589_002"
+  },
+  {
+    "surface100": 0.0380030914163,
+    "surface121": 0.0400193788947,
+    "surface111": 0.0375611782629,
+    "surface110": 0.041811912874,
+    "element": "Pb",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Hoyt_Garvin_PbCu__MO_119135752160_002"
+  },
+  {
+    "surface100": 0.109535534165,
+    "surface121": 0.119163852572,
+    "surface111": 0.101345779911,
+    "surface110": 0.123434897838,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Bonny_Pasianot_FeCuNi__MO_469343973171_002"
+  },
+  {
+    "surface100": 0.0296988708686,
+    "surface121": 0.0295573716976,
+    "surface111": 0.0249929696146,
+    "surface110": 0.0313185201836,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "IMD_EAM_Schopf_AlNiCo_A__MO_122703700223_002"
+  },
+  {
+    "surface100": 0.0803846434911,
+    "surface121": 0.0854066302663,
+    "surface111": 0.0736999383445,
+    "surface110": 0.0881501691928,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Hoyt_Garvin_PbCu__MO_119135752160_002"
+  },
+  {
+    "surface100": 0.0877202489828,
+    "surface121": 0.094267150409,
+    "surface111": 0.0801354256135,
+    "surface110": 0.0989939071261,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_Ni__MO_832600236922_002"
+  },
+  {
+    "surface100": 0.0586968327716,
+    "surface121": 0.0618461573263,
+    "surface111": 0.0538151487436,
+    "surface110": 0.0634650730483,
+    "element": "Ag",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Williams_Mishin_CuAg__MO_128703483589_002"
+  },
+  {
+    "surface100": 0.0131674654252,
+    "surface121": 0.015059739712,
+    "surface111": 0.0141001482801,
+    "surface110": 0.0150097295889,
+    "element": "Ca",
+    "lattice": "fcc",
+    "model": "IMD_EAM_Schopf_CaCd__MO_145183423516_002"
+  },
+  {
+    "surface100": 0.0536128841385,
+    "surface121": 0.0587055450904,
+    "surface111": 0.051674889884,
+    "surface110": 0.0601547659852,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Vailhe_Farkas_CoAl__MO_284963179498_002"
+  },
+  {
+    "surface100": 0.05889355827,
+    "surface121": 0.0619448152709,
+    "surface111": 0.0543330139192,
+    "surface110": 0.0627905986342,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mishin_Farkas_Al__MO_651801486679_002"
+  },
+  {
+    "surface100": 0.176381457955,
+    "surface121": 0.181975301275,
+    "surface111": 0.174607716826,
+    "surface110": 0.17930732452,
+    "element": "Pd",
+    "lattice": "fcc",
+    "model": "IMD_EAM_Schopf_AlMnPd__MO_878712978062_002"
+  },
+  {
+    "surface100": 0.218080798305,
+    "surface121": 0.248494371247,
+    "surface111": 0.237096110806,
+    "surface110": 0.219696963537,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "IMD_EAM_Schopf_AlNiCo_B__MO_128037485276_002"
+  },
+  {
+    "surface100": 0.0675885135369,
+    "surface121": 0.0680344616726,
+    "surface111": 0.0563360043916,
+    "surface110": 0.0720161615454,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_Sordelet_CuZr__MO_120596890176_002"
+  },
+  {
+    "surface100": 0.058839408162,
+    "surface121": 0.0633100968865,
+    "surface111": 0.0543011945376,
+    "surface110": 0.0646702227384,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Ercolessi_Adams_Al__MO_123629422045_002"
+  },
+  {
+    "surface100": 0.0379713835782,
+    "surface121": 0.0400047007678,
+    "surface111": 0.0375345350212,
+    "surface110": 0.0417921431399,
+    "element": "Pb",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Landa_Wynblatt_AlPb__MO_699137396381_002"
+  },
+  {
+    "surface100": 0.0341922099284,
+    "surface121": 0.0364435203262,
+    "surface111": 0.0307110767826,
+    "surface110": 0.0385571990953,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_QuinticClampedSpline_Cai_Ye_AlCu__MO_246347493730_000"
+  },
+  {
+    "surface100": 0.0586971299372,
+    "surface121": 0.0618460367249,
+    "surface111": 0.0538152600913,
+    "surface110": 0.0634649089871,
+    "element": "Ag",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Wu_Trinkle_CuAg__MO_270337113239_002"
+  },
+  {
+    "surface100": 0.0569363654285,
+    "surface121": 0.0632154153625,
+    "surface111": 0.0546477338891,
+    "surface110": 0.0653211871102,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Winey_Kubota_Al__MO_149316865608_002"
+  },
+  {
+    "surface100": 0.0713078144977,
+    "surface121": 0.0718231965128,
+    "surface111": 0.058997484719,
+    "surface110": 0.0768480814167,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Ackland_Tichy_Cu__MO_179025990738_002"
+  },
+  {
+    "surface100": 0.0635082585516,
+    "surface121": 0.0677627934846,
+    "surface111": 0.0579225112582,
+    "surface110": 0.0704097914939,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Wu_Trinkle_CuAg__MO_270337113239_002"
+  },
+  {
+    "surface100": 0.215448151691,
+    "surface121": 0.225429535864,
+    "surface111": 0.2071850821,
+    "surface110": 0.223369542926,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Onat_Durukanoglu_CuNi__MO_592013496703_002"
+  },
+  {
+    "surface100": 0.109535533966,
+    "surface121": 0.119163853097,
+    "surface111": 0.101345780342,
+    "surface110": 0.123434897942,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Bonny_Pasianot_FeNi__MO_267721408934_002"
+  },
+  {
+    "surface100": 0.0747976643999,
+    "surface121": 0.0758267414882,
+    "surface111": 0.063700694775,
+    "surface110": 0.0796857415605,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_King_Cu__MO_748636486270_002"
+  },
+  {
+    "surface100": 0.0631465418624,
+    "surface121": 0.0694104113183,
+    "surface111": 0.0597601913768,
+    "surface110": 0.0695408955396,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mishin_Mehl_NiAl__MO_109933561507_002"
+  },
+  {
+    "surface100": 0.0590927344249,
+    "surface121": 0.0635102527127,
+    "surface111": 0.0547346408444,
+    "surface110": 0.0647868058271,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Landa_Wynblatt_AlPb__MO_699137396381_002"
+  },
+  {
+    "surface100": 0.135936206277,
+    "surface121": 0.146958820447,
+    "surface111": 0.129988580923,
+    "surface110": 0.149583035691,
+    "element": "Pt",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zhou_Johnson_Pt__MO_102190350384_002"
+  },
+  {
+    "surface100": 0.0753089683005,
+    "surface121": 0.0797483862838,
+    "surface111": 0.0731439372434,
+    "surface110": 0.0795381507799,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "IMD_EAM_Schopf_AlNiCo_B__MO_128037485276_002"
+  },
+  {
+    "surface100": 0.0240297743606,
+    "surface121": 0.0252032469119,
+    "surface111": 0.0217049238996,
+    "surface110": 0.0263748007171,
+    "element": "Pb",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zhou_Johnson_Pb__MO_116920074573_002"
+  },
+  {
+    "surface100": 0.0474080636761,
+    "surface121": 0.0472683584254,
+    "surface111": 0.038761490904,
+    "surface110": 0.0506253277475,
+    "element": "Ag",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Ackland_Tichy_Ag__MO_212700056563_002"
+  },
+  {
+    "surface100": 0.0839682367462,
+    "surface121": 0.0895032711461,
+    "surface111": 0.0773651386737,
+    "surface110": 0.0920920633231,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Bonny_Pasianot_FeCuNi__MO_469343973171_002"
+  },
+  {
+    "surface100": 0.0610247273705,
+    "surface121": 0.0653702360105,
+    "surface111": 0.0565475797982,
+    "surface110": 0.0675838350321,
+    "element": "Ag",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zhou_Johnson_Ag__MO_947112899505_002"
+  },
+  {
+    "surface100": 0.0588393981664,
+    "surface121": 0.0633100983486,
+    "surface111": 0.0543011962748,
+    "surface110": 0.0646702331175,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_QuinticClampedSpline_Ercolessi_Adams_Al__MO_450093727396_000"
+  },
+  {
+    "surface100": 0.0309907296917,
+    "surface121": 0.0334454839023,
+    "surface111": 0.0267020739719,
+    "surface110": 0.036286147088,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_Asta_AlMg__MO_658278549784_002"
+  },
+  {
+    "surface100": 0.0378897569759,
+    "surface121": 0.0471448428078,
+    "surface111": 0.037524041983,
+    "surface110": 0.0494719565059,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mishin_NiAl__MO_101214310689_002"
+  },
+  {
+    "surface100": 0.0575309743566,
+    "surface121": 0.0636631987056,
+    "surface111": 0.0566731846904,
+    "surface110": 0.0643567813423,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zhou_Johnson_Al__MO_131650261510_002"
+  },
+  {
+    "surface100": 0.120837835892,
+    "surface121": 0.127329087454,
+    "surface111": 0.109794146469,
+    "surface110": 0.130265086963,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_PurjaPun_Mishin_NiAl__MO_751354403791_002"
+  },
+  {
+    "surface100": 0.0586971852247,
+    "surface121": 0.0618473904103,
+    "surface111": 0.0538155440861,
+    "surface110": 0.063465938071,
+    "element": "Ag",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Hale_Wong_pairHybrid_PdAgH__MO_104806802344_002"
+  },
+  {
+    "surface100": 0.0975593897103,
+    "surface121": 0.106460569831,
+    "surface111": 0.0936941169025,
+    "surface110": 0.10876825582,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zhou_Johnson_Cu__MO_127245782811_002"
+  },
+  {
+    "surface100": 0.0839638761111,
+    "surface121": 0.0894982700308,
+    "surface111": 0.077361177551,
+    "surface110": 0.0920866825228,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mishin_Mehl_Cu__MO_346334655118_002"
+  },
+  {
+    "surface100": 0.0675885133833,
+    "surface121": 0.0680344614933,
+    "surface111": 0.0563360039165,
+    "surface110": 0.0720161614545,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_Kramer_CuZr__MO_600021860456_002"
+  },
+  {
+    "surface100": 0.0877202489681,
+    "surface121": 0.0942671485327,
+    "surface111": 0.0801354227868,
+    "surface110": 0.0989939045343,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_NiZr__MO_149104665840_002"
+  },
+  {
+    "surface100": 0.128820717052,
+    "surface121": 0.138724338235,
+    "surface111": 0.12541527002,
+    "surface110": 0.140743946968,
+    "element": "Pd",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Hale_Wong_pairHybrid_PdAgH__MO_104806802344_002"
+  },
+  {
+    "surface100": 0.058839401267,
+    "surface121": 0.0633100979979,
+    "surface111": 0.0543011955435,
+    "surface110": 0.064670228603,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_QuinticHermiteSpline_Ercolessi_Adams_Al__MO_781138671863_000"
+  },
+  {
+    "surface100": 0.0480922462695,
+    "surface121": 0.0471964717139,
+    "surface111": 0.0388293159746,
+    "surface110": 0.0508289135983,
+    "element": "Au",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Ackland_Tichy_Au__MO_104891429740_002"
+  },
+  {
+    "surface100": 0.0906923020647,
+    "surface121": 0.0990867775522,
+    "surface111": 0.0850283100663,
+    "surface110": 0.102931981425,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Ackland_Tichy_Ni__MO_977363131043_002"
+  },
+  {
+    "surface100": 0.0000491424978403,
+    "surface121": 0.0000474166163728,
+    "surface111": 0.0000402757461221,
+    "surface110": 0.000049253007231,
+    "element": "Xe",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Smirnova_UMoXe__MO_679329885632_002"
+  },
+  {
+    "surface100": 0.0780800634126,
+    "surface121": 0.0828018817319,
+    "surface111": 0.0729237111698,
+    "surface110": 0.0844334018414,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Cai_Ye_AlCu__MO_942551040047_002"
+  },
+  {
+    "surface100": 0.0800342140248,
+    "surface121": 0.0854210326232,
+    "surface111": 0.0670755841243,
+    "surface110": 0.0930268485731,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mishin_Mehl_NiAl__MO_109933561507_002"
+  },
+  {
+    "surface100": 0.0588393988131,
+    "surface121": 0.0633100978066,
+    "surface111": 0.0543011961363,
+    "surface110": 0.06467023161,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_CubicNaturalSpline_Ercolessi_Adams_Al__MO_800509458712_000"
+  },
+  {
+    "surface100": 0.0309905041033,
+    "surface121": 0.0334453326376,
+    "surface111": 0.0267018784069,
+    "surface110": 0.0362860060918,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Mendelev_Kramer_Al__MO_106969701023_002"
+  },
+  {
+    "surface100": 0.0586971851973,
+    "surface121": 0.0618473904026,
+    "surface111": 0.0538155440811,
+    "surface110": 0.0634659380717,
+    "element": "Ag",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Hale_Wong_pairMorse_PdAgH__MO_108983864770_002"
+  },
+  {
+    "surface100": 0.0378897599042,
+    "surface121": 0.0471448460943,
+    "surface111": 0.0375240464071,
+    "surface110": 0.0494719608034,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zope_Mishin_Al__MO_664470114311_002"
+  },
+  {
+    "surface100": 0.0588942800824,
+    "surface121": 0.0619455006139,
+    "surface111": 0.0543336617405,
+    "surface110": 0.0627912574294,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_PurjaPun_Mishin_NiAl__MO_751354403791_002"
+  },
+  {
+    "surface100": 0.0363623597419,
+    "surface121": 0.0402636266277,
+    "surface111": 0.0374888289832,
+    "surface110": 0.0388201807456,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "IMD_EAM_Schopf_AlMnPd__MO_878712978062_002"
+  },
+  {
+    "surface100": 0.128574359729,
+    "surface121": 0.141267323589,
+    "surface111": 0.120403295757,
+    "surface110": 0.146783552671,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Angelo_Moody_NiAlH__MO_418978237058_002"
+  },
+  {
+    "surface100": 0.0634178338949,
+    "surface121": 0.0658020244614,
+    "surface111": 0.0566406984945,
+    "surface110": 0.0692061435886,
+    "element": "Au",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zhou_Johnson_Au__MO_468407568810_002"
+  },
+  {
+    "surface100": 0.124964674608,
+    "surface121": 0.130685106176,
+    "surface111": 0.116437850902,
+    "surface110": 0.131635865053,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Onat_Durukanoglu_CuNi__MO_592013496703_002"
+  },
+  {
+    "surface100": 0.116787912016,
+    "surface121": 0.126886430006,
+    "surface111": 0.111546492679,
+    "surface110": 0.12869148322,
+    "element": "Ni",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Zhou_Johnson_Ni__MO_110256178378_002"
+  },
+  {
+    "surface100": 0.0749250906704,
+    "surface121": 0.0715441783555,
+    "surface111": 0.0631698813419,
+    "surface110": 0.0787936250076,
+    "element": "Cu",
+    "lattice": "fcc",
+    "model": "EAM_Johnson_NearestNeighbor_Cu__MO_887933271505_001"
+  },
+  {
+    "surface100": 0.0632746711347,
+    "surface121": 0.069935982192,
+    "surface111": 0.0624421814241,
+    "surface110": 0.0716700854339,
+    "element": "Al",
+    "lattice": "fcc",
+    "model": "EAM_Dynamo_Angelo_Moody_NiAlH__MO_418978237058_002"
+  }
+]

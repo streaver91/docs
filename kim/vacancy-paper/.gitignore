@@ -4,3 +4,5 @@
 *.opj
 *.bbl
 *.blg
+
+**/node_modules
